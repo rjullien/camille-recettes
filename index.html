@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Les Recettes de Camille</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <h1 class="main-title">Les Recettes de Camille</h1>
+            <div class="decorative-separator">🌿 ✨ 🌿</div>
+            <p class="subtitle">Des saveurs authentiques, avec amour</p>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <div class="container">
+            <!-- Barre de recherche et filtres -->
+            <div class="search-section">
+                <div class="search-bar">
+                    <input type="text" id="searchInput" placeholder="🔍 Rechercher une recette ou un ingrédient..." />
+                </div>
+                <div class="filters">
+                    <button class="filter-btn active" data-category="all">Toutes</button>
+                    <button class="filter-btn" data-category="legumes-du-jardin">🌱 Légumes du jardin</button>
+                    <button class="filter-btn" data-category="plats-principaux">🍝 Plats principaux</button>
+                    <button class="filter-btn" data-category="desserts">🍰 Desserts</button>
+                </div>
+            </div>
+
+            <!-- Grille des recettes -->
+            <div class="recipes-grid" id="recipesGrid">
+                <div class="recipe-card" data-category="plats-principaux" data-search="pâte crevette tagliatelle ail oignon tomate">
+                    <div class="recipe-image">
+                        <div class="placeholder-image">
+                            📸<br>
+                            <span>Photo à venir</span>
+                        </div>
+                    </div>
+                    <div class="recipe-info">
+                        <h3 class="recipe-title">Pâte Crevette</h3>
+                        <div class="recipe-meta">
+                            <span class="recipe-time">⏱️ 20 min</span>
+                            <span class="recipe-servings">👥 2 pers.</span>
+                        </div>
+                        <a href="recettes/pate-crevette.html" class="recipe-link">Voir la recette</a>
+                    </div>
+                </div>
+
+                <div class="recipe-card" data-category="legumes-du-jardin" data-search="tarte patate pomme de terre beurre crème œuf">
+                    <div class="recipe-image">
+                        <div class="placeholder-image">
+                            📸<br>
+                            <span>Photo à venir</span>
+                        </div>
+                        <div class="recipe-category">Légumes du jardin</div>
+                    </div>
+                    <div class="recipe-info">
+                        <h3 class="recipe-title">Tarte de Patate</h3>
+                        <div class="recipe-meta">
+                            <span class="recipe-time">⏱️ 15 min</span>
+                            <span class="recipe-servings">👥 6 pers.</span>
+                        </div>
+                        <a href="recettes/tarte-de-patate.html" class="recipe-link">Voir la recette</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>Fait avec 💚 par Camille</p>
+            <div class="decorative-separator">🌿 ✨ 🌿</div>
+        </div>
+    </footer>
+
+    <script src="js/app.js"></script>
+</body>
+</html>

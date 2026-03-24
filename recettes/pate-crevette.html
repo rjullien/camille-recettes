@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pâte Crevette - Les Recettes de Camille</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <header class="recipe-header">
+        <div class="container">
+            <a href="../index.html" style="color: var(--color-accent); text-decoration: none; font-weight: 600;">
+                ← Retour aux recettes
+            </a>
+        </div>
+    </header>
+
+    <main class="recipe-main">
+        <div class="recipe-container">
+            <!-- Image principale de la recette -->
+            <div class="recipe-hero-image">
+                <div class="placeholder-image">
+                    📸<br>
+                    <span>Photo à venir</span>
+                </div>
+            </div>
+
+            <!-- Titre et informations principales -->
+            <div class="recipe-title-section">
+                <h1 class="recipe-page-title">Pâte Crevette</h1>
+                <div class="decorative-separator">🌿 ✨ 🌿</div>
+                
+                <div class="recipe-info-bar">
+                    <div class="recipe-info-item">
+                        <span>⏱️</span>
+                        <span>20 min</span>
+                    </div>
+                    <div class="recipe-info-item">
+                        <span>👥</span>
+                        <span>2 personnes</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contenu principal : Ingrédients et Instructions -->
+            <div class="recipe-content">
+                <!-- Ingrédients -->
+                <div class="ingredients-section">
+                    <h2 class="section-title">Ingrédients</h2>
+                    <ul class="ingredients-list">
+                        <li>500 g de tagliatelle fraîche</li>
+                        <li>250 g de crevette décortiquée</li>
+                        <li>1 oignon</li>
+                        <li>1 gousse d'ail</li>
+                        <li>1 cs rase de sucre</li>
+                        <li>1 cs de vinaigre balsamique</li>
+                        <li>25 cl de sauce tomate</li>
+                        <li>Sel et poivre</li>
+                        <li>Huile d'olive</li>
+                    </ul>
+                </div>
+
+                <!-- Instructions -->
+                <div class="instructions-section">
+                    <h2 class="section-title">Préparation</h2>
+                    <ol class="instructions-list">
+                        <li>Faire revenir l'oignon émincé dans de l'huile d'olive pendant 5 minutes jusqu'à ce qu'il soit translucide.</li>
+                        <li>Ajouter l'ail haché et les crevettes décortiquées, faire cuire 5 minutes en remuant régulièrement.</li>
+                        <li>Déglacer avec le vinaigre balsamique et laisser réduire quelques instants.</li>
+                        <li>Ajouter la sauce tomate, assaisonner avec le sel, le poivre et le sucre. Laisser mijoter doucement.</li>
+                        <li>Pendant ce temps, faire cuire les tagliatelles dans une grande casserole d'eau bouillante salée selon les indications du paquet.</li>
+                        <li>Une fois les pâtes cuites al dente, les égoutter et les ajouter directement dans la poêle avec les crevettes. Mélanger délicatement et servir immédiatement.</li>
+                    </ol>
+                </div>
+            </div>
+
+            <!-- Actions -->
+            <div class="recipe-actions">
+                <button onclick="printRecipe()" class="btn btn-primary">🖨️ Imprimer la recette</button>
+                <button onclick="goHome()" class="btn btn-secondary">← Retour à l'accueil</button>
+            </div>
+
+            <!-- Conseils -->
+            <div class="ingredients-section" style="margin-top: 40px;">
+                <h2 class="section-title">Conseils de Camille</h2>
+                <div style="padding: 20px; background: rgba(122, 132, 113, 0.1); border-radius: 12px; border-left: 4px solid var(--color-accent);">
+                    <p style="margin: 0; font-style: italic; line-height: 1.7;">
+                        💡 <strong>Astuce :</strong> Ne pas trop cuire les crevettes pour qu'elles restent moelleuses ! 
+                        Le sucre permet d'équilibrer l'acidité de la tomate et du vinaigre balsamique.
+                        Pour une version plus gourmande, ajoutez un peu de crème fraîche en fin de cuisson.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>Fait avec 💚 par Camille</p>
+            <div class="decorative-separator">🌿 ✨ 🌿</div>
+        </div>
+    </footer>
+
+    <script src="../js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tarte de Patate - Les Recettes de Camille</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <header class="recipe-header">
+        <div class="container">
+            <a href="../index.html" style="color: var(--color-accent); text-decoration: none; font-weight: 600;">
+                ← Retour aux recettes
+            </a>
+        </div>
+    </header>
+
+    <main class="recipe-main">
+        <div class="recipe-container">
+            <!-- Image principale de la recette -->
+            <div class="recipe-hero-image">
+                <div class="placeholder-image">
+                    📸<br>
+                    <span>Photo à venir</span>
+                </div>
+                <div class="recipe-category-badge">Légumes du jardin</div>
+            </div>
+
+            <!-- Titre et informations principales -->
+            <div class="recipe-title-section">
+                <h1 class="recipe-page-title">Tarte de Patate</h1>
+                <div class="decorative-separator">🌿 ✨ 🌿</div>
+                
+                <div class="recipe-info-bar">
+                    <div class="recipe-info-item">
+                        <span>⏱️</span>
+                        <span>15 min prep + 30 min cuisson</span>
+                    </div>
+                    <div class="recipe-info-item">
+                        <span>👥</span>
+                        <span>6 personnes</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contenu principal : Ingrédients et Instructions -->
+            <div class="recipe-content">
+                <!-- Ingrédients -->
+                <div class="ingredients-section">
+                    <h2 class="section-title">Ingrédients</h2>
+                    <ul class="ingredients-list">
+                        <li>500 g de pommes de terre</li>
+                        <li>50 g de beurre mou</li>
+                        <li>50 g de farine</li>
+                        <li>5 cl de crème fraîche</li>
+                        <li>1 œuf entier</li>
+                        <li>1 jaune d'œuf</li>
+                        <li>Sel</li>
+                        <li>Poivre</li>
+                        <li>Muscade</li>
+                    </ul>
+                </div>
+
+                <!-- Instructions -->
+                <div class="instructions-section">
+                    <h2 class="section-title">Préparation</h2>
+                    <ol class="instructions-list">
+                        <li>Laver soigneusement les pommes de terre et les faire cuire dans de l'eau bouillante salée ou à la vapeur jusqu'à ce qu'elles soient tendres (environ 20-25 minutes).</li>
+                        <li>Égoutter et éplucher les pommes de terre encore chaudes, puis les écraser finement à la fourchette ou au presse-purée.</li>
+                        <li>Ajouter le beurre mou, la farine, la crème fraîche, l'œuf entier et le jaune d'œuf. Bien mélanger jusqu'à obtenir une pâte homogène.</li>
+                        <li>Assaisonner généreusement avec du sel, du poivre et une pincée de muscade. Goûter et ajuster l'assaisonnement si nécessaire.</li>
+                        <li>Préchauffer le four à 210°C. Répartir la préparation dans des petits moules individuels beurrés et farinés.</li>
+                        <li>Cuire au four pendant 30 minutes jusqu'à ce que la surface soit bien dorée et légèrement gonflée. Servir chaud en accompagnement.</li>
+                    </ol>
+                </div>
+            </div>
+
+            <!-- Actions -->
+            <div class="recipe-actions">
+                <button onclick="printRecipe()" class="btn btn-primary">🖨️ Imprimer la recette</button>
+                <button onclick="goHome()" class="btn btn-secondary">← Retour à l'accueil</button>
+            </div>
+
+            <!-- Conseils -->
+            <div class="ingredients-section" style="margin-top: 40px;">
+                <h2 class="section-title">Conseils de Camille</h2>
+                <div style="padding: 20px; background: rgba(122, 132, 113, 0.1); border-radius: 12px; border-left: 4px solid var(--color-accent);">
+                    <p style="margin: 0 0 15px 0; font-style: italic; line-height: 1.7;">
+                        🥔 <strong>Variantes :</strong> Cette tarte de patate est parfaite en accompagnement d'une viande ou d'un poisson. 
+                        Vous pouvez ajouter des herbes fraîches comme du persil ou de la ciboulette pour plus de saveur.
+                    </p>
+                    <p style="margin: 0; font-style: italic; line-height: 1.7;">
+                        💡 <strong>Astuce :</strong> Pour une texture plus aérienne, séparez le blanc du jaune d'œuf, 
+                        montez le blanc en neige et incorporez-le délicatement en fin de préparation !
+                    </p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>Fait avec 💚 par Camille</p>
+            <div class="decorative-separator">🌿 ✨ 🌿</div>
+        </div>
+    </footer>
+
+    <script src="../js/app.js"></script>
+</body>
+</html>
