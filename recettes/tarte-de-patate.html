@@ -6,72 +6,101 @@
     <title>Tarte de Patate - Les Recettes de Camille</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Lora:wght@400;500;600&family=Source+Sans+3:wght@300;400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../css/style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.2/html2pdf.bundle.min.js"></script>
 </head>
 <body>
-    <div class="container">
-        <a href="../index.html" class="back-link">← Retour aux recettes</a>
-        
-        <article class="recipe-page">
-            <!-- En-tête de la recette -->
-            <header class="recipe-header">
-                <h1 class="recipe-main-title">Tarte de Patate</h1>
-                <div class="decorative-line">─── ✿ ───</div>
-            </header>
+    <main class="main-content">
+        <div class="container">
+            <!-- Bouton retour -->
+            <a href="../index.html" class="recipe-back-link">← Recettes</a>
 
-            <!-- Photo principale -->
+            <!-- Grande photo -->
             <div class="recipe-hero-image">
-                <div class="recipe-hero-placeholder">
-                    <span class="photo-icon">📸</span>
-                    <span class="photo-text">Photo à venir</span>
-                </div>
+                <div class="recipe-hero-placeholder">📸</div>
                 <span class="category-badge">Légumes du jardin</span>
             </div>
 
-            <!-- Informations de la recette -->
-            <div class="recipe-info-badges">
-                <span class="info-badge">⏱️ 15 min prep + 30 min cuisson</span>
-                <span class="info-badge">👥 6 personnes</span>
-                <span class="info-badge">🌿 Légumes du jardin</span>
+            <!-- Titre centré -->
+            <h1 class="recipe-main-title">Tarte de Patate</h1>
+
+            <!-- Ligne d'infos centrée -->
+            <div class="recipe-info-line">
+                <span class="info-chip info-chip--time">⏱️ 15 min prep + 30 min cuisson</span>
+                <span class="info-chip info-chip--serves">👥 6 pers.</span>
+                <span class="info-chip info-chip--category">Légumes du jardin</span>
             </div>
 
-            <!-- Colonnes Ingrédients + Préparation -->
-            <div class="recipe-columns">
-                <!-- Ingrédients -->
-                <section class="ingredients-section">
-                    <h2 class="section-title">Ingrédients</h2>
-                    <ul class="ingredients-list">
-                        <li>500 g de pomme de terre</li>
-                        <li>50 g de beurre mou</li>
-                        <li>50 g de farine</li>
-                        <li>5 cl de crème</li>
-                        <li>1 œuf + 1 jaune</li>
-                        <li>Sel poivre muscade</li>
-                    </ul>
-                </section>
+            <!-- Section Ingrédients -->
+            <section class="ingredients-section">
+                <h2 class="section-title">Ingrédients</h2>
+                <ul class="ingredients-list">
+                    <li>
+                        <div class="check-circle"></div>
+                        <span class="ingredient-text">500 g de pomme de terre</span>
+                    </li>
+                    <li>
+                        <div class="check-circle"></div>
+                        <span class="ingredient-text">50 g de beurre mou</span>
+                    </li>
+                    <li>
+                        <div class="check-circle"></div>
+                        <span class="ingredient-text">50 g de farine</span>
+                    </li>
+                    <li>
+                        <div class="check-circle"></div>
+                        <span class="ingredient-text">5 cl de crème</span>
+                    </li>
+                    <li>
+                        <div class="check-circle"></div>
+                        <span class="ingredient-text">1 œuf + 1 jaune</span>
+                    </li>
+                    <li>
+                        <div class="check-circle"></div>
+                        <span class="ingredient-text">Sel, poivre, muscade</span>
+                    </li>
+                </ul>
+            </section>
 
-                <!-- Instructions -->
-                <section class="instructions-section">
-                    <h2 class="section-title">Préparation</h2>
-                    <ol class="instructions-list">
-                        <li>Laver les pommes de terre et les faire cuire dans de l'eau bouillante ou à la vapeur</li>
-                        <li>Éplucher et écraser les pommes de terre</li>
-                        <li>Ajouter tous les autres ingrédients et mélanger</li>
-                        <li>Répartir dans des petits moules</li>
-                        <li>Cuire à 210°C pendant 30 min</li>
-                    </ol>
-                </section>
-            </div>
+            <!-- Section Préparation -->
+            <section class="preparation-section">
+                <h2 class="section-title">Préparation</h2>
+                <ul class="steps-list">
+                    <li class="step-item">
+                        <div class="step-number">1</div>
+                        <div class="step-text">Laver les pommes de terre et les faire cuire dans de l'eau bouillante ou à la vapeur</div>
+                    </li>
+                    <li class="step-item">
+                        <div class="step-number">2</div>
+                        <div class="step-text">Éplucher et écraser les pommes de terre</div>
+                    </li>
+                    <li class="step-item">
+                        <div class="step-number">3</div>
+                        <div class="step-text">Ajouter tous les autres ingrédients et mélanger</div>
+                    </li>
+                    <li class="step-item">
+                        <div class="step-number">4</div>
+                        <div class="step-text">Répartir dans des petits moules</div>
+                    </li>
+                    <li class="step-item">
+                        <div class="step-number">5</div>
+                        <div class="step-text">Cuire à 210°C pendant 30 min</div>
+                    </li>
+                </ul>
+            </section>
 
             <!-- Bouton PDF -->
-            <a href="#" class="pdf-button">📄 Télécharger en PDF</a>
-        </article>
-    </div>
+            <a href="#" class="pdf-button" onclick="printRecipe('Tarte_de_Patate'); return false;">
+                📄 Télécharger en PDF
+            </a>
+        </div>
+    </main>
 
+    <!-- Footer minimal -->
     <footer class="site-footer">
         <div class="container">
-            <p>&copy; 2026 Les Recettes de Camille - Fait avec ❤️ et des ingrédients de saison</p>
+            <p>Fait avec ❤️ par Camille</p>
         </div>
     </footer>
 

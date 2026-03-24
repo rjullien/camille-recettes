@@ -6,72 +6,107 @@
     <title>Pâte Crevette - Les Recettes de Camille</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Lora:wght@400;500;600&family=Source+Sans+3:wght@300;400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../css/style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.2/html2pdf.bundle.min.js"></script>
 </head>
 <body>
-    <div class="container">
-        <a href="../index.html" class="back-link">← Retour aux recettes</a>
-        
-        <article class="recipe-page">
-            <!-- En-tête de la recette -->
-            <header class="recipe-header">
-                <h1 class="recipe-main-title">Pâte Crevette</h1>
-                <div class="decorative-line">─── ✿ ───</div>
-            </header>
+    <main class="main-content">
+        <div class="container">
+            <!-- Bouton retour -->
+            <a href="../index.html" class="recipe-back-link">← Recettes</a>
 
-            <!-- Photo principale -->
+            <!-- Grande photo -->
             <div class="recipe-hero-image">
-                <div class="recipe-hero-placeholder">
-                    <span class="photo-icon">📸</span>
-                    <span class="photo-text">Photo à venir</span>
-                </div>
+                <div class="recipe-hero-placeholder">📸</div>
             </div>
 
-            <!-- Informations de la recette -->
-            <div class="recipe-info-badges">
-                <span class="info-badge">⏱️ 20 min</span>
-                <span class="info-badge">👥 2 personnes</span>
+            <!-- Titre centré -->
+            <h1 class="recipe-main-title">Pâte Crevette</h1>
+
+            <!-- Ligne d'infos centrée -->
+            <div class="recipe-info-line">
+                <span class="info-chip info-chip--time">⏱️ 20 min</span>
+                <span class="info-chip info-chip--serves">👥 2 pers.</span>
             </div>
 
-            <!-- Colonnes Ingrédients + Préparation -->
-            <div class="recipe-columns">
-                <!-- Ingrédients -->
-                <section class="ingredients-section">
-                    <h2 class="section-title">Ingrédients</h2>
-                    <ul class="ingredients-list">
-                        <li>500 g de tagliatelle fraîche</li>
-                        <li>250 g de crevette décortiquée</li>
-                        <li>1 oignon</li>
-                        <li>1 gousse d'ail</li>
-                        <li>1 cs rase de sucre</li>
-                        <li>1 cs de vinaigre balsamique</li>
-                        <li>25 cl de sauce tomate</li>
-                    </ul>
-                </section>
+            <!-- Section Ingrédients -->
+            <section class="ingredients-section">
+                <h2 class="section-title">Ingrédients</h2>
+                <ul class="ingredients-list">
+                    <li>
+                        <div class="check-circle"></div>
+                        <span class="ingredient-text">500 g de tagliatelle fraîche</span>
+                    </li>
+                    <li>
+                        <div class="check-circle"></div>
+                        <span class="ingredient-text">250 g de crevette décortiquée</span>
+                    </li>
+                    <li>
+                        <div class="check-circle"></div>
+                        <span class="ingredient-text">1 oignon</span>
+                    </li>
+                    <li>
+                        <div class="check-circle"></div>
+                        <span class="ingredient-text">1 gousse d'ail</span>
+                    </li>
+                    <li>
+                        <div class="check-circle"></div>
+                        <span class="ingredient-text">1 cs rase de sucre</span>
+                    </li>
+                    <li>
+                        <div class="check-circle"></div>
+                        <span class="ingredient-text">1 cs de vinaigre balsamique</span>
+                    </li>
+                    <li>
+                        <div class="check-circle"></div>
+                        <span class="ingredient-text">25 cl de sauce tomate</span>
+                    </li>
+                </ul>
+            </section>
 
-                <!-- Instructions -->
-                <section class="instructions-section">
-                    <h2 class="section-title">Préparation</h2>
-                    <ol class="instructions-list">
-                        <li>Faire revenir l'oignon dans de l'huile 5 min</li>
-                        <li>Ajouter l'ail et les crevettes, faire cuire 5 min</li>
-                        <li>Déglacer avec le vinaigre balsamique</li>
-                        <li>Ajouter la sauce tomate, le poivre, le sel et le sucre</li>
-                        <li>Faire cuire les tagliatelles</li>
-                        <li>Une fois cuites, ajouter les pâtes à la poêle</li>
-                    </ol>
-                </section>
-            </div>
+            <!-- Section Préparation -->
+            <section class="preparation-section">
+                <h2 class="section-title">Préparation</h2>
+                <ul class="steps-list">
+                    <li class="step-item">
+                        <div class="step-number">1</div>
+                        <div class="step-text">Faire revenir l'oignon dans de l'huile 5 min</div>
+                    </li>
+                    <li class="step-item">
+                        <div class="step-number">2</div>
+                        <div class="step-text">Ajouter l'ail et les crevettes, faire cuire 5 min</div>
+                    </li>
+                    <li class="step-item">
+                        <div class="step-number">3</div>
+                        <div class="step-text">Déglacer avec le vinaigre balsamique</div>
+                    </li>
+                    <li class="step-item">
+                        <div class="step-number">4</div>
+                        <div class="step-text">Ajouter la sauce tomate, le poivre, le sel et le sucre</div>
+                    </li>
+                    <li class="step-item">
+                        <div class="step-number">5</div>
+                        <div class="step-text">Faire cuire les tagliatelles</div>
+                    </li>
+                    <li class="step-item">
+                        <div class="step-number">6</div>
+                        <div class="step-text">Une fois cuites, ajouter les pâtes à la poêle</div>
+                    </li>
+                </ul>
+            </section>
 
             <!-- Bouton PDF -->
-            <a href="#" class="pdf-button">📄 Télécharger en PDF</a>
-        </article>
-    </div>
+            <a href="#" class="pdf-button" onclick="printRecipe('Pate_Crevette'); return false;">
+                📄 Télécharger en PDF
+            </a>
+        </div>
+    </main>
 
+    <!-- Footer minimal -->
     <footer class="site-footer">
         <div class="container">
-            <p>&copy; 2026 Les Recettes de Camille - Fait avec ❤️ et des ingrédients de saison</p>
+            <p>Fait avec ❤️ par Camille</p>
         </div>
     </footer>
 

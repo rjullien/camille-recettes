@@ -6,48 +6,51 @@
     <title>Les Recettes de Camille</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Lora:wght@400;500;600&family=Source+Sans+3:wght@300;400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+    <!-- Header sobre -->
     <header class="site-header">
         <div class="container">
-            <h1 class="site-title">Les Recettes de Camille <span class="leaf">🌿</span></h1>
+            <h1 class="site-title">Les Recettes de Camille</h1>
+            <p class="site-subtitle">Mon carnet de recettes maison 🌿</p>
         </div>
     </header>
 
+    <!-- Contenu principal -->
     <main class="main-content">
         <div class="container">
-            <!-- Barre de recherche -->
-            <div class="search-bar">
-                <input type="text" id="searchInput" placeholder="Rechercher une recette..." class="search-input">
-                <button type="button" class="search-btn">🔍</button>
+            <!-- Barre de recherche moderne -->
+            <div class="search-container">
+                <div class="search-icon">🔍</div>
+                <input 
+                    type="text" 
+                    id="searchInput" 
+                    class="search-input"
+                    placeholder="Chercher une recette ou un ingrédient..."
+                >
             </div>
 
-            <!-- Filtres catégories -->
+            <!-- Filtres pills -->
             <div class="filters">
                 <button class="filter-btn active" data-category="all">Toutes</button>
                 <button class="filter-btn" data-category="legumes-jardin">Légumes du jardin</button>
-                <button class="filter-btn" data-category="plats-principaux">Plats principaux</button>
-                <button class="filter-btn" data-category="desserts">Desserts</button>
             </div>
 
-            <!-- Grille de recettes -->
+            <!-- Grille recettes moderne -->
             <div class="recipes-grid" id="recipesGrid">
                 <!-- Recette Pâte Crevette -->
                 <article class="recipe-card" data-category="">
                     <a href="recettes/pate-crevette.html" class="recipe-link">
                         <div class="recipe-image">
-                            <div class="placeholder-image">
-                                <span class="photo-icon">📸</span>
-                                <span class="photo-text">Photo à venir</span>
-                            </div>
+                            <div class="recipe-placeholder">📸</div>
                         </div>
                         <div class="recipe-content">
                             <h3 class="recipe-title">Pâte Crevette</h3>
                             <div class="recipe-meta">
-                                <span class="recipe-time">⏱️ 20 min</span>
-                                <span class="recipe-serves">👥 2 personnes</span>
+                                <span class="recipe-meta-item">⏱️ 20 min</span>
+                                <span class="recipe-meta-item">👥 2 pers.</span>
                             </div>
                         </div>
                     </a>
@@ -57,17 +60,14 @@
                 <article class="recipe-card" data-category="legumes-jardin">
                     <a href="recettes/tarte-de-patate.html" class="recipe-link">
                         <div class="recipe-image">
-                            <div class="placeholder-image">
-                                <span class="photo-icon">📸</span>
-                                <span class="photo-text">Photo à venir</span>
-                            </div>
+                            <div class="recipe-placeholder">📸</div>
                             <span class="category-badge">Légumes du jardin</span>
                         </div>
                         <div class="recipe-content">
                             <h3 class="recipe-title">Tarte de Patate</h3>
                             <div class="recipe-meta">
-                                <span class="recipe-time">⏱️ 45 min</span>
-                                <span class="recipe-serves">👥 6 personnes</span>
+                                <span class="recipe-meta-item">⏱️ 15 min prep + 30 min cuisson</span>
+                                <span class="recipe-meta-item">👥 6 pers.</span>
                             </div>
                         </div>
                     </a>
@@ -76,9 +76,10 @@
         </div>
     </main>
 
+    <!-- Footer minimal -->
     <footer class="site-footer">
         <div class="container">
-            <p>&copy; 2026 Les Recettes de Camille - Fait avec ❤️ et des ingrédients de saison</p>
+            <p>Fait avec ❤️ par Camille</p>
         </div>
     </footer>
 
