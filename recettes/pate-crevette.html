@@ -6,49 +6,38 @@
     <title>Pâte Crevette - Les Recettes de Camille</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Lora:wght@400;500;600&family=Source+Sans+3:wght@300;400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
-    <header class="recipe-header">
-        <div class="container">
-            <a href="../index.html" style="color: var(--color-accent); text-decoration: none; font-weight: 600;">
-                ← Retour aux recettes
-            </a>
-        </div>
-    </header>
+    <div class="container">
+        <a href="../index.html" class="back-link">← Retour aux recettes</a>
+        
+        <article class="recipe-page">
+            <!-- En-tête de la recette -->
+            <header class="recipe-header">
+                <h1 class="recipe-main-title">Pâte Crevette</h1>
+                <div class="decorative-line">─── ✿ ───</div>
+            </header>
 
-    <main class="recipe-main">
-        <div class="recipe-container">
-            <!-- Image principale de la recette -->
+            <!-- Photo principale -->
             <div class="recipe-hero-image">
-                <div class="placeholder-image">
-                    📸<br>
-                    <span>Photo à venir</span>
+                <div class="recipe-hero-placeholder">
+                    <span class="photo-icon">📸</span>
+                    <span class="photo-text">Photo à venir</span>
                 </div>
             </div>
 
-            <!-- Titre et informations principales -->
-            <div class="recipe-title-section">
-                <h1 class="recipe-page-title">Pâte Crevette</h1>
-                <div class="decorative-separator">🌿 ✨ 🌿</div>
-                
-                <div class="recipe-info-bar">
-                    <div class="recipe-info-item">
-                        <span>⏱️</span>
-                        <span>20 min</span>
-                    </div>
-                    <div class="recipe-info-item">
-                        <span>👥</span>
-                        <span>2 personnes</span>
-                    </div>
-                </div>
+            <!-- Informations de la recette -->
+            <div class="recipe-info-badges">
+                <span class="info-badge">⏱️ 20 min</span>
+                <span class="info-badge">👥 2 personnes</span>
             </div>
 
-            <!-- Contenu principal : Ingrédients et Instructions -->
-            <div class="recipe-content">
+            <!-- Colonnes Ingrédients + Préparation -->
+            <div class="recipe-columns">
                 <!-- Ingrédients -->
-                <div class="ingredients-section">
+                <section class="ingredients-section">
                     <h2 class="section-title">Ingrédients</h2>
                     <ul class="ingredients-list">
                         <li>500 g de tagliatelle fraîche</li>
@@ -59,10 +48,10 @@
                         <li>1 cs de vinaigre balsamique</li>
                         <li>25 cl de sauce tomate</li>
                     </ul>
-                </div>
+                </section>
 
                 <!-- Instructions -->
-                <div class="instructions-section">
+                <section class="instructions-section">
                     <h2 class="section-title">Préparation</h2>
                     <ol class="instructions-list">
                         <li>Faire revenir l'oignon dans de l'huile 5 min</li>
@@ -72,25 +61,20 @@
                         <li>Faire cuire les tagliatelles</li>
                         <li>Une fois cuites, ajouter les pâtes à la poêle</li>
                     </ol>
-                </div>
+                </section>
             </div>
 
-            <!-- Actions -->
-            <div class="recipe-actions">
-                <button onclick="printRecipe()" class="btn btn-primary">📄 Télécharger en PDF</button>
-                <button onclick="goHome()" class="btn btn-secondary">← Retour à l'accueil</button>
-            </div>
-        </div>
-    </main>
+            <!-- Bouton PDF -->
+            <a href="#" class="pdf-button">📄 Télécharger en PDF</a>
+        </article>
+    </div>
 
-    <footer class="footer">
+    <footer class="site-footer">
         <div class="container">
-            <p>Fait avec 💚 par Camille</p>
-            <div class="decorative-separator">🌿 ✨ 🌿</div>
+            <p>&copy; 2026 Les Recettes de Camille - Fait avec ❤️ et des ingrédients de saison</p>
         </div>
     </footer>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.2/html2pdf.bundle.min.js"></script>
     <script src="../js/app.js"></script>
 </body>
 </html>
