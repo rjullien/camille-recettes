@@ -3,278 +3,466 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+    <title>Comparaison Palettes — Les Recettes de Camille</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Lora:ital,wght@0,400;0,500;0,600;1,400&family=Source+Sans+3:wght@300;400;600&family=Pacifico&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Lato', sans-serif; background: #333; padding: 30px; }
-        .grid { display: flex; gap: 30px; justify-content: center; flex-wrap: wrap; }
-        .card {
-            width: 360px;
+        body { 
+            font-family: 'Source Sans 3', sans-serif;
+            background: #1a1a1a;
+            padding: 40px 20px;
+            color: white;
+        }
+        h1 {
+            text-align: center;
+            font-family: 'Playfair Display', serif;
+            font-size: 28px;
+            margin-bottom: 10px;
+            color: #f0e6d6;
+        }
+        .subtitle {
+            text-align: center;
+            font-size: 14px;
+            color: #999;
+            margin-bottom: 40px;
+        }
+        .grid {
+            display: flex;
+            gap: 30px;
+            justify-content: center;
+            flex-wrap: wrap;
+            max-width: 1300px;
+            margin: 0 auto;
+        }
+        .option {
+            width: 400px;
+        }
+        .option-label {
+            text-align: center;
+            font-family: 'Source Sans 3', sans-serif;
+            font-weight: 600;
+            font-size: 16px;
+            margin-bottom: 14px;
+            color: #ccc;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+        .option-label span {
+            display: block;
+            font-size: 12px;
+            font-weight: 300;
+            color: #888;
+            text-transform: none;
+            letter-spacing: 0;
+            margin-top: 4px;
+        }
+
+        /* ============================================ */
+        /* OPTION A — ACTUELLE (Beige & Sable)         */
+        /* ============================================ */
+        .card-a {
+            background: #F5F0E8;
             border-radius: 16px;
             overflow: hidden;
-            box-shadow: 0 8px 30px rgba(0,0,0,0.3);
+            box-shadow: 0 12px 40px rgba(0,0,0,0.4);
+            color: #3D2B1F;
         }
-        .card-label {
-            text-align: center;
-            color: white;
-            font-size: 18px;
-            font-weight: 700;
-            margin-bottom: 12px;
-            font-family: 'Lato', sans-serif;
-        }
-
-        /* ===== PALETTE 1 : Actuelle (Beige/Sable) ===== */
-        .p1 { background: #F5F0E8; color: #3D2B1F; }
-        .p1 .photo { background: linear-gradient(135deg, #E8DCC8, #F5F0E8); }
-        .p1 .badge { background: #7A8471; }
-        .p1 .info-tag { background: #E8DCC8; }
-        .p1 .ing-box { background: #E8DCC8; }
-        .p1 .step-box { background: #FFFFFF; border: 1px solid #E8DCC8; }
-        .p1 .step-num { background: #7A8471; }
-        .p1 .title-line { text-decoration-color: #7A8471; }
-        .p1 .footer-text { color: #7A8471; }
-
-        /* ===== PALETTE 2 : Terracotta & Sauge ===== */
-        .p2 { background: #FAF7F2; color: #2C1810; }
-        .p2 .photo { background: linear-gradient(135deg, #E8D5C4, #FAF7F2); }
-        .p2 .badge { background: #C4724B; }
-        .p2 .info-tag { background: #F0E6D8; }
-        .p2 .ing-box { background: #EDE4D6; }
-        .p2 .step-box { background: #FFFFFF; border: 1px solid #E8D5C4; }
-        .p2 .step-num { background: #8B9E7E; }
-        .p2 .title-line { text-decoration-color: #C4724B; }
-        .p2 .footer-text { color: #C4724B; }
-
-        /* ===== PALETTE 3 : Olive & Crème ===== */
-        .p3 { background: #FFFDF5; color: #33302E; }
-        .p3 .photo { background: linear-gradient(135deg, #D6DECE, #FFFDF5); }
-        .p3 .badge { background: #5C6B4E; }
-        .p3 .info-tag { background: #EEF0E8; }
-        .p3 .ing-box { background: #E8ECDF; }
-        .p3 .step-box { background: #FFFFFF; border: 1px solid #D6DECE; }
-        .p3 .step-num { background: #D4A76A; }
-        .p3 .title-line { text-decoration-color: #5C6B4E; }
-        .p3 .footer-text { color: #5C6B4E; }
-
-        /* ===== Composants communs ===== */
-        .photo {
-            height: 140px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2em;
+        .card-a .photo-zone {
+            height: 160px;
+            background: linear-gradient(135deg, #E8DCC8, #F5F0E8);
+            display: flex; align-items: center; justify-content: center;
             position: relative;
         }
-        .photo .placeholder { opacity: 0.5; text-align: center; }
-        .photo .placeholder span { display: block; font-size: 0.4em; font-style: italic; margin-top: 4px; }
+        .card-a .badge { background: #7A8471; }
+        .card-a .body { padding: 18px 22px 14px; }
+        .card-a .recipe-name {
+            font-family: 'Pacifico', cursive;
+            font-size: 22px;
+            text-align: center;
+            text-decoration: underline;
+            text-decoration-color: #7A8471;
+            text-underline-offset: 5px;
+            margin-bottom: 6px;
+        }
+        .card-a .sep { text-align:center; font-size:12px; opacity:0.6; margin-bottom:10px; }
+        .card-a .tags { display:flex; justify-content:center; gap:12px; margin-bottom:14px; }
+        .card-a .tag { background:#E8DCC8; padding:5px 14px; border-radius:20px; font-size:11px; font-weight:600; }
+        .card-a .cols { display:flex; gap:12px; }
+        .card-a .col-ing { flex:1; background:#E8DCC8; padding:14px; border-radius:12px; }
+        .card-a .col-step { flex:1.15; background:#fff; padding:14px; border-radius:12px; border:1px solid #E8DCC8; }
+        .card-a .col-title { font-family:'Pacifico',cursive; font-size:14px; margin-bottom:10px; text-decoration:underline; text-decoration-color:#7A8471; text-underline-offset:3px; }
+        .card-a .step-dot { background:#7A8471; }
+        .card-a .foot { text-align:center; padding:10px; font-size:10px; color:#7A8471; font-style:italic; }
+
+        /* ============================================ */
+        /* OPTION B — LIVRE DE CUISINE ÉLÉGANT          */
+        /* ============================================ */
+        .card-b {
+            background: #FFFBF5;
+            border-radius: 4px;
+            overflow: hidden;
+            box-shadow: 0 12px 40px rgba(0,0,0,0.4);
+            color: #2B2320;
+            border: 1px solid #E8E0D4;
+        }
+        .card-b .photo-zone {
+            height: 170px;
+            background: linear-gradient(160deg, #E8DFD3 0%, #D4C8B8 50%, #C9B99A 100%);
+            display: flex; align-items: center; justify-content: center;
+            position: relative;
+            border-bottom: 3px solid #C4985A;
+        }
+        .card-b .badge {
+            background: #C4985A;
+            font-family: 'Source Sans 3', sans-serif;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            font-size: 9px;
+        }
+        .card-b .body { padding: 22px 26px 16px; }
+        .card-b .recipe-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 26px;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 2px;
+            letter-spacing: 0.5px;
+            color: #2B2320;
+        }
+        .card-b .recipe-sub {
+            text-align: center;
+            font-family: 'Cormorant Garamond', serif;
+            font-style: italic;
+            font-size: 14px;
+            color: #8B7355;
+            margin-bottom: 10px;
+        }
+        .card-b .sep {
+            text-align: center;
+            margin-bottom: 14px;
+            font-size: 13px;
+            color: #C4985A;
+            letter-spacing: 6px;
+        }
+        .card-b .tags { display:flex; justify-content:center; gap:14px; margin-bottom:16px; }
+        .card-b .tag {
+            background: transparent;
+            border: 1.5px solid #C4985A;
+            color: #8B7355;
+            padding: 5px 16px;
+            border-radius: 2px;
+            font-size: 11px;
+            font-weight: 600;
+            font-family: 'Source Sans 3', sans-serif;
+            letter-spacing: 0.5px;
+        }
+        .card-b .cols { display:flex; gap:0; }
+        .card-b .col-ing {
+            flex:1;
+            background: #F5F0E6;
+            padding: 16px 18px;
+            border-right: 1px solid #DDD4C4;
+        }
+        .card-b .col-step {
+            flex:1.2;
+            background: #FFFBF5;
+            padding: 16px 18px;
+        }
+        .card-b .col-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: #2B2320;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            border-bottom: 1.5px solid #C4985A;
+            padding-bottom: 6px;
+        }
+        .card-b .step-dot { background: #C4985A; }
+        .card-b .foot {
+            text-align: center;
+            padding: 10px;
+            font-size: 10px;
+            color: #C4985A;
+            font-family: 'Cormorant Garamond', serif;
+            font-style: italic;
+            font-size: 12px;
+            border-top: 1px solid #E8E0D4;
+        }
+
+        /* Listes style livre pour option B */
+        .card-b .ing-list li {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 13px;
+        }
+        .card-b .ing-list li::before {
+            content: "—";
+            font-size: 11px;
+            color: #C4985A;
+        }
+        .card-b .step-list li {
+            font-family: 'Lora', serif;
+            font-size: 11px;
+            line-height: 1.5;
+        }
+
+        /* ============================================ */
+        /* OPTION C — TERRACOTTA & SAUGE               */
+        /* ============================================ */
+        .card-c {
+            background: #FAF7F2;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 12px 40px rgba(0,0,0,0.4);
+            color: #2C1810;
+        }
+        .card-c .photo-zone {
+            height: 160px;
+            background: linear-gradient(135deg, #E8D5C4, #D4B8A0);
+            display: flex; align-items: center; justify-content: center;
+            position: relative;
+        }
+        .card-c .badge { background: #C4724B; }
+        .card-c .body { padding: 18px 22px 14px; }
+        .card-c .recipe-name {
+            font-family: 'Pacifico', cursive;
+            font-size: 22px;
+            text-align: center;
+            text-decoration: underline;
+            text-decoration-color: #C4724B;
+            text-underline-offset: 5px;
+            margin-bottom: 6px;
+        }
+        .card-c .sep { text-align:center; font-size:12px; opacity:0.6; margin-bottom:10px; }
+        .card-c .tags { display:flex; justify-content:center; gap:12px; margin-bottom:14px; }
+        .card-c .tag { background:#F0E6D8; padding:5px 14px; border-radius:20px; font-size:11px; font-weight:600; }
+        .card-c .cols { display:flex; gap:12px; }
+        .card-c .col-ing { flex:1; background:#EDE4D6; padding:14px; border-radius:12px; }
+        .card-c .col-step { flex:1.15; background:#fff; padding:14px; border-radius:12px; border:1px solid #E8D5C4; }
+        .card-c .col-title { font-family:'Pacifico',cursive; font-size:14px; margin-bottom:10px; text-decoration:underline; text-decoration-color:#C4724B; text-underline-offset:3px; }
+        .card-c .step-dot { background:#8B9E7E; }
+        .card-c .foot { text-align:center; padding:10px; font-size:10px; color:#C4724B; font-style:italic; }
+
+        /* ============================================ */
+        /* COMPOSANTS PARTAGÉS                          */
+        /* ============================================ */
+        .photo-zone .placeholder {
+            opacity: 0.45;
+            text-align: center;
+            font-size: 2.2em;
+        }
+        .photo-zone .placeholder span {
+            display: block;
+            font-size: 0.38em;
+            font-style: italic;
+            margin-top: 3px;
+        }
         .badge {
             position: absolute;
             top: 10px; right: 10px;
             color: white;
-            padding: 4px 12px;
+            padding: 5px 12px;
             border-radius: 6px;
             font-size: 10px;
             font-weight: 600;
         }
-        .content { padding: 16px 20px; }
-        .recipe-title {
-            font-family: 'Pacifico', cursive;
-            font-size: 20px;
-            text-align: center;
-            margin-bottom: 4px;
-            text-decoration: underline;
-            text-underline-offset: 4px;
-            text-decoration-thickness: 2px;
-        }
-        .sep { text-align: center; font-size: 11px; opacity: 0.7; margin-bottom: 8px; }
-        .info-row { display: flex; justify-content: center; gap: 14px; margin-bottom: 12px; }
-        .info-tag {
-            padding: 4px 12px;
-            border-radius: 6px;
-            font-weight: 600;
-            font-size: 10px;
-        }
-        .columns { display: flex; gap: 10px; }
-        .ing-box, .step-box {
-            flex: 1;
-            padding: 12px;
-            border-radius: 10px;
-        }
-        .col-title {
-            font-family: 'Pacifico', cursive;
-            font-size: 13px;
-            margin-bottom: 8px;
-            text-decoration: underline;
-            text-underline-offset: 3px;
-        }
-        .ing-list { list-style: none; padding: 0; }
+        .ing-list, .step-list { list-style: none; padding: 0; }
         .ing-list li {
-            padding: 3px 0;
-            font-size: 9.5px;
-            border-bottom: 1px solid rgba(0,0,0,0.08);
-            padding-left: 14px;
+            padding: 4px 0;
+            font-size: 10px;
+            border-bottom: 1px solid rgba(0,0,0,0.06);
+            padding-left: 16px;
             position: relative;
         }
-        .ing-list li::before { content: "🌿"; position: absolute; left: 0; font-size: 8px; }
-        .step-list { list-style: none; padding: 0; }
+        .ing-list li::before {
+            content: "🌿";
+            position: absolute;
+            left: 0;
+            font-size: 8px;
+        }
         .step-list li {
-            padding: 3px 0;
-            font-size: 9.5px;
-            border-bottom: 1px solid rgba(0,0,0,0.08);
-            padding-left: 22px;
+            padding: 4px 0;
+            font-size: 10px;
+            border-bottom: 1px solid rgba(0,0,0,0.06);
+            padding-left: 24px;
             position: relative;
             line-height: 1.4;
         }
-        .step-num {
+        .step-dot {
             position: absolute;
-            left: 0; top: 3px;
+            left: 0; top: 4px;
             color: white;
-            width: 16px; height: 16px;
+            width: 17px; height: 17px;
             border-radius: 50%;
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            font-size: 8px;
+            font-size: 9px;
             font-weight: bold;
         }
-        .card-footer {
-            text-align: center;
-            padding: 8px;
-            font-size: 9px;
-            font-style: italic;
+
+        /* Override list style for card-b */
+        .card-b .ing-list li { padding-left: 18px; }
+        .card-b .ing-list li::before {
+            position: absolute;
+            left: 0;
+            font-size: 11px;
+        }
+
+        @media (max-width: 900px) {
+            .grid { flex-direction: column; align-items: center; }
+            .option { width: 100%; max-width: 420px; }
         }
     </style>
 </head>
 <body>
-    <div class="grid">
-        <!-- PALETTE 1 : Actuelle -->
-        <div>
-            <div class="card-label">1️⃣ Actuelle — Beige & Sable</div>
-            <div class="card p1">
-                <div class="photo">
-                    <div class="placeholder">📸<span>Photo à venir</span></div>
-                    <div class="badge">Légumes du jardin</div>
-                </div>
-                <div class="content">
-                    <div class="recipe-title title-line">Tarte de Patate</div>
-                    <div class="sep">🌿 ✨ 🌿</div>
-                    <div class="info-row">
-                        <div class="info-tag">⏱️ 15 min</div>
-                        <div class="info-tag">👥 6 personnes</div>
-                    </div>
-                    <div class="columns">
-                        <div class="ing-box">
-                            <div class="col-title title-line">Ingrédients</div>
-                            <ul class="ing-list">
-                                <li>500 g de pomme de terre</li>
-                                <li>50 g de beurre mou</li>
-                                <li>50 g de farine</li>
-                                <li>5 cl de crème</li>
-                                <li>1 œuf + 1 jaune</li>
-                                <li>Sel, poivre, muscade</li>
-                            </ul>
-                        </div>
-                        <div class="step-box">
-                            <div class="col-title title-line">Préparation</div>
-                            <ul class="step-list">
-                                <li><span class="step-num">1</span>Laver et faire cuire les pommes de terre</li>
-                                <li><span class="step-num">2</span>Éplucher et écraser</li>
-                                <li><span class="step-num">3</span>Ajouter les ingrédients et mélanger</li>
-                                <li><span class="step-num">4</span>Répartir dans des moules</li>
-                                <li><span class="step-num">5</span>Cuire à 210°C, 30 min</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="card-footer footer-text">Fait avec 💚 par Camille</div>
-            </div>
-        </div>
 
-        <!-- PALETTE 2 : Terracotta & Sauge -->
-        <div>
-            <div class="card-label">2️⃣ Terracotta & Sauge</div>
-            <div class="card p2">
-                <div class="photo">
-                    <div class="placeholder">📸<span>Photo à venir</span></div>
-                    <div class="badge">Légumes du jardin</div>
-                </div>
-                <div class="content">
-                    <div class="recipe-title title-line">Tarte de Patate</div>
-                    <div class="sep">🌿 ✨ 🌿</div>
-                    <div class="info-row">
-                        <div class="info-tag">⏱️ 15 min</div>
-                        <div class="info-tag">👥 6 personnes</div>
-                    </div>
-                    <div class="columns">
-                        <div class="ing-box">
-                            <div class="col-title title-line">Ingrédients</div>
-                            <ul class="ing-list">
-                                <li>500 g de pomme de terre</li>
-                                <li>50 g de beurre mou</li>
-                                <li>50 g de farine</li>
-                                <li>5 cl de crème</li>
-                                <li>1 œuf + 1 jaune</li>
-                                <li>Sel, poivre, muscade</li>
-                            </ul>
-                        </div>
-                        <div class="step-box">
-                            <div class="col-title title-line">Préparation</div>
-                            <ul class="step-list">
-                                <li><span class="step-num">1</span>Laver et faire cuire les pommes de terre</li>
-                                <li><span class="step-num">2</span>Éplucher et écraser</li>
-                                <li><span class="step-num">3</span>Ajouter les ingrédients et mélanger</li>
-                                <li><span class="step-num">4</span>Répartir dans des moules</li>
-                                <li><span class="step-num">5</span>Cuire à 210°C, 30 min</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="card-footer footer-text">Fait avec 🧡 par Camille</div>
-            </div>
-        </div>
+<h1>🎨 Choisis ton style !</h1>
+<p class="subtitle">Même recette, 3 ambiances — clique sur rien, c'est juste pour comparer 😉</p>
 
-        <!-- PALETTE 3 : Olive & Crème -->
-        <div>
-            <div class="card-label">3️⃣ Olive & Crème</div>
-            <div class="card p3">
-                <div class="photo">
-                    <div class="placeholder">📸<span>Photo à venir</span></div>
-                    <div class="badge">Légumes du jardin</div>
-                </div>
-                <div class="content">
-                    <div class="recipe-title title-line">Tarte de Patate</div>
-                    <div class="sep">🌿 ✨ 🌿</div>
-                    <div class="info-row">
-                        <div class="info-tag">⏱️ 15 min</div>
-                        <div class="info-tag">👥 6 personnes</div>
-                    </div>
-                    <div class="columns">
-                        <div class="ing-box">
-                            <div class="col-title title-line">Ingrédients</div>
-                            <ul class="ing-list">
-                                <li>500 g de pomme de terre</li>
-                                <li>50 g de beurre mou</li>
-                                <li>50 g de farine</li>
-                                <li>5 cl de crème</li>
-                                <li>1 œuf + 1 jaune</li>
-                                <li>Sel, poivre, muscade</li>
-                            </ul>
-                        </div>
-                        <div class="step-box">
-                            <div class="col-title title-line">Préparation</div>
-                            <ul class="step-list">
-                                <li><span class="step-num">1</span>Laver et faire cuire les pommes de terre</li>
-                                <li><span class="step-num">2</span>Éplucher et écraser</li>
-                                <li><span class="step-num">3</span>Ajouter les ingrédients et mélanger</li>
-                                <li><span class="step-num">4</span>Répartir dans des moules</li>
-                                <li><span class="step-num">5</span>Cuire à 210°C, 30 min</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="card-footer footer-text">Fait avec 💚 par Camille</div>
+<div class="grid">
+
+    <!-- ===== OPTION A : Actuelle ===== -->
+    <div class="option">
+        <div class="option-label">
+            A — Actuelle
+            <span>Beige & sable, typo manuscrite</span>
+        </div>
+        <div class="card-a">
+            <div class="photo-zone">
+                <div class="placeholder">📸<span>Photo à venir</span></div>
+                <div class="badge">Légumes du jardin</div>
             </div>
+            <div class="body">
+                <div class="recipe-name">Tarte de Patate</div>
+                <div class="sep">🌿 ✨ 🌿</div>
+                <div class="tags">
+                    <div class="tag">⏱️ 15 min</div>
+                    <div class="tag">👥 6 personnes</div>
+                </div>
+                <div class="cols">
+                    <div class="col-ing">
+                        <div class="col-title">Ingrédients</div>
+                        <ul class="ing-list">
+                            <li>500 g de pomme de terre</li>
+                            <li>50 g de beurre mou</li>
+                            <li>50 g de farine</li>
+                            <li>5 cl de crème</li>
+                            <li>1 œuf + 1 jaune</li>
+                            <li>Sel, poivre, muscade</li>
+                        </ul>
+                    </div>
+                    <div class="col-step">
+                        <div class="col-title">Préparation</div>
+                        <ul class="step-list">
+                            <li><span class="step-dot">1</span>Laver et faire cuire les pommes de terre</li>
+                            <li><span class="step-dot">2</span>Éplucher et écraser</li>
+                            <li><span class="step-dot">3</span>Ajouter les ingrédients et mélanger</li>
+                            <li><span class="step-dot">4</span>Répartir dans des moules</li>
+                            <li><span class="step-dot">5</span>Cuire à 210°C, 30 min</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="foot">Fait avec 💚 par Camille</div>
         </div>
     </div>
+
+    <!-- ===== OPTION B : Livre de cuisine élégant ===== -->
+    <div class="option">
+        <div class="option-label">
+            B — Livre de cuisine
+            <span>Élégant, éditorial, typo serif classique</span>
+        </div>
+        <div class="card-b">
+            <div class="photo-zone">
+                <div class="placeholder">📸<span>Photo à venir</span></div>
+                <div class="badge">Légumes du jardin</div>
+            </div>
+            <div class="body">
+                <div class="recipe-name">Tarte de Patate</div>
+                <div class="recipe-sub">— Recette traditionnelle —</div>
+                <div class="sep">✦ ✦ ✦</div>
+                <div class="tags">
+                    <div class="tag">⏱️ 15 MIN</div>
+                    <div class="tag">👥 6 PERS.</div>
+                </div>
+                <div class="cols">
+                    <div class="col-ing">
+                        <div class="col-title">Ingrédients</div>
+                        <ul class="ing-list">
+                            <li>500 g de pomme de terre</li>
+                            <li>50 g de beurre mou</li>
+                            <li>50 g de farine</li>
+                            <li>5 cl de crème</li>
+                            <li>1 œuf + 1 jaune</li>
+                            <li>Sel, poivre, muscade</li>
+                        </ul>
+                    </div>
+                    <div class="col-step">
+                        <div class="col-title">Préparation</div>
+                        <ul class="step-list">
+                            <li><span class="step-dot">1</span>Laver et faire cuire les pommes de terre</li>
+                            <li><span class="step-dot">2</span>Éplucher et écraser</li>
+                            <li><span class="step-dot">3</span>Ajouter les ingrédients et mélanger</li>
+                            <li><span class="step-dot">4</span>Répartir dans des moules</li>
+                            <li><span class="step-dot">5</span>Cuire à 210°C, 30 min</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="foot">— Fait avec amour par Camille —</div>
+        </div>
+    </div>
+
+    <!-- ===== OPTION C : Terracotta & Sauge ===== -->
+    <div class="option">
+        <div class="option-label">
+            C — Terracotta & Sauge
+            <span>Chaud, méditerranéen, manuscrit</span>
+        </div>
+        <div class="card-c">
+            <div class="photo-zone">
+                <div class="placeholder">📸<span>Photo à venir</span></div>
+                <div class="badge">Légumes du jardin</div>
+            </div>
+            <div class="body">
+                <div class="recipe-name">Tarte de Patate</div>
+                <div class="sep">🌿 ✨ 🌿</div>
+                <div class="tags">
+                    <div class="tag">⏱️ 15 min</div>
+                    <div class="tag">👥 6 personnes</div>
+                </div>
+                <div class="cols">
+                    <div class="col-ing">
+                        <div class="col-title">Ingrédients</div>
+                        <ul class="ing-list">
+                            <li>500 g de pomme de terre</li>
+                            <li>50 g de beurre mou</li>
+                            <li>50 g de farine</li>
+                            <li>5 cl de crème</li>
+                            <li>1 œuf + 1 jaune</li>
+                            <li>Sel, poivre, muscade</li>
+                        </ul>
+                    </div>
+                    <div class="col-step">
+                        <div class="col-title">Préparation</div>
+                        <ul class="step-list">
+                            <li><span class="step-dot">1</span>Laver et faire cuire les pommes de terre</li>
+                            <li><span class="step-dot">2</span>Éplucher et écraser</li>
+                            <li><span class="step-dot">3</span>Ajouter les ingrédients et mélanger</li>
+                            <li><span class="step-dot">4</span>Répartir dans des moules</li>
+                            <li><span class="step-dot">5</span>Cuire à 210°C, 30 min</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="foot">Fait avec 🧡 par Camille</div>
+        </div>
+    </div>
+
+</div>
+
 </body>
 </html>
