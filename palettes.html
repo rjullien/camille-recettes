@@ -3,654 +3,576 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Comparaison Designs — Tarte de Patate</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700;900&family=Caveat:wght@400;700&family=Inter:wght@200;300;400;500&display=swap" rel="stylesheet">
+    <title>Tarte de Patate - Démo Livre de Cuisine</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Lora:ital,wght@0,400;0,500;0,600;1,400&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { 
-            background: #1a1a1a; 
-            font-family: 'Inter', sans-serif; 
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
-        
-        .container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 40px 20px;
-        }
-        
-        .header {
-            text-align: center;
-            margin-bottom: 50px;
-        }
-        
-        .header h1 {
-            color: white;
-            font-size: 2.5rem;
-            font-weight: 300;
-            margin-bottom: 10px;
-        }
-        
-        .header p {
-            color: #888;
-            font-size: 1.1rem;
-        }
-        
-        .designs-grid {
-            display: flex;
-            flex-direction: column;
-            gap: 60px;
-        }
-        
-        .design-wrapper {
-            background: white;
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-            position: relative;
-        }
-        
-        .design-label {
-            position: absolute;
-            top: -15px;
-            left: 30px;
-            background: #1a1a1a;
-            color: white;
-            padding: 8px 20px;
-            border-radius: 20px;
-            font-weight: 500;
-            font-size: 0.9rem;
-            z-index: 10;
-        }
-        
-        /* DESIGN 1 - MAGAZINE GASTRONOMIQUE */
-        .design-magazine {
-            background: #fff;
-            font-family: 'Montserrat', sans-serif;
+        * {
+            margin: 0;
             padding: 0;
-            min-height: 600px;
-            position: relative;
-            overflow: hidden;
+            box-sizing: border-box;
         }
-        
-        .magazine-header {
-            background: linear-gradient(135deg, #000 0%, #333 100%);
+
+        body {
+            background-color: #fdfcfa;
+            color: #2c2825;
+            line-height: 1.6;
+            font-family: 'Lora', serif;
+        }
+
+        /* Navigation */
+        .nav {
+            background: linear-gradient(135deg, #8b4513, #a0522d);
             color: white;
-            padding: 40px;
-            position: relative;
+            padding: 1rem;
+            text-align: center;
+            margin-bottom: 3rem;
         }
-        
-        .magazine-title {
-            font-size: 3.5rem;
-            font-weight: 900;
-            letter-spacing: -2px;
-            line-height: 0.9;
-            margin-bottom: 10px;
-            text-transform: uppercase;
+
+        .nav h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
         }
-        
-        .magazine-category {
-            background: #D4AF37;
-            color: black;
-            padding: 6px 16px;
-            display: inline-block;
-            font-weight: 700;
-            font-size: 0.8rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
+
+        .nav p {
+            opacity: 0.9;
+            font-style: italic;
         }
-        
-        .magazine-meta {
-            position: absolute;
-            right: 40px;
-            top: 40px;
-            text-align: right;
+
+        /* Design Labels */
+        .design-label {
+            background: #2c2825;
+            color: #fdfcfa;
+            padding: 0.8rem 2rem;
+            text-align: center;
+            margin: 4rem 0 2rem 0;
+            font-family: 'DM Serif Display', serif;
+            font-size: 1.5rem;
+            letter-spacing: 0.5px;
         }
-        
-        .magazine-meta div {
-            font-size: 0.9rem;
-            margin-bottom: 5px;
+
+        .design-label:first-of-type {
+            margin-top: 0;
         }
-        
-        .magazine-ingredients {
-            background: #f8f8f8;
-            padding: 30px 40px;
-            display: flex;
-            flex-wrap: wrap;
-            gap: 20px;
-            align-items: center;
-        }
-        
-        .ingredient-item {
+
+        /* Design 1 - Ottolenghi Style */
+        .design1 {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
             background: white;
-            padding: 12px 18px;
-            border-radius: 25px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            margin-bottom: 3rem;
+        }
+
+        .design1 .recipe-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: start;
+        }
+
+        .design1 .recipe-image {
+            position: relative;
+        }
+
+        .design1 .recipe-image img {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            border: 1px solid #e8e1d9;
+        }
+
+        .design1 .recipe-content h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
             font-weight: 600;
-            font-size: 0.9rem;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-            border-left: 4px solid #D4AF37;
+            color: #2c2825;
+            margin-bottom: 0.5rem;
+            line-height: 1.1;
         }
-        
-        .magazine-steps {
-            padding: 40px;
-        }
-        
-        .magazine-step {
-            position: relative;
-            padding: 30px 0;
-            border-bottom: 1px solid #eee;
-            display: flex;
-            align-items: center;
-        }
-        
-        .magazine-step:last-child {
-            border-bottom: none;
-        }
-        
-        .step-number {
-            font-size: 8rem;
-            font-weight: 900;
-            color: #f0f0f0;
-            position: absolute;
-            left: -20px;
-            top: -20px;
-            z-index: 1;
-            line-height: 1;
-        }
-        
-        .step-content {
-            position: relative;
-            z-index: 2;
-            margin-left: 120px;
+
+        .design1 .recipe-meta {
+            color: #8b7355;
+            font-style: italic;
+            margin-bottom: 2rem;
             font-size: 1.1rem;
-            font-weight: 500;
         }
-        
-        /* DESIGN 2 - CARNET D'ARTISTE */
-        .design-artist {
-            background: linear-gradient(45deg, #f4f1e8 0%, #e8dcc0 50%, #d4c5a0 100%);
-            font-family: 'Caveat', cursive;
-            padding: 50px;
-            position: relative;
-            min-height: 650px;
-        }
-        
-        .design-artist::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background: 
-                radial-gradient(circle at 20% 80%, rgba(139, 195, 74, 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 80% 20%, rgba(33, 150, 243, 0.1) 0%, transparent 50%),
-                linear-gradient(135deg, transparent 30%, rgba(121, 85, 72, 0.05) 70%);
-            pointer-events: none;
-        }
-        
-        .artist-title {
-            font-size: 3.2rem;
-            color: #5d4037;
-            text-align: center;
-            margin-bottom: 20px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
-            transform: rotate(-1deg);
-            font-weight: 700;
-        }
-        
-        .artist-category {
-            text-align: center;
-            font-size: 1.4rem;
-            color: #8bc34a;
-            margin-bottom: 40px;
-            position: relative;
-        }
-        
-        .artist-category::after {
-            content: '🌱';
-            margin-left: 10px;
-        }
-        
-        .artist-meta {
+
+        .design1 .recipe-info {
             display: flex;
-            justify-content: space-around;
-            margin-bottom: 40px;
-            font-size: 1.3rem;
-            color: #6d4c41;
+            gap: 2rem;
+            margin-bottom: 2.5rem;
+            font-size: 0.95rem;
         }
-        
-        .artist-meta div {
-            transform: rotate(-2deg + var(--rotation, 0deg));
-            position: relative;
+
+        .design1 .recipe-info span {
+            color: #8b7355;
         }
-        
-        .artist-meta div:nth-child(1) { --rotation: 1deg; }
-        .artist-meta div:nth-child(2) { --rotation: -1deg; }
-        .artist-meta div:nth-child(3) { --rotation: 2deg; }
-        
-        .artist-ingredients {
-            margin-bottom: 40px;
-            position: relative;
-        }
-        
-        .artist-ingredients h3 {
-            font-size: 2rem;
-            color: #5d4037;
-            margin-bottom: 20px;
-            text-decoration: underline;
-            text-decoration-color: #8bc34a;
-        }
-        
-        .ingredients-scattered {
-            position: relative;
-            height: 200px;
-        }
-        
-        .scattered-ingredient {
-            position: absolute;
-            background: rgba(255,255,255,0.8);
-            padding: 8px 15px;
-            border-radius: 15px;
-            font-size: 1.2rem;
-            color: #4a4a4a;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-            border: 2px dashed #8bc34a;
-            transform: rotate(var(--rotate));
-        }
-        
-        .scattered-ingredient:nth-child(1) { top: 20px; left: 50px; --rotate: -5deg; }
-        .scattered-ingredient:nth-child(2) { top: 60px; right: 80px; --rotate: 3deg; }
-        .scattered-ingredient:nth-child(3) { top: 120px; left: 20px; --rotate: -2deg; }
-        .scattered-ingredient:nth-child(4) { top: 100px; left: 50%; --rotate: 4deg; }
-        .scattered-ingredient:nth-child(5) { top: 160px; right: 100px; --rotate: -3deg; }
-        .scattered-ingredient:nth-child(6) { top: 40px; left: 30%; --rotate: 2deg; }
-        
-        .artist-steps {
-            position: relative;
-        }
-        
-        .artist-steps h3 {
-            font-size: 2rem;
-            color: #5d4037;
-            margin-bottom: 25px;
-            text-decoration: underline;
-            text-decoration-color: #2196f3;
-        }
-        
-        .artist-step {
-            margin-bottom: 25px;
-            position: relative;
-            padding-left: 40px;
+
+        .design1 .ingredients h3,
+        .design1 .instructions h3 {
+            font-family: 'Playfair Display', serif;
             font-size: 1.4rem;
-            color: #4a4a4a;
-            line-height: 1.4;
+            margin-bottom: 1rem;
+            color: #2c2825;
         }
-        
-        .artist-step::before {
-            content: '→';
+
+        .design1 .ingredients ul {
+            list-style: none;
+            margin-bottom: 2rem;
+        }
+
+        .design1 .ingredients li {
+            margin-bottom: 0.4rem;
+            position: relative;
+            padding-left: 1rem;
+        }
+
+        .design1 .ingredients li::before {
+            content: "–";
             position: absolute;
             left: 0;
-            color: #8bc34a;
-            font-size: 1.5rem;
-            font-weight: bold;
+            color: #c4925a;
         }
-        
-        /* Petits dessins décoratifs */
-        .artist-decoration {
+
+        .design1 .instructions ol {
+            counter-reset: step-counter;
+            list-style: none;
+        }
+
+        .design1 .instructions li {
+            counter-increment: step-counter;
+            margin-bottom: 1rem;
+            position: relative;
+            padding-left: 2rem;
+        }
+
+        .design1 .instructions li::before {
+            content: counter(step-counter);
             position: absolute;
-            width: 30px;
-            height: 30px;
-            border: 3px solid #8bc34a;
+            left: 0;
+            top: 0;
+            background: #c4925a;
+            color: white;
+            width: 1.5rem;
+            height: 1.5rem;
             border-radius: 50%;
-            opacity: 0.6;
+            font-size: 0.8rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
-        
-        .artist-decoration:nth-child(1) { top: 10%; right: 10%; }
-        .artist-decoration:nth-child(2) { bottom: 15%; left: 8%; transform: rotate(45deg); border-radius: 0; }
-        
-        /* DESIGN 3 - MINIMAL SCANDINAVE */
-        .design-minimal {
-            background: #fafafa;
-            font-family: 'Inter', sans-serif;
-            font-weight: 200;
-            padding: 80px 60px;
-            min-height: 700px;
+
+        /* Design 2 - Marabout Style */
+        .design2 {
+            max-width: 900px;
+            margin: 0 auto;
+            background: #faf8f5;
+            border: 2px solid #e8e1d9;
+            padding: 0;
+            margin-bottom: 3rem;
         }
-        
-        .minimal-title {
+
+        .design2 .full-image {
+            width: 100%;
+            height: 350px;
+            object-fit: cover;
+        }
+
+        .design2 .content-wrapper {
+            padding: 2.5rem;
+        }
+
+        .design2 h2 {
+            font-family: 'Cormorant Garamond', serif;
             font-size: 2.8rem;
-            font-weight: 200;
-            color: #2c3e50;
             text-align: center;
-            margin-bottom: 8px;
-            letter-spacing: -1px;
+            margin-bottom: 0.5rem;
+            color: #2c2825;
         }
-        
-        .minimal-category {
+
+        .design2 .subtitle {
             text-align: center;
-            font-size: 0.9rem;
-            color: #34495e;
-            text-transform: uppercase;
-            letter-spacing: 3px;
-            margin-bottom: 60px;
+            color: #8b7355;
+            font-style: italic;
+            margin-bottom: 1rem;
+            font-family: 'Source Serif 4', serif;
+        }
+
+        .design2 .recipe-info-center {
+            text-align: center;
+            margin: 1.5rem 0;
+            padding: 1rem 0;
+            border-top: 1px solid #e8e1d9;
+            border-bottom: 1px solid #e8e1d9;
+            font-family: 'Source Serif 4', serif;
+            font-size: 0.95rem;
+            color: #8b7355;
+        }
+
+        .design2 .two-columns {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            margin-top: 2rem;
+        }
+
+        .design2 h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.6rem;
+            margin-bottom: 1rem;
+            text-align: center;
+            color: #2c2825;
+        }
+
+        .design2 .ingredients {
+            font-family: 'Source Serif 4', serif;
+        }
+
+        .design2 .ingredients ul {
+            list-style: none;
+        }
+
+        .design2 .ingredients li {
+            margin-bottom: 0.5rem;
+            padding: 0.3rem 0;
+            border-bottom: 1px dotted #d4c4a8;
+        }
+
+        .design2 .instructions {
+            font-family: 'Source Serif 4', serif;
+        }
+
+        .design2 .instructions ol {
+            list-style: none;
+            counter-reset: step;
+        }
+
+        .design2 .instructions li {
+            counter-increment: step;
+            margin-bottom: 1rem;
             position: relative;
         }
-        
-        .minimal-category::after {
-            content: '';
-            position: absolute;
-            bottom: -20px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 60px;
-            height: 1px;
-            background: #34495e;
+
+        .design2 .instructions li::before {
+            content: counter(step, decimal) ".";
+            font-weight: 600;
+            color: #8b7355;
+            margin-right: 0.5rem;
         }
-        
-        .minimal-meta {
-            display: flex;
-            justify-content: center;
-            gap: 80px;
-            margin-bottom: 80px;
-            font-size: 0.85rem;
-            color: #7f8c8d;
-        }
-        
-        .minimal-meta div {
+
+        .design2 .page-number {
             text-align: center;
-            text-transform: uppercase;
-            letter-spacing: 1px;
+            margin-top: 2rem;
+            color: #8b7355;
+            font-size: 0.9rem;
+            font-style: italic;
         }
-        
-        .minimal-meta span {
-            display: block;
-            font-size: 1.8rem;
-            font-weight: 300;
-            color: #2c3e50;
-            margin-bottom: 5px;
-        }
-        
-        .minimal-ingredients {
-            margin-bottom: 100px;
-        }
-        
-        .minimal-ingredients h3 {
-            font-size: 1rem;
-            font-weight: 400;
-            color: #34495e;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            text-align: center;
-            margin-bottom: 40px;
-        }
-        
-        .ingredients-cards {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px;
-            max-width: 800px;
+
+        /* Design 3 - Modern Coffee Table Book */
+        .design3 {
+            max-width: 1000px;
             margin: 0 auto;
-        }
-        
-        .ingredient-card {
             background: white;
-            padding: 30px 20px;
-            text-align: center;
-            border: 1px solid #ecf0f1;
-            border-radius: 2px;
-            transition: all 0.3s ease;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+            overflow: hidden;
+            margin-bottom: 3rem;
         }
-        
-        .ingredient-card:hover {
-            border-color: #34495e;
+
+        .design3 .hero-section {
+            position: relative;
+            height: 500px;
+            overflow: hidden;
         }
-        
-        .ingredient-amount {
-            font-size: 1.5rem;
-            font-weight: 300;
-            color: #34495e;
-            display: block;
-            margin-bottom: 8px;
+
+        .design3 .hero-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
-        
-        .ingredient-name {
-            font-size: 0.8rem;
-            color: #7f8c8d;
-            text-transform: uppercase;
-            letter-spacing: 1px;
+
+        .design3 .hero-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0,0,0,0.7));
+            padding: 3rem 2rem 2rem 2rem;
+            color: white;
         }
-        
-        .minimal-steps {
-            max-width: 600px;
-            margin: 0 auto;
+
+        .design3 .hero-overlay h2 {
+            font-family: 'DM Serif Display', serif;
+            font-size: 3.5rem;
+            margin-bottom: 0.5rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
         }
-        
-        .minimal-steps h3 {
-            font-size: 1rem;
-            font-weight: 400;
-            color: #34495e;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            text-align: center;
-            margin-bottom: 60px;
+
+        .design3 .hero-overlay .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            font-style: italic;
         }
-        
-        .minimal-step {
-            padding: 40px 0;
-            border-bottom: 1px solid #ecf0f1;
+
+        .design3 .recipe-badges {
+            position: absolute;
+            top: 2rem;
+            right: 2rem;
+            display: flex;
+            gap: 1rem;
+        }
+
+        .design3 .badge {
+            background: rgba(255,255,255,0.9);
+            color: #2c2825;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+
+        .design3 .content-section {
+            padding: 3rem;
+        }
+
+        .design3 .content-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.5fr;
+            gap: 3rem;
+        }
+
+        .design3 .ingredients-box {
+            background: #f8f6f4;
+            padding: 2rem;
+            border-left: 4px solid #c4925a;
+        }
+
+        .design3 .ingredients-box h3 {
+            font-family: 'Inter', sans-serif;
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            color: #2c2825;
+        }
+
+        .design3 .ingredients-box ul {
+            list-style: none;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .design3 .ingredients-box li {
+            margin-bottom: 0.7rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .design3 .ingredients-box li::before {
+            content: "●";
+            color: #c4925a;
+            margin-right: 1rem;
+        }
+
+        .design3 .instructions-modern h3 {
+            font-family: 'Inter', sans-serif;
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            color: #2c2825;
+        }
+
+        .design3 .instructions-modern ol {
+            list-style: none;
+            counter-reset: modern-step;
+        }
+
+        .design3 .instructions-modern li {
+            counter-increment: modern-step;
+            margin-bottom: 1.5rem;
             display: flex;
             align-items: flex-start;
-            gap: 40px;
+            font-family: 'Inter', sans-serif;
         }
-        
-        .minimal-step:last-child {
-            border-bottom: none;
+
+        .design3 .instructions-modern li::before {
+            content: counter(modern-step);
+            background: #2c2825;
+            color: white;
+            width: 2.5rem;
+            height: 2.5rem;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            margin-right: 1rem;
+            flex-shrink: 0;
+            margin-top: 0.1rem;
         }
-        
-        .minimal-step-number {
-            font-size: 1rem;
-            font-weight: 300;
-            color: #34495e;
-            min-width: 30px;
-        }
-        
-        .minimal-step-content {
-            font-size: 1.1rem;
-            font-weight: 300;
-            color: #2c3e50;
-            line-height: 1.8;
-        }
-        
+
         /* Responsive */
         @media (max-width: 768px) {
-            .designs-grid { gap: 40px; }
-            .container { padding: 20px 10px; }
-            
-            .design-magazine { min-height: auto; }
-            .magazine-header { padding: 20px; }
-            .magazine-title { font-size: 2.5rem; }
-            .magazine-meta { position: static; text-align: left; margin-top: 20px; }
-            .magazine-ingredients { padding: 20px; flex-direction: column; align-items: stretch; }
-            .magazine-steps { padding: 20px; }
-            .step-number { font-size: 4rem; left: 0; }
-            .step-content { margin-left: 80px; }
-            
-            .design-artist { padding: 30px 20px; }
-            .artist-title { font-size: 2.5rem; }
-            .artist-meta { flex-direction: column; gap: 10px; text-align: center; }
-            .ingredients-scattered { height: auto; position: static; }
-            .scattered-ingredient { position: static; display: inline-block; margin: 5px; }
-            
-            .design-minimal { padding: 40px 20px; }
-            .minimal-meta { flex-direction: column; gap: 20px; }
-            .ingredients-cards { grid-template-columns: 1fr; }
-            .minimal-step { flex-direction: column; gap: 10px; }
+            .design1 .recipe-container,
+            .design2 .two-columns,
+            .design3 .content-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .design1 .recipe-content h2,
+            .design2 h2,
+            .design3 .hero-overlay h2 {
+                font-size: 2rem;
+            }
+
+            .design1,
+            .design2 .content-wrapper,
+            .design3 .content-section {
+                padding: 1.5rem;
+            }
+
+            .design3 .hero-section {
+                height: 300px;
+            }
+
+            .design3 .recipe-badges {
+                position: static;
+                justify-content: center;
+                margin-top: 1rem;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="header">
-            <h1>Comparaison Designs — Tarte de Patate</h1>
-            <p>3 approches révolutionnaires pour un site de recettes moderne</p>
-        </div>
-        
-        <div class="designs-grid">
-            <!-- DESIGN A - MAGAZINE GASTRONOMIQUE -->
-            <div class="design-wrapper">
-                <div class="design-label">A — Magazine Gastro</div>
-                <div class="design-magazine">
-                    <div class="magazine-header">
-                        <div class="magazine-title">Tarte de<br>Patate</div>
-                        <div class="magazine-category">Légumes du jardin</div>
-                        <div class="magazine-meta">
-                            <div><strong>PREP</strong> 15 min</div>
-                            <div><strong>CUISSON</strong> 30 min</div>
-                            <div><strong>POUR</strong> 6 personnes</div>
-                        </div>
-                    </div>
-                    
-                    <div class="magazine-ingredients">
-                        <div class="ingredient-item">500g pomme de terre</div>
-                        <div class="ingredient-item">50g beurre mou</div>
-                        <div class="ingredient-item">50g farine</div>
-                        <div class="ingredient-item">5cl crème</div>
-                        <div class="ingredient-item">1 œuf + 1 jaune</div>
-                        <div class="ingredient-item">Sel, poivre, muscade</div>
-                    </div>
-                    
-                    <div class="magazine-steps">
-                        <div class="magazine-step">
-                            <div class="step-number">01</div>
-                            <div class="step-content">Laver et cuire les pommes de terre jusqu'à tendreté</div>
-                        </div>
-                        <div class="magazine-step">
-                            <div class="step-number">02</div>
-                            <div class="step-content">Éplucher et écraser les pommes de terre en purée fine</div>
-                        </div>
-                        <div class="magazine-step">
-                            <div class="step-number">03</div>
-                            <div class="step-content">Ajouter tous les ingrédients et mélanger énergiquement</div>
-                        </div>
-                        <div class="magazine-step">
-                            <div class="step-number">04</div>
-                            <div class="step-content">Répartir la préparation dans des moules beurrés</div>
-                        </div>
-                        <div class="magazine-step">
-                            <div class="step-number">05</div>
-                            <div class="step-content">Cuire au four à 210°C pendant 30 minutes</div>
-                        </div>
-                    </div>
-                </div>
+    <nav class="nav">
+        <h1>Livre de Recettes de Camille</h1>
+        <p>Démo - 3 designs inspirés de vrais livres de cuisine</p>
+    </nav>
+
+    <div class="design-label">Design 1 — Style "Ottolenghi / Plenty"</div>
+    <section class="design1">
+        <div class="recipe-container">
+            <div class="recipe-image">
+                <img src="https://images.unsplash.com/photo-1518779578993-ec3579fee39f?w=800&q=80" alt="Tarte de Patate">
             </div>
-            
-            <!-- DESIGN B - CARNET D'ARTISTE -->
-            <div class="design-wrapper">
-                <div class="design-label">B — Carnet d'Artiste</div>
-                <div class="design-artist">
-                    <div class="artist-decoration"></div>
-                    <div class="artist-decoration"></div>
-                    
-                    <h1 class="artist-title">Tarte de Patate</h1>
-                    <div class="artist-category">Légumes du jardin</div>
-                    
-                    <div class="artist-meta">
-                        <div>⏱ 15 min prep</div>
-                        <div>🔥 30 min cuisson</div>
-                        <div>👥 6 personnes</div>
-                    </div>
-                    
-                    <div class="artist-ingredients">
-                        <h3>Ingrédients</h3>
-                        <div class="ingredients-scattered">
-                            <div class="scattered-ingredient">500g pomme de terre</div>
-                            <div class="scattered-ingredient">50g beurre mou</div>
-                            <div class="scattered-ingredient">50g farine</div>
-                            <div class="scattered-ingredient">5cl crème</div>
-                            <div class="scattered-ingredient">1 œuf + 1 jaune</div>
-                            <div class="scattered-ingredient">Sel, poivre, muscade</div>
-                        </div>
-                    </div>
-                    
-                    <div class="artist-steps">
-                        <h3>Préparation</h3>
-                        <div class="artist-step">Laver et cuire les pommes de terre jusqu'à ce qu'elles soient bien tendres</div>
-                        <div class="artist-step">Éplucher délicatement et écraser en purée bien lisse</div>
-                        <div class="artist-step">Incorporer tous les ingrédients et mélanger avec amour</div>
-                        <div class="artist-step">Répartir harmonieusement dans des petits moules beurrés</div>
-                        <div class="artist-step">Enfourner à 210°C et laisser dorer pendant 30 minutes</div>
-                    </div>
+            <div class="recipe-content">
+                <h2>Tarte de Patate</h2>
+                <p class="recipe-meta">Légumes du jardin</p>
+                <div class="recipe-info">
+                    <span>Préparation : 15 min</span>
+                    <span>Cuisson : 30 min</span>
+                    <span>Pour 6 personnes</span>
                 </div>
-            </div>
-            
-            <!-- DESIGN C - MINIMAL SCANDINAVE -->
-            <div class="design-wrapper">
-                <div class="design-label">C — Minimal Scandinave</div>
-                <div class="design-minimal">
-                    <h1 class="minimal-title">Tarte de Patate</h1>
-                    <div class="minimal-category">Légumes du jardin</div>
-                    
-                    <div class="minimal-meta">
-                        <div><span>15</span>min préparation</div>
-                        <div><span>30</span>min cuisson</div>
-                        <div><span>6</span>personnes</div>
-                    </div>
-                    
-                    <div class="minimal-ingredients">
-                        <h3>Ingrédients</h3>
-                        <div class="ingredients-cards">
-                            <div class="ingredient-card">
-                                <span class="ingredient-amount">500g</span>
-                                <div class="ingredient-name">Pomme de terre</div>
-                            </div>
-                            <div class="ingredient-card">
-                                <span class="ingredient-amount">50g</span>
-                                <div class="ingredient-name">Beurre mou</div>
-                            </div>
-                            <div class="ingredient-card">
-                                <span class="ingredient-amount">50g</span>
-                                <div class="ingredient-name">Farine</div>
-                            </div>
-                            <div class="ingredient-card">
-                                <span class="ingredient-amount">5cl</span>
-                                <div class="ingredient-name">Crème</div>
-                            </div>
-                            <div class="ingredient-card">
-                                <span class="ingredient-amount">1 + 1</span>
-                                <div class="ingredient-name">Œuf + jaune</div>
-                            </div>
-                            <div class="ingredient-card">
-                                <span class="ingredient-amount">–</span>
-                                <div class="ingredient-name">Sel, poivre, muscade</div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="minimal-steps">
-                        <h3>Préparation</h3>
-                        <div class="minimal-step">
-                            <div class="minimal-step-number">1</div>
-                            <div class="minimal-step-content">Laver et cuire les pommes de terre dans une eau salée jusqu'à ce qu'elles soient parfaitement tendres.</div>
-                        </div>
-                        <div class="minimal-step">
-                            <div class="minimal-step-number">2</div>
-                            <div class="minimal-step-content">Éplucher les pommes de terre encore chaudes et les écraser pour obtenir une purée lisse et homogène.</div>
-                        </div>
-                        <div class="minimal-step">
-                            <div class="minimal-step-number">3</div>
-                            <div class="minimal-step-content">Incorporer le beurre mou, la farine, la crème, l'œuf entier et le jaune. Assaisonner de sel, poivre et muscade.</div>
-                        </div>
-                        <div class="minimal-step">
-                            <div class="minimal-step-number">4</div>
-                            <div class="minimal-step-content">Répartir la préparation dans des moules à tartelettes préalablement beurrés et farinés.</div>
-                        </div>
-                        <div class="minimal-step">
-                            <div class="minimal-step-number">5</div>
-                            <div class="minimal-step-content">Cuire dans un four préchauffé à 210°C pendant 30 minutes jusqu'à obtenir une belle coloration dorée.</div>
-                        </div>
-                    </div>
+
+                <div class="ingredients">
+                    <h3>Ingrédients</h3>
+                    <ul>
+                        <li>500 g de pomme de terre</li>
+                        <li>50 g de beurre mou</li>
+                        <li>50 g de farine</li>
+                        <li>5 cl de crème</li>
+                        <li>1 œuf + 1 jaune</li>
+                        <li>Sel, poivre, muscade</li>
+                    </ul>
+                </div>
+
+                <div class="instructions">
+                    <h3>Préparation</h3>
+                    <ol>
+                        <li>Laver les pommes de terre et les faire cuire dans de l'eau bouillante ou à la vapeur</li>
+                        <li>Éplucher et écraser les pommes de terre</li>
+                        <li>Ajouter tous les autres ingrédients et mélanger</li>
+                        <li>Répartir dans des petits moules</li>
+                        <li>Cuire à 210°C pendant 30 min</li>
+                    </ol>
                 </div>
             </div>
         </div>
-    </div>
+    </section>
+
+    <div class="design-label">Design 2 — Style "Cuisine de Famille / Marabout"</div>
+    <section class="design2">
+        <img src="https://images.unsplash.com/photo-1546549032-9571cd6b27df?w=800&q=80" alt="Tarte de Patate" class="full-image">
+        <div class="content-wrapper">
+            <h2>Tarte de Patate</h2>
+            <p class="subtitle">Légumes du jardin</p>
+            <div class="recipe-info-center">
+                Préparation : 15 min • Cuisson : 30 min • Pour 6 personnes
+            </div>
+
+            <div class="two-columns">
+                <div class="ingredients">
+                    <h3>Ingrédients</h3>
+                    <ul>
+                        <li>500 g de pomme de terre</li>
+                        <li>50 g de beurre mou</li>
+                        <li>50 g de farine</li>
+                        <li>5 cl de crème</li>
+                        <li>1 œuf + 1 jaune</li>
+                        <li>Sel, poivre, muscade</li>
+                    </ul>
+                </div>
+
+                <div class="instructions">
+                    <h3>Préparation</h3>
+                    <ol>
+                        <li>Laver les pommes de terre et les faire cuire dans de l'eau bouillante ou à la vapeur</li>
+                        <li>Éplucher et écraser les pommes de terre</li>
+                        <li>Ajouter tous les autres ingrédients et mélanger</li>
+                        <li>Répartir dans des petits moules</li>
+                        <li>Cuire à 210°C pendant 30 min</li>
+                    </ol>
+                </div>
+            </div>
+
+            <div class="page-number">— 42 —</div>
+        </div>
+    </section>
+
+    <div class="design-label">Design 3 — Style "Livre Photo Moderne"</div>
+    <section class="design3">
+        <div class="hero-section">
+            <img src="https://images.unsplash.com/photo-1482049016688-2d3e1b311543?w=800&q=80" alt="Tarte de Patate" class="hero-image">
+            <div class="recipe-badges">
+                <span class="badge">45 min</span>
+                <span class="badge">6 pers.</span>
+            </div>
+            <div class="hero-overlay">
+                <h2>Tarte de Patate</h2>
+                <p class="subtitle">Légumes du jardin</p>
+            </div>
+        </div>
+
+        <div class="content-section">
+            <div class="content-grid">
+                <div class="ingredients-box">
+                    <h3>Ingrédients</h3>
+                    <ul>
+                        <li>500 g de pomme de terre</li>
+                        <li>50 g de beurre mou</li>
+                        <li>50 g de farine</li>
+                        <li>5 cl de crème</li>
+                        <li>1 œuf + 1 jaune</li>
+                        <li>Sel, poivre, muscade</li>
+                    </ul>
+                </div>
+
+                <div class="instructions-modern">
+                    <h3>Préparation</h3>
+                    <ol>
+                        <li>Laver les pommes de terre et les faire cuire dans de l'eau bouillante ou à la vapeur</li>
+                        <li>Éplucher et écraser les pommes de terre</li>
+                        <li>Ajouter tous les autres ingrédients et mélanger</li>
+                        <li>Répartir dans des petits moules</li>
+                        <li>Cuire à 210°C pendant 30 min</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </section>
 </body>
 </html>
