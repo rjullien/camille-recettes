@@ -3,466 +3,654 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Comparaison Palettes — Les Recettes de Camille</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Lora:ital,wght@0,400;0,500;0,600;1,400&family=Source+Sans+3:wght@300;400;600&family=Pacifico&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+    <title>Comparaison Designs — Tarte de Patate</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700;900&family=Caveat:wght@400;700&family=Inter:wght@200;300;400;500&display=swap" rel="stylesheet">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { 
-            font-family: 'Source Sans 3', sans-serif;
-            background: #1a1a1a;
-            padding: 40px 20px;
-            color: white;
+            background: #1a1a1a; 
+            font-family: 'Inter', sans-serif; 
+            line-height: 1.6;
+            overflow-x: hidden;
         }
-        h1 {
-            text-align: center;
-            font-family: 'Playfair Display', serif;
-            font-size: 28px;
-            margin-bottom: 10px;
-            color: #f0e6d6;
-        }
-        .subtitle {
-            text-align: center;
-            font-size: 14px;
-            color: #999;
-            margin-bottom: 40px;
-        }
-        .grid {
-            display: flex;
-            gap: 30px;
-            justify-content: center;
-            flex-wrap: wrap;
-            max-width: 1300px;
+        
+        .container {
+            max-width: 1400px;
             margin: 0 auto;
+            padding: 40px 20px;
         }
-        .option {
-            width: 400px;
-        }
-        .option-label {
+        
+        .header {
             text-align: center;
-            font-family: 'Source Sans 3', sans-serif;
-            font-weight: 600;
-            font-size: 16px;
-            margin-bottom: 14px;
-            color: #ccc;
-            letter-spacing: 1px;
-            text-transform: uppercase;
+            margin-bottom: 50px;
         }
-        .option-label span {
-            display: block;
-            font-size: 12px;
-            font-weight: 300;
-            color: #888;
-            text-transform: none;
-            letter-spacing: 0;
-            margin-top: 4px;
-        }
-
-        /* ============================================ */
-        /* OPTION A — ACTUELLE (Beige & Sable)         */
-        /* ============================================ */
-        .card-a {
-            background: #F5F0E8;
-            border-radius: 16px;
-            overflow: hidden;
-            box-shadow: 0 12px 40px rgba(0,0,0,0.4);
-            color: #3D2B1F;
-        }
-        .card-a .photo-zone {
-            height: 160px;
-            background: linear-gradient(135deg, #E8DCC8, #F5F0E8);
-            display: flex; align-items: center; justify-content: center;
-            position: relative;
-        }
-        .card-a .badge { background: #7A8471; }
-        .card-a .body { padding: 18px 22px 14px; }
-        .card-a .recipe-name {
-            font-family: 'Pacifico', cursive;
-            font-size: 22px;
-            text-align: center;
-            text-decoration: underline;
-            text-decoration-color: #7A8471;
-            text-underline-offset: 5px;
-            margin-bottom: 6px;
-        }
-        .card-a .sep { text-align:center; font-size:12px; opacity:0.6; margin-bottom:10px; }
-        .card-a .tags { display:flex; justify-content:center; gap:12px; margin-bottom:14px; }
-        .card-a .tag { background:#E8DCC8; padding:5px 14px; border-radius:20px; font-size:11px; font-weight:600; }
-        .card-a .cols { display:flex; gap:12px; }
-        .card-a .col-ing { flex:1; background:#E8DCC8; padding:14px; border-radius:12px; }
-        .card-a .col-step { flex:1.15; background:#fff; padding:14px; border-radius:12px; border:1px solid #E8DCC8; }
-        .card-a .col-title { font-family:'Pacifico',cursive; font-size:14px; margin-bottom:10px; text-decoration:underline; text-decoration-color:#7A8471; text-underline-offset:3px; }
-        .card-a .step-dot { background:#7A8471; }
-        .card-a .foot { text-align:center; padding:10px; font-size:10px; color:#7A8471; font-style:italic; }
-
-        /* ============================================ */
-        /* OPTION B — LIVRE DE CUISINE ÉLÉGANT          */
-        /* ============================================ */
-        .card-b {
-            background: #FFFBF5;
-            border-radius: 4px;
-            overflow: hidden;
-            box-shadow: 0 12px 40px rgba(0,0,0,0.4);
-            color: #2B2320;
-            border: 1px solid #E8E0D4;
-        }
-        .card-b .photo-zone {
-            height: 170px;
-            background: linear-gradient(160deg, #E8DFD3 0%, #D4C8B8 50%, #C9B99A 100%);
-            display: flex; align-items: center; justify-content: center;
-            position: relative;
-            border-bottom: 3px solid #C4985A;
-        }
-        .card-b .badge {
-            background: #C4985A;
-            font-family: 'Source Sans 3', sans-serif;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            font-size: 9px;
-        }
-        .card-b .body { padding: 22px 26px 16px; }
-        .card-b .recipe-name {
-            font-family: 'Playfair Display', serif;
-            font-size: 26px;
-            font-weight: 700;
-            text-align: center;
-            margin-bottom: 2px;
-            letter-spacing: 0.5px;
-            color: #2B2320;
-        }
-        .card-b .recipe-sub {
-            text-align: center;
-            font-family: 'Cormorant Garamond', serif;
-            font-style: italic;
-            font-size: 14px;
-            color: #8B7355;
-            margin-bottom: 10px;
-        }
-        .card-b .sep {
-            text-align: center;
-            margin-bottom: 14px;
-            font-size: 13px;
-            color: #C4985A;
-            letter-spacing: 6px;
-        }
-        .card-b .tags { display:flex; justify-content:center; gap:14px; margin-bottom:16px; }
-        .card-b .tag {
-            background: transparent;
-            border: 1.5px solid #C4985A;
-            color: #8B7355;
-            padding: 5px 16px;
-            border-radius: 2px;
-            font-size: 11px;
-            font-weight: 600;
-            font-family: 'Source Sans 3', sans-serif;
-            letter-spacing: 0.5px;
-        }
-        .card-b .cols { display:flex; gap:0; }
-        .card-b .col-ing {
-            flex:1;
-            background: #F5F0E6;
-            padding: 16px 18px;
-            border-right: 1px solid #DDD4C4;
-        }
-        .card-b .col-step {
-            flex:1.2;
-            background: #FFFBF5;
-            padding: 16px 18px;
-        }
-        .card-b .col-title {
-            font-family: 'Playfair Display', serif;
-            font-size: 14px;
-            font-weight: 600;
-            margin-bottom: 10px;
-            color: #2B2320;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            border-bottom: 1.5px solid #C4985A;
-            padding-bottom: 6px;
-        }
-        .card-b .step-dot { background: #C4985A; }
-        .card-b .foot {
-            text-align: center;
-            padding: 10px;
-            font-size: 10px;
-            color: #C4985A;
-            font-family: 'Cormorant Garamond', serif;
-            font-style: italic;
-            font-size: 12px;
-            border-top: 1px solid #E8E0D4;
-        }
-
-        /* Listes style livre pour option B */
-        .card-b .ing-list li {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 13px;
-        }
-        .card-b .ing-list li::before {
-            content: "—";
-            font-size: 11px;
-            color: #C4985A;
-        }
-        .card-b .step-list li {
-            font-family: 'Lora', serif;
-            font-size: 11px;
-            line-height: 1.5;
-        }
-
-        /* ============================================ */
-        /* OPTION C — TERRACOTTA & SAUGE               */
-        /* ============================================ */
-        .card-c {
-            background: #FAF7F2;
-            border-radius: 16px;
-            overflow: hidden;
-            box-shadow: 0 12px 40px rgba(0,0,0,0.4);
-            color: #2C1810;
-        }
-        .card-c .photo-zone {
-            height: 160px;
-            background: linear-gradient(135deg, #E8D5C4, #D4B8A0);
-            display: flex; align-items: center; justify-content: center;
-            position: relative;
-        }
-        .card-c .badge { background: #C4724B; }
-        .card-c .body { padding: 18px 22px 14px; }
-        .card-c .recipe-name {
-            font-family: 'Pacifico', cursive;
-            font-size: 22px;
-            text-align: center;
-            text-decoration: underline;
-            text-decoration-color: #C4724B;
-            text-underline-offset: 5px;
-            margin-bottom: 6px;
-        }
-        .card-c .sep { text-align:center; font-size:12px; opacity:0.6; margin-bottom:10px; }
-        .card-c .tags { display:flex; justify-content:center; gap:12px; margin-bottom:14px; }
-        .card-c .tag { background:#F0E6D8; padding:5px 14px; border-radius:20px; font-size:11px; font-weight:600; }
-        .card-c .cols { display:flex; gap:12px; }
-        .card-c .col-ing { flex:1; background:#EDE4D6; padding:14px; border-radius:12px; }
-        .card-c .col-step { flex:1.15; background:#fff; padding:14px; border-radius:12px; border:1px solid #E8D5C4; }
-        .card-c .col-title { font-family:'Pacifico',cursive; font-size:14px; margin-bottom:10px; text-decoration:underline; text-decoration-color:#C4724B; text-underline-offset:3px; }
-        .card-c .step-dot { background:#8B9E7E; }
-        .card-c .foot { text-align:center; padding:10px; font-size:10px; color:#C4724B; font-style:italic; }
-
-        /* ============================================ */
-        /* COMPOSANTS PARTAGÉS                          */
-        /* ============================================ */
-        .photo-zone .placeholder {
-            opacity: 0.45;
-            text-align: center;
-            font-size: 2.2em;
-        }
-        .photo-zone .placeholder span {
-            display: block;
-            font-size: 0.38em;
-            font-style: italic;
-            margin-top: 3px;
-        }
-        .badge {
-            position: absolute;
-            top: 10px; right: 10px;
+        
+        .header h1 {
             color: white;
-            padding: 5px 12px;
-            border-radius: 6px;
-            font-size: 10px;
-            font-weight: 600;
+            font-size: 2.5rem;
+            font-weight: 300;
+            margin-bottom: 10px;
         }
-        .ing-list, .step-list { list-style: none; padding: 0; }
-        .ing-list li {
-            padding: 4px 0;
-            font-size: 10px;
-            border-bottom: 1px solid rgba(0,0,0,0.06);
-            padding-left: 16px;
+        
+        .header p {
+            color: #888;
+            font-size: 1.1rem;
+        }
+        
+        .designs-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 60px;
+        }
+        
+        .design-wrapper {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
             position: relative;
         }
-        .ing-list li::before {
-            content: "🌿";
+        
+        .design-label {
             position: absolute;
-            left: 0;
-            font-size: 8px;
+            top: -15px;
+            left: 30px;
+            background: #1a1a1a;
+            color: white;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-weight: 500;
+            font-size: 0.9rem;
+            z-index: 10;
         }
-        .step-list li {
-            padding: 4px 0;
-            font-size: 10px;
-            border-bottom: 1px solid rgba(0,0,0,0.06);
-            padding-left: 24px;
+        
+        /* DESIGN 1 - MAGAZINE GASTRONOMIQUE */
+        .design-magazine {
+            background: #fff;
+            font-family: 'Montserrat', sans-serif;
+            padding: 0;
+            min-height: 600px;
             position: relative;
+            overflow: hidden;
+        }
+        
+        .magazine-header {
+            background: linear-gradient(135deg, #000 0%, #333 100%);
+            color: white;
+            padding: 40px;
+            position: relative;
+        }
+        
+        .magazine-title {
+            font-size: 3.5rem;
+            font-weight: 900;
+            letter-spacing: -2px;
+            line-height: 0.9;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+        }
+        
+        .magazine-category {
+            background: #D4AF37;
+            color: black;
+            padding: 6px 16px;
+            display: inline-block;
+            font-weight: 700;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .magazine-meta {
+            position: absolute;
+            right: 40px;
+            top: 40px;
+            text-align: right;
+        }
+        
+        .magazine-meta div {
+            font-size: 0.9rem;
+            margin-bottom: 5px;
+        }
+        
+        .magazine-ingredients {
+            background: #f8f8f8;
+            padding: 30px 40px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            align-items: center;
+        }
+        
+        .ingredient-item {
+            background: white;
+            padding: 12px 18px;
+            border-radius: 25px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            border-left: 4px solid #D4AF37;
+        }
+        
+        .magazine-steps {
+            padding: 40px;
+        }
+        
+        .magazine-step {
+            position: relative;
+            padding: 30px 0;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            align-items: center;
+        }
+        
+        .magazine-step:last-child {
+            border-bottom: none;
+        }
+        
+        .step-number {
+            font-size: 8rem;
+            font-weight: 900;
+            color: #f0f0f0;
+            position: absolute;
+            left: -20px;
+            top: -20px;
+            z-index: 1;
+            line-height: 1;
+        }
+        
+        .step-content {
+            position: relative;
+            z-index: 2;
+            margin-left: 120px;
+            font-size: 1.1rem;
+            font-weight: 500;
+        }
+        
+        /* DESIGN 2 - CARNET D'ARTISTE */
+        .design-artist {
+            background: linear-gradient(45deg, #f4f1e8 0%, #e8dcc0 50%, #d4c5a0 100%);
+            font-family: 'Caveat', cursive;
+            padding: 50px;
+            position: relative;
+            min-height: 650px;
+        }
+        
+        .design-artist::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(139, 195, 74, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(33, 150, 243, 0.1) 0%, transparent 50%),
+                linear-gradient(135deg, transparent 30%, rgba(121, 85, 72, 0.05) 70%);
+            pointer-events: none;
+        }
+        
+        .artist-title {
+            font-size: 3.2rem;
+            color: #5d4037;
+            text-align: center;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+            transform: rotate(-1deg);
+            font-weight: 700;
+        }
+        
+        .artist-category {
+            text-align: center;
+            font-size: 1.4rem;
+            color: #8bc34a;
+            margin-bottom: 40px;
+            position: relative;
+        }
+        
+        .artist-category::after {
+            content: '🌱';
+            margin-left: 10px;
+        }
+        
+        .artist-meta {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 40px;
+            font-size: 1.3rem;
+            color: #6d4c41;
+        }
+        
+        .artist-meta div {
+            transform: rotate(-2deg + var(--rotation, 0deg));
+            position: relative;
+        }
+        
+        .artist-meta div:nth-child(1) { --rotation: 1deg; }
+        .artist-meta div:nth-child(2) { --rotation: -1deg; }
+        .artist-meta div:nth-child(3) { --rotation: 2deg; }
+        
+        .artist-ingredients {
+            margin-bottom: 40px;
+            position: relative;
+        }
+        
+        .artist-ingredients h3 {
+            font-size: 2rem;
+            color: #5d4037;
+            margin-bottom: 20px;
+            text-decoration: underline;
+            text-decoration-color: #8bc34a;
+        }
+        
+        .ingredients-scattered {
+            position: relative;
+            height: 200px;
+        }
+        
+        .scattered-ingredient {
+            position: absolute;
+            background: rgba(255,255,255,0.8);
+            padding: 8px 15px;
+            border-radius: 15px;
+            font-size: 1.2rem;
+            color: #4a4a4a;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            border: 2px dashed #8bc34a;
+            transform: rotate(var(--rotate));
+        }
+        
+        .scattered-ingredient:nth-child(1) { top: 20px; left: 50px; --rotate: -5deg; }
+        .scattered-ingredient:nth-child(2) { top: 60px; right: 80px; --rotate: 3deg; }
+        .scattered-ingredient:nth-child(3) { top: 120px; left: 20px; --rotate: -2deg; }
+        .scattered-ingredient:nth-child(4) { top: 100px; left: 50%; --rotate: 4deg; }
+        .scattered-ingredient:nth-child(5) { top: 160px; right: 100px; --rotate: -3deg; }
+        .scattered-ingredient:nth-child(6) { top: 40px; left: 30%; --rotate: 2deg; }
+        
+        .artist-steps {
+            position: relative;
+        }
+        
+        .artist-steps h3 {
+            font-size: 2rem;
+            color: #5d4037;
+            margin-bottom: 25px;
+            text-decoration: underline;
+            text-decoration-color: #2196f3;
+        }
+        
+        .artist-step {
+            margin-bottom: 25px;
+            position: relative;
+            padding-left: 40px;
+            font-size: 1.4rem;
+            color: #4a4a4a;
             line-height: 1.4;
         }
-        .step-dot {
-            position: absolute;
-            left: 0; top: 4px;
-            color: white;
-            width: 17px; height: 17px;
-            border-radius: 50%;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 9px;
-            font-weight: bold;
-        }
-
-        /* Override list style for card-b */
-        .card-b .ing-list li { padding-left: 18px; }
-        .card-b .ing-list li::before {
+        
+        .artist-step::before {
+            content: '→';
             position: absolute;
             left: 0;
-            font-size: 11px;
+            color: #8bc34a;
+            font-size: 1.5rem;
+            font-weight: bold;
         }
-
-        @media (max-width: 900px) {
-            .grid { flex-direction: column; align-items: center; }
-            .option { width: 100%; max-width: 420px; }
+        
+        /* Petits dessins décoratifs */
+        .artist-decoration {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            border: 3px solid #8bc34a;
+            border-radius: 50%;
+            opacity: 0.6;
+        }
+        
+        .artist-decoration:nth-child(1) { top: 10%; right: 10%; }
+        .artist-decoration:nth-child(2) { bottom: 15%; left: 8%; transform: rotate(45deg); border-radius: 0; }
+        
+        /* DESIGN 3 - MINIMAL SCANDINAVE */
+        .design-minimal {
+            background: #fafafa;
+            font-family: 'Inter', sans-serif;
+            font-weight: 200;
+            padding: 80px 60px;
+            min-height: 700px;
+        }
+        
+        .minimal-title {
+            font-size: 2.8rem;
+            font-weight: 200;
+            color: #2c3e50;
+            text-align: center;
+            margin-bottom: 8px;
+            letter-spacing: -1px;
+        }
+        
+        .minimal-category {
+            text-align: center;
+            font-size: 0.9rem;
+            color: #34495e;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-bottom: 60px;
+            position: relative;
+        }
+        
+        .minimal-category::after {
+            content: '';
+            position: absolute;
+            bottom: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 1px;
+            background: #34495e;
+        }
+        
+        .minimal-meta {
+            display: flex;
+            justify-content: center;
+            gap: 80px;
+            margin-bottom: 80px;
+            font-size: 0.85rem;
+            color: #7f8c8d;
+        }
+        
+        .minimal-meta div {
+            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .minimal-meta span {
+            display: block;
+            font-size: 1.8rem;
+            font-weight: 300;
+            color: #2c3e50;
+            margin-bottom: 5px;
+        }
+        
+        .minimal-ingredients {
+            margin-bottom: 100px;
+        }
+        
+        .minimal-ingredients h3 {
+            font-size: 1rem;
+            font-weight: 400;
+            color: #34495e;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .ingredients-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .ingredient-card {
+            background: white;
+            padding: 30px 20px;
+            text-align: center;
+            border: 1px solid #ecf0f1;
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+        
+        .ingredient-card:hover {
+            border-color: #34495e;
+        }
+        
+        .ingredient-amount {
+            font-size: 1.5rem;
+            font-weight: 300;
+            color: #34495e;
+            display: block;
+            margin-bottom: 8px;
+        }
+        
+        .ingredient-name {
+            font-size: 0.8rem;
+            color: #7f8c8d;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .minimal-steps {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .minimal-steps h3 {
+            font-size: 1rem;
+            font-weight: 400;
+            color: #34495e;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        
+        .minimal-step {
+            padding: 40px 0;
+            border-bottom: 1px solid #ecf0f1;
+            display: flex;
+            align-items: flex-start;
+            gap: 40px;
+        }
+        
+        .minimal-step:last-child {
+            border-bottom: none;
+        }
+        
+        .minimal-step-number {
+            font-size: 1rem;
+            font-weight: 300;
+            color: #34495e;
+            min-width: 30px;
+        }
+        
+        .minimal-step-content {
+            font-size: 1.1rem;
+            font-weight: 300;
+            color: #2c3e50;
+            line-height: 1.8;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .designs-grid { gap: 40px; }
+            .container { padding: 20px 10px; }
+            
+            .design-magazine { min-height: auto; }
+            .magazine-header { padding: 20px; }
+            .magazine-title { font-size: 2.5rem; }
+            .magazine-meta { position: static; text-align: left; margin-top: 20px; }
+            .magazine-ingredients { padding: 20px; flex-direction: column; align-items: stretch; }
+            .magazine-steps { padding: 20px; }
+            .step-number { font-size: 4rem; left: 0; }
+            .step-content { margin-left: 80px; }
+            
+            .design-artist { padding: 30px 20px; }
+            .artist-title { font-size: 2.5rem; }
+            .artist-meta { flex-direction: column; gap: 10px; text-align: center; }
+            .ingredients-scattered { height: auto; position: static; }
+            .scattered-ingredient { position: static; display: inline-block; margin: 5px; }
+            
+            .design-minimal { padding: 40px 20px; }
+            .minimal-meta { flex-direction: column; gap: 20px; }
+            .ingredients-cards { grid-template-columns: 1fr; }
+            .minimal-step { flex-direction: column; gap: 10px; }
         }
     </style>
 </head>
 <body>
-
-<h1>🎨 Choisis ton style !</h1>
-<p class="subtitle">Même recette, 3 ambiances — clique sur rien, c'est juste pour comparer 😉</p>
-
-<div class="grid">
-
-    <!-- ===== OPTION A : Actuelle ===== -->
-    <div class="option">
-        <div class="option-label">
-            A — Actuelle
-            <span>Beige & sable, typo manuscrite</span>
+    <div class="container">
+        <div class="header">
+            <h1>Comparaison Designs — Tarte de Patate</h1>
+            <p>3 approches révolutionnaires pour un site de recettes moderne</p>
         </div>
-        <div class="card-a">
-            <div class="photo-zone">
-                <div class="placeholder">📸<span>Photo à venir</span></div>
-                <div class="badge">Légumes du jardin</div>
-            </div>
-            <div class="body">
-                <div class="recipe-name">Tarte de Patate</div>
-                <div class="sep">🌿 ✨ 🌿</div>
-                <div class="tags">
-                    <div class="tag">⏱️ 15 min</div>
-                    <div class="tag">👥 6 personnes</div>
-                </div>
-                <div class="cols">
-                    <div class="col-ing">
-                        <div class="col-title">Ingrédients</div>
-                        <ul class="ing-list">
-                            <li>500 g de pomme de terre</li>
-                            <li>50 g de beurre mou</li>
-                            <li>50 g de farine</li>
-                            <li>5 cl de crème</li>
-                            <li>1 œuf + 1 jaune</li>
-                            <li>Sel, poivre, muscade</li>
-                        </ul>
+        
+        <div class="designs-grid">
+            <!-- DESIGN A - MAGAZINE GASTRONOMIQUE -->
+            <div class="design-wrapper">
+                <div class="design-label">A — Magazine Gastro</div>
+                <div class="design-magazine">
+                    <div class="magazine-header">
+                        <div class="magazine-title">Tarte de<br>Patate</div>
+                        <div class="magazine-category">Légumes du jardin</div>
+                        <div class="magazine-meta">
+                            <div><strong>PREP</strong> 15 min</div>
+                            <div><strong>CUISSON</strong> 30 min</div>
+                            <div><strong>POUR</strong> 6 personnes</div>
+                        </div>
                     </div>
-                    <div class="col-step">
-                        <div class="col-title">Préparation</div>
-                        <ul class="step-list">
-                            <li><span class="step-dot">1</span>Laver et faire cuire les pommes de terre</li>
-                            <li><span class="step-dot">2</span>Éplucher et écraser</li>
-                            <li><span class="step-dot">3</span>Ajouter les ingrédients et mélanger</li>
-                            <li><span class="step-dot">4</span>Répartir dans des moules</li>
-                            <li><span class="step-dot">5</span>Cuire à 210°C, 30 min</li>
-                        </ul>
+                    
+                    <div class="magazine-ingredients">
+                        <div class="ingredient-item">500g pomme de terre</div>
+                        <div class="ingredient-item">50g beurre mou</div>
+                        <div class="ingredient-item">50g farine</div>
+                        <div class="ingredient-item">5cl crème</div>
+                        <div class="ingredient-item">1 œuf + 1 jaune</div>
+                        <div class="ingredient-item">Sel, poivre, muscade</div>
+                    </div>
+                    
+                    <div class="magazine-steps">
+                        <div class="magazine-step">
+                            <div class="step-number">01</div>
+                            <div class="step-content">Laver et cuire les pommes de terre jusqu'à tendreté</div>
+                        </div>
+                        <div class="magazine-step">
+                            <div class="step-number">02</div>
+                            <div class="step-content">Éplucher et écraser les pommes de terre en purée fine</div>
+                        </div>
+                        <div class="magazine-step">
+                            <div class="step-number">03</div>
+                            <div class="step-content">Ajouter tous les ingrédients et mélanger énergiquement</div>
+                        </div>
+                        <div class="magazine-step">
+                            <div class="step-number">04</div>
+                            <div class="step-content">Répartir la préparation dans des moules beurrés</div>
+                        </div>
+                        <div class="magazine-step">
+                            <div class="step-number">05</div>
+                            <div class="step-content">Cuire au four à 210°C pendant 30 minutes</div>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="foot">Fait avec 💚 par Camille</div>
+            
+            <!-- DESIGN B - CARNET D'ARTISTE -->
+            <div class="design-wrapper">
+                <div class="design-label">B — Carnet d'Artiste</div>
+                <div class="design-artist">
+                    <div class="artist-decoration"></div>
+                    <div class="artist-decoration"></div>
+                    
+                    <h1 class="artist-title">Tarte de Patate</h1>
+                    <div class="artist-category">Légumes du jardin</div>
+                    
+                    <div class="artist-meta">
+                        <div>⏱ 15 min prep</div>
+                        <div>🔥 30 min cuisson</div>
+                        <div>👥 6 personnes</div>
+                    </div>
+                    
+                    <div class="artist-ingredients">
+                        <h3>Ingrédients</h3>
+                        <div class="ingredients-scattered">
+                            <div class="scattered-ingredient">500g pomme de terre</div>
+                            <div class="scattered-ingredient">50g beurre mou</div>
+                            <div class="scattered-ingredient">50g farine</div>
+                            <div class="scattered-ingredient">5cl crème</div>
+                            <div class="scattered-ingredient">1 œuf + 1 jaune</div>
+                            <div class="scattered-ingredient">Sel, poivre, muscade</div>
+                        </div>
+                    </div>
+                    
+                    <div class="artist-steps">
+                        <h3>Préparation</h3>
+                        <div class="artist-step">Laver et cuire les pommes de terre jusqu'à ce qu'elles soient bien tendres</div>
+                        <div class="artist-step">Éplucher délicatement et écraser en purée bien lisse</div>
+                        <div class="artist-step">Incorporer tous les ingrédients et mélanger avec amour</div>
+                        <div class="artist-step">Répartir harmonieusement dans des petits moules beurrés</div>
+                        <div class="artist-step">Enfourner à 210°C et laisser dorer pendant 30 minutes</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- DESIGN C - MINIMAL SCANDINAVE -->
+            <div class="design-wrapper">
+                <div class="design-label">C — Minimal Scandinave</div>
+                <div class="design-minimal">
+                    <h1 class="minimal-title">Tarte de Patate</h1>
+                    <div class="minimal-category">Légumes du jardin</div>
+                    
+                    <div class="minimal-meta">
+                        <div><span>15</span>min préparation</div>
+                        <div><span>30</span>min cuisson</div>
+                        <div><span>6</span>personnes</div>
+                    </div>
+                    
+                    <div class="minimal-ingredients">
+                        <h3>Ingrédients</h3>
+                        <div class="ingredients-cards">
+                            <div class="ingredient-card">
+                                <span class="ingredient-amount">500g</span>
+                                <div class="ingredient-name">Pomme de terre</div>
+                            </div>
+                            <div class="ingredient-card">
+                                <span class="ingredient-amount">50g</span>
+                                <div class="ingredient-name">Beurre mou</div>
+                            </div>
+                            <div class="ingredient-card">
+                                <span class="ingredient-amount">50g</span>
+                                <div class="ingredient-name">Farine</div>
+                            </div>
+                            <div class="ingredient-card">
+                                <span class="ingredient-amount">5cl</span>
+                                <div class="ingredient-name">Crème</div>
+                            </div>
+                            <div class="ingredient-card">
+                                <span class="ingredient-amount">1 + 1</span>
+                                <div class="ingredient-name">Œuf + jaune</div>
+                            </div>
+                            <div class="ingredient-card">
+                                <span class="ingredient-amount">–</span>
+                                <div class="ingredient-name">Sel, poivre, muscade</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="minimal-steps">
+                        <h3>Préparation</h3>
+                        <div class="minimal-step">
+                            <div class="minimal-step-number">1</div>
+                            <div class="minimal-step-content">Laver et cuire les pommes de terre dans une eau salée jusqu'à ce qu'elles soient parfaitement tendres.</div>
+                        </div>
+                        <div class="minimal-step">
+                            <div class="minimal-step-number">2</div>
+                            <div class="minimal-step-content">Éplucher les pommes de terre encore chaudes et les écraser pour obtenir une purée lisse et homogène.</div>
+                        </div>
+                        <div class="minimal-step">
+                            <div class="minimal-step-number">3</div>
+                            <div class="minimal-step-content">Incorporer le beurre mou, la farine, la crème, l'œuf entier et le jaune. Assaisonner de sel, poivre et muscade.</div>
+                        </div>
+                        <div class="minimal-step">
+                            <div class="minimal-step-number">4</div>
+                            <div class="minimal-step-content">Répartir la préparation dans des moules à tartelettes préalablement beurrés et farinés.</div>
+                        </div>
+                        <div class="minimal-step">
+                            <div class="minimal-step-number">5</div>
+                            <div class="minimal-step-content">Cuire dans un four préchauffé à 210°C pendant 30 minutes jusqu'à obtenir une belle coloration dorée.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-
-    <!-- ===== OPTION B : Livre de cuisine élégant ===== -->
-    <div class="option">
-        <div class="option-label">
-            B — Livre de cuisine
-            <span>Élégant, éditorial, typo serif classique</span>
-        </div>
-        <div class="card-b">
-            <div class="photo-zone">
-                <div class="placeholder">📸<span>Photo à venir</span></div>
-                <div class="badge">Légumes du jardin</div>
-            </div>
-            <div class="body">
-                <div class="recipe-name">Tarte de Patate</div>
-                <div class="recipe-sub">— Recette traditionnelle —</div>
-                <div class="sep">✦ ✦ ✦</div>
-                <div class="tags">
-                    <div class="tag">⏱️ 15 MIN</div>
-                    <div class="tag">👥 6 PERS.</div>
-                </div>
-                <div class="cols">
-                    <div class="col-ing">
-                        <div class="col-title">Ingrédients</div>
-                        <ul class="ing-list">
-                            <li>500 g de pomme de terre</li>
-                            <li>50 g de beurre mou</li>
-                            <li>50 g de farine</li>
-                            <li>5 cl de crème</li>
-                            <li>1 œuf + 1 jaune</li>
-                            <li>Sel, poivre, muscade</li>
-                        </ul>
-                    </div>
-                    <div class="col-step">
-                        <div class="col-title">Préparation</div>
-                        <ul class="step-list">
-                            <li><span class="step-dot">1</span>Laver et faire cuire les pommes de terre</li>
-                            <li><span class="step-dot">2</span>Éplucher et écraser</li>
-                            <li><span class="step-dot">3</span>Ajouter les ingrédients et mélanger</li>
-                            <li><span class="step-dot">4</span>Répartir dans des moules</li>
-                            <li><span class="step-dot">5</span>Cuire à 210°C, 30 min</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <div class="foot">— Fait avec amour par Camille —</div>
-        </div>
-    </div>
-
-    <!-- ===== OPTION C : Terracotta & Sauge ===== -->
-    <div class="option">
-        <div class="option-label">
-            C — Terracotta & Sauge
-            <span>Chaud, méditerranéen, manuscrit</span>
-        </div>
-        <div class="card-c">
-            <div class="photo-zone">
-                <div class="placeholder">📸<span>Photo à venir</span></div>
-                <div class="badge">Légumes du jardin</div>
-            </div>
-            <div class="body">
-                <div class="recipe-name">Tarte de Patate</div>
-                <div class="sep">🌿 ✨ 🌿</div>
-                <div class="tags">
-                    <div class="tag">⏱️ 15 min</div>
-                    <div class="tag">👥 6 personnes</div>
-                </div>
-                <div class="cols">
-                    <div class="col-ing">
-                        <div class="col-title">Ingrédients</div>
-                        <ul class="ing-list">
-                            <li>500 g de pomme de terre</li>
-                            <li>50 g de beurre mou</li>
-                            <li>50 g de farine</li>
-                            <li>5 cl de crème</li>
-                            <li>1 œuf + 1 jaune</li>
-                            <li>Sel, poivre, muscade</li>
-                        </ul>
-                    </div>
-                    <div class="col-step">
-                        <div class="col-title">Préparation</div>
-                        <ul class="step-list">
-                            <li><span class="step-dot">1</span>Laver et faire cuire les pommes de terre</li>
-                            <li><span class="step-dot">2</span>Éplucher et écraser</li>
-                            <li><span class="step-dot">3</span>Ajouter les ingrédients et mélanger</li>
-                            <li><span class="step-dot">4</span>Répartir dans des moules</li>
-                            <li><span class="step-dot">5</span>Cuire à 210°C, 30 min</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <div class="foot">Fait avec 🧡 par Camille</div>
-        </div>
-    </div>
-
-</div>
-
 </body>
 </html>
