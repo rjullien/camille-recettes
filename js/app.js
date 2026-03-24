@@ -137,43 +137,119 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // ===== FONCTIONS POUR LES PAGES DE RECETTES =====
 
-// Fonction d'impression
+// Fonction de téléchargement PDF (une seule page A4)
 function printRecipe() {
-    // Optimiser pour l'impression
-    const originalTitle = document.title;
     const recipeTitle = document.querySelector('.recipe-page-title');
-    
-    if (recipeTitle) {
-        document.title = recipeTitle.textContent + ' - Les Recettes de Camille';
-    }
-    
-    // Masquer les éléments non nécessaires
-    const elementsToHide = [
-        '.recipe-actions',
-        '.btn',
-        'button'
-    ];
-    
-    elementsToHide.forEach(selector => {
-        const elements = document.querySelectorAll(selector);
-        elements.forEach(el => {
-            el.style.visibility = 'hidden';
-        });
+    const filename = recipeTitle 
+        ? recipeTitle.textContent.trim().replace(/\s+/g, '_') + '.pdf'
+        : 'recette.pdf';
+
+    // Créer un conteneur temporaire pour le PDF avec le style Canva
+    const pdfContainer = document.createElement('div');
+    pdfContainer.id = 'pdf-render';
+    pdfContainer.style.cssText = `
+        position: fixed; left: -9999px; top: 0;
+        width: 190mm; 
+        font-family: 'Lato', sans-serif;
+        color: #3D2B1F;
+        background: #FFFFFF;
+    `;
+
+    // Récupérer les données de la recette
+    const title = recipeTitle ? recipeTitle.textContent.trim() : 'Recette';
+    const categoryBadge = document.querySelector('.recipe-category-badge');
+    const category = categoryBadge ? categoryBadge.textContent.trim() : '';
+    const infoItems = document.querySelectorAll('.recipe-info-item');
+    let time = '', persons = '';
+    infoItems.forEach(item => {
+        const txt = item.textContent.trim();
+        if (txt.includes('min') || txt.includes('h')) time = txt.replace('⏱️', '').trim();
+        if (txt.includes('personne')) persons = txt.replace('👥', '').trim();
     });
-    
-    // Lancer l'impression
-    window.print();
-    
-    // Restaurer l'état original
-    setTimeout(() => {
-        document.title = originalTitle;
-        elementsToHide.forEach(selector => {
-            const elements = document.querySelectorAll(selector);
-            elements.forEach(el => {
-                el.style.visibility = 'visible';
-            });
-        });
-    }, 500);
+
+    const ingredients = [];
+    document.querySelectorAll('.ingredients-list li').forEach(li => {
+        ingredients.push(li.textContent.trim());
+    });
+
+    const steps = [];
+    document.querySelectorAll('.instructions-list li').forEach(li => {
+        steps.push(li.textContent.trim());
+    });
+
+    // Vérifier s'il y a une vraie photo ou un placeholder
+    const heroImg = document.querySelector('.recipe-hero-image img');
+    const hasPhoto = heroImg && !heroImg.src.includes('placeholder');
+    const photoHtml = hasPhoto 
+        ? `<img src="${heroImg.src}" style="width:100%; height:100%; object-fit:cover; border-radius:12px;">`
+        : `<div style="width:100%; height:100%; background:linear-gradient(135deg, #E8DCC8 0%, #F5F0E8 100%); border-radius:12px; display:flex; align-items:center; justify-content:center; font-size:2.5em; color:#7A8471; opacity:0.6;">📸<br><span style="font-size:0.4em; font-style:italic;">Photo à venir</span></div>`;
+
+    // Construire le HTML du PDF — style fidèle au Canva de Camille
+    pdfContainer.innerHTML = `
+        <div style="padding: 0; position: relative;">
+            <!-- Photo -->
+            <div style="height: 220px; overflow:hidden; border-radius:12px; margin-bottom:16px; position:relative;">
+                ${photoHtml}
+                ${category ? `<div style="position:absolute; top:12px; right:12px; background:#7A8471; color:white; padding:6px 14px; border-radius:8px; font-size:11px; font-weight:600;">${category}</div>` : ''}
+            </div>
+
+            <!-- Titre -->
+            <div style="text-align:center; margin-bottom:12px;">
+                <h1 style="font-family:'Pacifico',cursive; font-size:28px; color:#3D2B1F; text-decoration:underline; text-decoration-color:#7A8471; text-underline-offset:6px; text-decoration-thickness:2px; margin:0 0 6px 0;">${title}</h1>
+                <div style="font-size:14px; opacity:0.7;">🌿 ✨ 🌿</div>
+            </div>
+
+            <!-- Infos temps / personnes -->
+            <div style="display:flex; justify-content:center; gap:30px; margin-bottom:16px;">
+                ${time ? `<div style="background:#F5F0E8; padding:8px 18px; border-radius:8px; font-weight:600; font-size:13px;">⏱️ ${time}</div>` : ''}
+                ${persons ? `<div style="background:#F5F0E8; padding:8px 18px; border-radius:8px; font-weight:600; font-size:13px;">👥 ${persons}</div>` : ''}
+            </div>
+
+            <!-- 2 colonnes : Ingrédients + Étapes -->
+            <div style="display:flex; gap:16px;">
+                <!-- Ingrédients -->
+                <div style="flex:1; background:#E8DCC8; padding:16px 18px; border-radius:12px;">
+                    <h2 style="font-family:'Pacifico',cursive; font-size:18px; color:#3D2B1F; margin:0 0 12px 0; text-decoration:underline; text-decoration-color:#7A8471; text-underline-offset:4px;">Ingrédients</h2>
+                    <ul style="list-style:none; padding:0; margin:0;">
+                        ${ingredients.map(ing => `<li style="padding:5px 0; border-bottom:1px solid rgba(61,43,31,0.1); font-size:12px; padding-left:18px; position:relative;"><span style="position:absolute; left:0;">🌿</span>${ing}</li>`).join('')}
+                    </ul>
+                </div>
+                <!-- Étapes -->
+                <div style="flex:1.2; background:#FFFFFF; padding:16px 18px; border-radius:12px; border:1px solid #E8DCC8;">
+                    <h2 style="font-family:'Pacifico',cursive; font-size:18px; color:#3D2B1F; margin:0 0 12px 0; text-decoration:underline; text-decoration-color:#7A8471; text-underline-offset:4px;">Préparation</h2>
+                    <ol style="list-style:none; padding:0; margin:0; counter-reset:step;">
+                        ${steps.map(step => `<li style="padding:6px 0; border-bottom:1px solid rgba(61,43,31,0.1); font-size:12px; padding-left:28px; position:relative; counter-increment:step; line-height:1.5;"><span style="position:absolute; left:0; top:6px; background:#7A8471; color:white; width:22px; height:22px; border-radius:50%; display:inline-flex; align-items:center; justify-content:center; font-size:10px; font-weight:bold;">${steps.indexOf(step)+1}</span>${step}</li>`).join('')}
+                    </ol>
+                </div>
+            </div>
+
+            <!-- Footer -->
+            <div style="text-align:center; margin-top:14px; font-size:11px; color:#7A8471; font-style:italic;">
+                Fait avec 💚 par Camille
+            </div>
+        </div>
+    `;
+
+    document.body.appendChild(pdfContainer);
+
+    // Générer le PDF avec html2pdf.js
+    const opt = {
+        margin:       [10, 10, 10, 10],
+        filename:     filename,
+        image:        { type: 'jpeg', quality: 0.95 },
+        html2canvas:  { scale: 2, useCORS: true, letterRendering: true },
+        jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' },
+        pagebreak:    { mode: ['avoid-all'] }
+    };
+
+    html2pdf().set(opt).from(pdfContainer).save().then(() => {
+        document.body.removeChild(pdfContainer);
+    }).catch(err => {
+        console.error('Erreur PDF:', err);
+        document.body.removeChild(pdfContainer);
+        // Fallback : impression classique
+        window.print();
+    });
 }
 
 // Fonction pour revenir à l'accueil
