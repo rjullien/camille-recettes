@@ -79,31 +79,33 @@ function printRecipe(recipeName) {
     // Remplir le contenu
     fillPdfContent(pdfContainer);
 
-    // Configuration PDF (taille A4 fixe)
+    // Configuration PDF (A4 standard)
     const opt = {
         margin: 0,
         filename: `${recipeName}.pdf`,
-        image: { type: 'jpeg', quality: 0.98 },
+        image: { type: 'jpeg', quality: 0.95 },
         html2canvas: { 
             scale: 2,
             width: 718,
             height: 1048,
             scrollX: 0,
             scrollY: 0,
-            allowTaint: true,
             useCORS: true
         },
         jsPDF: { 
-            unit: 'px', 
-            format: [718, 1048], 
+            unit: 'mm', 
+            format: 'a4', 
             orientation: 'portrait'
         }
     };
 
     // Générer et télécharger le PDF
-    html2pdf().set(opt).from(pdfContainer).save().finally(() => {
-        // Nettoyer le DOM
+    html2pdf().set(opt).from(pdfContainer).save().then(() => {
         document.body.removeChild(pdfContainer);
+    }).catch(err => {
+        console.error('Erreur PDF:', err);
+        document.body.removeChild(pdfContainer);
+        alert('Erreur lors de la génération du PDF. Réessaie !');
     });
 }
 
