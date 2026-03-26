@@ -72,36 +72,54 @@ function printRecipe(recipeName) {
         return;
     }
 
-    const pdfContainer = createPdfContainer();
-    document.body.appendChild(pdfContainer);
-    fillPdfContent(pdfContainer);
+    // Précharger les fonts Canva template
+    const fontLink = document.createElement('link');
+    fontLink.href = 'https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap';
+    fontLink.rel = 'stylesheet';
+    document.head.appendChild(fontLink);
 
-    const opt = {
-        margin: 0,
-        filename: `${recipeName}.pdf`,
-        image: { type: 'jpeg', quality: 0.98 },
-        html2canvas: { 
-            scale: 2,
-            width: 794,
-            height: 1123,
-            scrollX: 0,
-            scrollY: 0,
-            useCORS: true
-        },
-        jsPDF: { 
-            unit: 'px', 
-            format: [794, 1123], 
-            orientation: 'portrait',
-            hotfixes: ['px_scaling']
-        }
-    };
+    // Attendre que les fonts soient chargées (Safari fix)
+    const waitForFonts = document.fonts ? document.fonts.ready : new Promise(r => setTimeout(r, 1000));
+    
+    waitForFonts.then(() => {
+        // Petit délai supplémentaire pour Safari
+        setTimeout(() => {
+            const pdfContainer = createPdfContainer();
+            document.body.appendChild(pdfContainer);
+            fillPdfContent(pdfContainer);
 
-    html2pdf().set(opt).from(pdfContainer).save().then(() => {
-        document.body.removeChild(pdfContainer);
-    }).catch(err => {
-        console.error('Erreur PDF:', err);
-        document.body.removeChild(pdfContainer);
-        alert('Erreur lors de la génération du PDF. Réessaie !');
+            // Attendre le rendu DOM + fonts dans le container
+            setTimeout(() => {
+                const opt = {
+                    margin: 0,
+                    filename: `${recipeName}.pdf`,
+                    image: { type: 'jpeg', quality: 0.98 },
+                    html2canvas: { 
+                        scale: 2,
+                        width: 794,
+                        height: 1123,
+                        scrollX: 0,
+                        scrollY: 0,
+                        useCORS: true,
+                        logging: false
+                    },
+                    jsPDF: { 
+                        unit: 'px', 
+                        format: [794, 1123], 
+                        orientation: 'portrait',
+                        hotfixes: ['px_scaling']
+                    }
+                };
+
+                html2pdf().set(opt).from(pdfContainer).save().then(() => {
+                    document.body.removeChild(pdfContainer);
+                }).catch(err => {
+                    console.error('Erreur PDF:', err);
+                    document.body.removeChild(pdfContainer);
+                    alert('Erreur lors de la génération du PDF. Réessaie !');
+                });
+            }, 500);
+        }, 300);
     });
 }
 
@@ -143,7 +161,6 @@ function fillPdfContent(container) {
         : `<div style="display:flex;align-items:center;justify-content:center;width:100%;height:100%;font-size:48px;color:#8B7355;">📸</div>`;
 
     container.innerHTML = `
-        <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
         <div style="
             width: 794px;
             height: 1123px;
