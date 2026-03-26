@@ -65,41 +65,37 @@ function handleFilter(event) {
     });
 }
 
-// === FONCTION PDF MODERNE ===
+// === FONCTION PDF — Template Canva Camille ===
 function printRecipe(recipeName) {
     if (typeof html2pdf === 'undefined') {
         alert('La librairie PDF n\'est pas chargée. Veuillez actualiser la page.');
         return;
     }
 
-    // Créer le contenu PDF hors-écran
     const pdfContainer = createPdfContainer();
     document.body.appendChild(pdfContainer);
-
-    // Remplir le contenu
     fillPdfContent(pdfContainer);
 
-    // Configuration PDF (A4 standard)
     const opt = {
         margin: 0,
         filename: `${recipeName}.pdf`,
-        image: { type: 'jpeg', quality: 0.95 },
+        image: { type: 'jpeg', quality: 0.98 },
         html2canvas: { 
             scale: 2,
-            width: 718,
-            height: 1048,
+            width: 794,
+            height: 1123,
             scrollX: 0,
             scrollY: 0,
             useCORS: true
         },
         jsPDF: { 
-            unit: 'mm', 
-            format: 'a4', 
-            orientation: 'portrait'
+            unit: 'px', 
+            format: [794, 1123], 
+            orientation: 'portrait',
+            hotfixes: ['px_scaling']
         }
     };
 
-    // Générer et télécharger le PDF
     html2pdf().set(opt).from(pdfContainer).save().then(() => {
         document.body.removeChild(pdfContainer);
     }).catch(err => {
@@ -111,174 +107,170 @@ function printRecipe(recipeName) {
 
 function createPdfContainer() {
     const container = document.createElement('div');
-    container.className = 'pdf-container';
     container.style.cssText = `
         position: absolute;
         left: -9999px;
         top: -9999px;
-        width: 718px;
-        height: 1048px;
-        background-color: white;
+        width: 794px;
+        height: 1123px;
+        background: #FFFFFF;
         overflow: hidden;
-        font-family: 'Inter', sans-serif;
-        font-size: 10px;
-        line-height: 1.4;
-        color: #1A1A1A;
-        padding: 20px;
         box-sizing: border-box;
     `;
     return container;
 }
 
 function fillPdfContent(container) {
-    // Récupérer les données de la page actuelle
+    // Récupérer les données de la page
     const title = document.querySelector('.recipe-main-title').textContent;
-    const infoChips = document.querySelectorAll('.info-chip');
     const ingredients = document.querySelectorAll('.ingredient-text');
     const steps = document.querySelectorAll('.step-text');
     const categoryBadge = document.querySelector('.category-badge');
+    const categoryText = categoryBadge ? categoryBadge.textContent : '';
+    
+    // Extraire temps et personnes depuis les info-chips
+    let timeText = '';
+    let servesText = '';
+    document.querySelectorAll('.info-chip').forEach(chip => {
+        if (chip.classList.contains('info-chip--time')) timeText = chip.textContent.replace('⏱️ ', '');
+        if (chip.classList.contains('info-chip--serves')) servesText = chip.textContent.replace('👥 ', '');
+    });
 
-    // Construire le HTML du PDF (2 colonnes pour optimiser l'espace)
+    // Chercher une image hero (si elle existe)
+    const heroImg = document.querySelector('.recipe-hero-image img');
+    const photoHtml = heroImg 
+        ? `<img src="${heroImg.src}" style="width:100%;height:100%;object-fit:cover;">`
+        : `<div style="display:flex;align-items:center;justify-content:center;width:100%;height:100%;font-size:48px;color:#8B7355;">📸</div>`;
+
     container.innerHTML = `
-        <!-- Photo placeholder -->
+        <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
         <div style="
-            width: 100%; 
-            height: 160px; 
-            background: linear-gradient(135deg, #F0E6D6 0%, #D4E4D0 100%);
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 48px;
-            margin-bottom: 16px;
-        ">📸</div>
-
-        <!-- Titre -->
-        <h1 style="
-            font-family: 'DM Sans', sans-serif;
-            font-weight: 700;
-            font-size: 24px;
+            width: 794px;
+            height: 1123px;
+            font-family: 'Montserrat', sans-serif;
             color: #1A1A1A;
-            text-align: center;
-            margin-bottom: 12px;
-            line-height: 1.2;
-        ">${title}</h1>
-
-        <!-- Infos -->
-        <div style="
+            background: #FFFFFF;
             display: flex;
-            justify-content: center;
-            gap: 12px;
-            margin-bottom: 20px;
-            flex-wrap: wrap;
+            flex-direction: column;
+            overflow: hidden;
         ">
-            ${Array.from(infoChips).map(chip => `
-                <span style="
-                    padding: 4px 8px;
-                    background-color: ${chip.classList.contains('info-chip--category') ? 'rgba(74, 124, 89, 0.1)' : '#F8F4EF'};
-                    color: ${chip.classList.contains('info-chip--category') ? '#4A7C59' : '#1A1A1A'};
-                    border-radius: 50px;
-                    font-size: 9px;
+            <!-- Photo -->
+            <div style="
+                width: 100%;
+                height: 420px;
+                background: linear-gradient(135deg, #D4C9B5 0%, #B8A68E 100%);
+                overflow: hidden;
+                flex-shrink: 0;
+            ">${photoHtml}</div>
+
+            <!-- Titre -->
+            <div style="padding: 16px 32px 12px; flex-shrink: 0;">
+                ${categoryText ? `<span style="
+                    float: right;
+                    display: inline-flex;
+                    align-items: center;
+                    gap: 6px;
+                    background: #E8F5E9;
+                    color: #2E7D32;
+                    padding: 6px 16px;
+                    border-radius: 20px;
+                    font-size: 14px;
                     font-weight: 500;
-                ">${chip.textContent}</span>
-            `).join('')}
-        </div>
-
-        <!-- Contenu 2 colonnes -->
-        <div style="display: flex; gap: 16px; margin-bottom: 20px;">
-            <!-- Colonne Ingrédients -->
-            <div style="
-                flex: 1;
-                background-color: #F8F4EF;
-                padding: 12px;
-                border-radius: 8px;
-            ">
-                <h2 style="
-                    font-family: 'DM Sans', sans-serif;
+                    font-family: 'Montserrat', sans-serif;
+                    margin-top: 12px;
+                ">🌱 ${categoryText}</span>` : ''}
+                <div style="
+                    font-family: 'Cormorant Garamond', serif;
+                    font-size: 48px;
                     font-weight: 600;
-                    font-size: 13px;
+                    text-transform: uppercase;
+                    letter-spacing: 2px;
                     color: #1A1A1A;
-                    margin-bottom: 8px;
-                ">Ingrédients</h2>
-                <ul style="list-style: none; margin: 0; padding: 0;">
-                    ${Array.from(ingredients).map(ingredient => `
-                        <li style="
-                            display: flex;
-                            align-items: flex-start;
-                            gap: 6px;
-                            margin-bottom: 4px;
-                            font-size: 9px;
-                        ">
-                            <span style="
-                                width: 12px;
-                                height: 12px;
-                                background-color: #4A7C59;
-                                border-radius: 50%;
-                                display: flex;
-                                align-items: center;
-                                justify-content: center;
-                                flex-shrink: 0;
-                                margin-top: 1px;
-                                color: white;
-                                font-size: 8px;
-                                font-weight: bold;
-                            ">✓</span>
-                            <span>${ingredient.textContent}</span>
-                        </li>
-                    `).join('')}
-                </ul>
+                    display: inline-block;
+                    padding-bottom: 8px;
+                    line-height: 1.1;
+                    position: relative;
+                ">${title}<span style="
+                    position: absolute;
+                    bottom: 0;
+                    left: 0;
+                    width: 20%;
+                    height: 1.5px;
+                    background: #1A1A1A;
+                    display: block;
+                "></span></div>
             </div>
 
-            <!-- Colonne Préparation -->
-            <div style="
-                flex: 1;
-                background-color: white;
-                padding: 12px;
-                border-radius: 8px;
-            ">
-                <h2 style="
-                    font-family: 'DM Sans', sans-serif;
-                    font-weight: 600;
-                    font-size: 13px;
-                    color: #1A1A1A;
-                    margin-bottom: 8px;
-                ">Préparation</h2>
-                <ul style="list-style: none; margin: 0; padding: 0;">
-                    ${Array.from(steps).map((step, index) => `
-                        <li style="
-                            display: flex;
-                            align-items: flex-start;
-                            gap: 8px;
-                            margin-bottom: 8px;
-                            font-size: 9px;
-                        ">
-                            <span style="
-                                width: 16px;
-                                height: 16px;
-                                background-color: #D4764E;
-                                color: white;
-                                border-radius: 50%;
-                                display: flex;
-                                align-items: center;
-                                justify-content: center;
-                                font-weight: 600;
-                                font-size: 8px;
-                                flex-shrink: 0;
-                                margin-top: 1px;
-                            ">${index + 1}</span>
-                            <span>${step.textContent}</span>
-                        </li>
-                    `).join('')}
-                </ul>
+            <!-- 2 Colonnes -->
+            <div style="display: flex; flex: 1; align-items: stretch;">
+                <!-- Gauche beige -->
+                <div style="
+                    width: 38%;
+                    background-color: #E8DCC8;
+                    padding: 20px 24px;
+                ">
+                    <!-- Icônes -->
+                    <div style="
+                        display: flex;
+                        justify-content: space-around;
+                        align-items: center;
+                        margin-bottom: 20px;
+                        padding-bottom: 12px;
+                    ">
+                        <div style="text-align:center;display:flex;flex-direction:column;align-items:center;">
+                            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#1A1A1A" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="12" cy="12" r="10"/>
+                                <polyline points="12 6 12 12 16 14"/>
+                            </svg>
+                            <span style="font-size:14px;color:#3D3D3D;font-family:'Montserrat',sans-serif;margin-top:6px;">${timeText}</span>
+                        </div>
+                        <div style="text-align:center;display:flex;flex-direction:column;align-items:center;">
+                            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#1A1A1A" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/>
+                                <circle cx="9" cy="7" r="4"/>
+                                <path d="M22 21v-2a4 4 0 0 0-3-3.87"/>
+                                <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                            </svg>
+                            <span style="font-size:14px;color:#3D3D3D;font-family:'Montserrat',sans-serif;margin-top:6px;">${servesText}</span>
+                        </div>
+                    </div>
+                    <!-- Ingrédients -->
+                    <ul style="list-style:none;padding:0;margin:0;">
+                        ${Array.from(ingredients).map(ing => `
+                            <li style="
+                                font-size:14px;
+                                line-height:1.5;
+                                margin-bottom:6px;
+                                padding-left:16px;
+                                position:relative;
+                                color:#2A2A2A;
+                            "><span style="position:absolute;left:0;color:#5C5C5C;font-weight:bold;">•</span>${ing.textContent}</li>
+                        `).join('')}
+                    </ul>
+                </div>
+                <!-- Droite blanc -->
+                <div style="
+                    width: 62%;
+                    background-color: #FFFFFF;
+                    padding: 0 28px 20px 28px;
+                ">
+                    <ul style="list-style:none;padding:0;margin:0;">
+                        ${Array.from(steps).map(step => `
+                            <li style="
+                                font-size:14px;
+                                line-height:1.6;
+                                margin-bottom:10px;
+                                padding-left:16px;
+                                position:relative;
+                                color:#2A2A2A;
+                            "><span style="position:absolute;left:0;color:#5C5C5C;font-weight:bold;">•</span>${step.textContent}</li>
+                        `).join('')}
+                    </ul>
+                </div>
             </div>
-        </div>
 
-        <!-- Footer -->
-        <div style="
-            text-align: center;
-            color: #6B6360;
-            font-size: 8px;
-            margin-top: auto;
-        ">Fait avec ❤️ par Camille</div>
+            <!-- Trait bas -->
+            <div style="height:1.5px;background:#1A1A1A;width:100%;flex-shrink:0;"></div>
+        </div>
     `;
 }
