@@ -82,8 +82,11 @@ function printRecipe(recipeName) {
     const waitForFonts = document.fonts ? document.fonts.ready : new Promise(r => setTimeout(r, 1000));
     
     waitForFonts.then(() => {
-        // Petit délai supplémentaire pour Safari
         setTimeout(() => {
+            // Nettoyer un éventuel ancien container
+            const old = document.getElementById('pdf-render-zone');
+            if (old) old.remove();
+            
             const pdfContainer = createPdfContainer();
             document.body.appendChild(pdfContainer);
             fillPdfContent(pdfContainer);
@@ -125,15 +128,19 @@ function printRecipe(recipeName) {
 
 function createPdfContainer() {
     const container = document.createElement('div');
+    container.id = 'pdf-render-zone';
     container.style.cssText = `
-        position: absolute;
-        left: -9999px;
-        top: -9999px;
+        position: fixed;
+        left: 0;
+        top: 0;
         width: 794px;
         height: 1123px;
         background: #FFFFFF;
         overflow: hidden;
         box-sizing: border-box;
+        z-index: -1;
+        opacity: 0;
+        pointer-events: none;
     `;
     return container;
 }
