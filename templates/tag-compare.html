@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Tags potager - comparaison</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600&family=Montserrat:ital,wght@0,400;0,500;1,400&display=swap');
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { background: #f5f0eb; padding: 40px; font-family: 'Montserrat', sans-serif; }
+
+.grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 30px;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+.card {
+    background: white;
+    padding: 30px;
+    border-radius: 8px;
+    text-align: center;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+.label { font-size: 13px; color: #888; margin-bottom: 16px; text-transform: uppercase; letter-spacing: 2px; }
+.title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 42px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    border-bottom: 3px solid #1A1A1A;
+    display: inline-block;
+    padding-bottom: 4px;
+    margin-bottom: 16px;
+}
+
+/* A - Badge pill vert doux */
+.tag-a {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: #E8F5E9;
+    color: #2E7D32;
+    padding: 6px 16px;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: 500;
+    font-family: 'Montserrat', sans-serif;
+}
+
+/* B - Tag encadré olive */
+.tag-b {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    border: 1.5px solid #8B9A6B;
+    color: #5C6B3F;
+    padding: 5px 14px;
+    border-radius: 4px;
+    font-size: 13px;
+    font-weight: 500;
+    font-family: 'Montserrat', sans-serif;
+}
+
+/* C - Badge terreux/kraft */
+.tag-c {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: #F0E6D3;
+    color: #6B5B3E;
+    padding: 6px 16px;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 500;
+    font-family: 'Montserrat', sans-serif;
+    border-left: 3px solid #8B7355;
+}
+</style>
+</head>
+<body>
+<div class="grid">
+    <div class="card">
+        <div class="label">A — Badge vert doux</div>
+        <div class="title">Tarte de Patate</div>
+        <br><br>
+        <span class="tag-a">🌱 Légumes du jardin</span>
+    </div>
+    <div class="card">
+        <div class="label">B — Tag encadré olive</div>
+        <div class="title">Tarte de Patate</div>
+        <br><br>
+        <span class="tag-b">🌿 Légumes du jardin</span>
+    </div>
+    <div class="card">
+        <div class="label">C — Badge kraft terreux</div>
+        <div class="title">Tarte de Patate</div>
+        <br><br>
+        <span class="tag-c">🪴 Légumes du jardin</span>
+    </div>
+</div>
+</body>
+</html>

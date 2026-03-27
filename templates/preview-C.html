@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Template C - Minimaliste Moderne</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Inter:wght@300;400;500&display=swap');
+* { margin: 0; padding: 0; box-sizing: border-box; }
+.page {
+    width: 210mm; height: 297mm;
+    padding: 22mm 22mm;
+    font-family: 'Inter', sans-serif;
+    color: #1A1A1A;
+    background: #FFFFFF;
+    display: flex; flex-direction: column;
+}
+.top-bar {
+    display: flex; justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+.logo {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 11px; font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    color: #999;
+}
+.category-tag {
+    font-size: 11px;
+    background: #1A1A1A; color: white;
+    padding: 4px 12px; border-radius: 4px;
+    font-weight: 500;
+}
+.title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 36px; font-weight: 700;
+    color: #1A1A1A;
+    margin-bottom: 8px;
+    line-height: 1.1;
+}
+.meta-row {
+    display: flex; gap: 16px;
+    font-size: 12px; color: #666;
+    padding-bottom: 16px;
+    border-bottom: 3px solid #1A1A1A;
+    margin-bottom: 20px;
+}
+.content { display: flex; gap: 28px; flex: 1; }
+.col-left { width: 35%; }
+.col-right { width: 65%; }
+h2 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 13px; font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #1A1A1A;
+    margin-bottom: 14px;
+}
+.ingredient {
+    font-size: 12.5px;
+    padding: 6px 0;
+    border-bottom: 1px solid #F0F0F0;
+    line-height: 1.3;
+}
+.step {
+    display: flex; gap: 14px;
+    margin-bottom: 16px;
+    font-size: 12.5px; line-height: 1.6;
+}
+.step-num {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 28px; font-weight: 700;
+    color: #E0E0E0;
+    min-width: 32px;
+    line-height: 1;
+}
+.step-text { padding-top: 6px; }
+.footer {
+    display: flex; justify-content: space-between;
+    align-items: center;
+    padding-top: 10px;
+    border-top: 1px solid #E0E0E0;
+    font-size: 10px; color: #BBB;
+    margin-top: auto;
+}
+</style>
+</head>
+<body>
+<div class="page">
+    <div class="top-bar">
+        <div class="logo">Les Recettes de Camille</div>
+        <div class="category-tag">Pâtes</div>
+    </div>
+    <div class="title">Pâtes Crevettes</div>
+    <div class="meta-row">
+        <span>⏱️ 20 min</span>
+        <span>👥 2 personnes</span>
+        <span>📍 Facile</span>
+    </div>
+    <div class="content">
+        <div class="col-left">
+            <h2>Ingrédients</h2>
+            <div class="ingredient">500g tagliatelles fraîches</div>
+            <div class="ingredient">250g crevettes décortiquées</div>
+            <div class="ingredient">1 oignon</div>
+            <div class="ingredient">1 gousse d'ail</div>
+            <div class="ingredient">1 cs rase de sucre</div>
+            <div class="ingredient">1 cs vinaigre balsamique</div>
+            <div class="ingredient">25cl sauce tomate</div>
+        </div>
+        <div class="col-right">
+            <h2>Préparation</h2>
+            <div class="step"><div class="step-num">01</div><div class="step-text">Faire revenir l'oignon dans de l'huile 5 min</div></div>
+            <div class="step"><div class="step-num">02</div><div class="step-text">Ajouter l'ail et les crevettes, faire cuire 5 min</div></div>
+            <div class="step"><div class="step-num">03</div><div class="step-text">Déglacer avec le vinaigre balsamique</div></div>
+            <div class="step"><div class="step-num">04</div><div class="step-text">Ajouter la sauce tomate, poivre, sel et sucre</div></div>
+            <div class="step"><div class="step-num">05</div><div class="step-text">Faire cuire les tagliatelles</div></div>
+            <div class="step"><div class="step-num">06</div><div class="step-text">Une fois cuites, ajouter les pâtes à la poêle</div></div>
+        </div>
+    </div>
+    <div class="footer">
+        <span>lesrecettesdecamille.fr</span>
+        <span>❤️ Fait maison</span>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Template A - Canva Beige</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap');
+* { margin: 0; padding: 0; box-sizing: border-box; }
+.page {
+    width: 210mm; height: 297mm;
+    padding: 20mm 18mm;
+    font-family: 'Inter', sans-serif;
+    color: #3D2B1F;
+    background: #FBF8F3;
+    display: flex; flex-direction: column;
+}
+.header {
+    text-align: center;
+    padding-bottom: 12px;
+    border-bottom: 2px solid #E8DCC8;
+    margin-bottom: 16px;
+}
+.title {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 28px; font-weight: 700;
+    color: #3D2B1F;
+    margin-bottom: 8px;
+}
+.meta {
+    display: flex; justify-content: center; gap: 20px;
+    font-size: 13px; color: #7A8471;
+}
+.meta span { background: #F0E8D8; padding: 4px 12px; border-radius: 20px; }
+.content { display: flex; gap: 20px; flex: 1; }
+.col-left {
+    width: 38%;
+    background: #F0E8D8;
+    border-radius: 12px;
+    padding: 16px;
+}
+.col-right { width: 62%; padding: 4px 0; }
+h2 {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 16px; font-weight: 600;
+    margin-bottom: 12px;
+    color: #3D2B1F;
+}
+.col-left h2 { border-bottom: 1px solid #D4C9B5; padding-bottom: 6px; }
+.ingredient {
+    display: flex; align-items: center; gap: 8px;
+    font-size: 12px; margin-bottom: 6px; line-height: 1.4;
+}
+.ingredient .dot {
+    width: 8px; height: 8px;
+    background: #7A8471; border-radius: 50%;
+    flex-shrink: 0;
+}
+.step {
+    display: flex; gap: 10px;
+    margin-bottom: 12px; font-size: 12px; line-height: 1.5;
+}
+.step-num {
+    width: 24px; height: 24px;
+    background: #7A8471; color: white;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 700; font-size: 12px; flex-shrink: 0;
+}
+.footer {
+    text-align: center; padding-top: 10px;
+    border-top: 1px solid #E8DCC8;
+    font-size: 10px; color: #A99E8F;
+    margin-top: auto;
+}
+.photo-zone {
+    width: 100%; height: 120px;
+    background: linear-gradient(135deg, #F0E6D6, #D4E4D0);
+    border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 32px; margin-bottom: 16px;
+}
+</style>
+</head>
+<body>
+<div class="page">
+    <div class="photo-zone">📸 Photo du plat</div>
+    <div class="header">
+        <div class="title">Pâtes Crevettes</div>
+        <div class="meta">
+            <span>⏱️ 20 min</span>
+            <span>👥 2 pers.</span>
+            <span>🏷️ Pâtes</span>
+        </div>
+    </div>
+    <div class="content">
+        <div class="col-left">
+            <h2>🧂 Ingrédients</h2>
+            <div class="ingredient"><div class="dot"></div> 500g tagliatelles fraîches</div>
+            <div class="ingredient"><div class="dot"></div> 250g crevettes décortiquées</div>
+            <div class="ingredient"><div class="dot"></div> 1 oignon</div>
+            <div class="ingredient"><div class="dot"></div> 1 gousse d'ail</div>
+            <div class="ingredient"><div class="dot"></div> 1 cs rase de sucre</div>
+            <div class="ingredient"><div class="dot"></div> 1 cs vinaigre balsamique</div>
+            <div class="ingredient"><div class="dot"></div> 25cl sauce tomate</div>
+        </div>
+        <div class="col-right">
+            <h2>👩‍🍳 Préparation</h2>
+            <div class="step"><div class="step-num">1</div><div>Faire revenir l'oignon dans de l'huile 5 min</div></div>
+            <div class="step"><div class="step-num">2</div><div>Ajouter l'ail et les crevettes, faire cuire 5 min</div></div>
+            <div class="step"><div class="step-num">3</div><div>Déglacer avec le vinaigre balsamique</div></div>
+            <div class="step"><div class="step-num">4</div><div>Ajouter la sauce tomate, poivre, sel et sucre</div></div>
+            <div class="step"><div class="step-num">5</div><div>Faire cuire les tagliatelles</div></div>
+            <div class="step"><div class="step-num">6</div><div>Une fois cuites, ajouter les pâtes à la poêle</div></div>
+        </div>
+    </div>
+    <div class="footer">Fait avec ❤️ par Camille — Les Recettes de Camille 🌿</div>
+</div>
+</body>
+</html>

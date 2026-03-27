@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Template B - Carnet Vintage</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Source+Sans+3:wght@300;400;600&display=swap');
+* { margin: 0; padding: 0; box-sizing: border-box; }
+.page {
+    width: 210mm; height: 297mm;
+    padding: 18mm 20mm;
+    font-family: 'Source Sans 3', sans-serif;
+    color: #2C2C2C;
+    background: #FFFEF9;
+    background-image: 
+        linear-gradient(rgba(0,0,0,0.03) 1px, transparent 1px);
+    background-size: 100% 28px;
+    display: flex; flex-direction: column;
+}
+.deco-top {
+    text-align: center;
+    font-size: 24px;
+    letter-spacing: 8px;
+    color: #C4956A;
+    margin-bottom: 8px;
+}
+.title {
+    font-family: 'Playfair Display', serif;
+    font-size: 32px; font-weight: 700;
+    text-align: center;
+    color: #5C3D2E;
+    margin-bottom: 6px;
+}
+.subtitle {
+    text-align: center;
+    font-size: 13px; color: #8B7355;
+    font-style: italic;
+    margin-bottom: 16px;
+}
+.divider {
+    height: 2px;
+    background: linear-gradient(to right, transparent, #C4956A, transparent);
+    margin: 0 40px 16px;
+}
+.content { display: flex; gap: 24px; flex: 1; }
+.col-left { width: 35%; }
+.col-right { width: 65%; border-left: 1px dashed #D4C4A8; padding-left: 20px; }
+h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 18px; font-weight: 700;
+    color: #5C3D2E;
+    margin-bottom: 14px;
+}
+.ingredient {
+    font-size: 13px; margin-bottom: 7px;
+    padding-left: 16px;
+    position: relative; line-height: 1.4;
+}
+.ingredient::before {
+    content: '•';
+    position: absolute; left: 0;
+    color: #C4956A; font-weight: bold;
+}
+.step {
+    display: flex; gap: 12px;
+    margin-bottom: 14px; font-size: 13px; line-height: 1.5;
+}
+.step-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px; font-weight: 700;
+    color: #C4956A;
+    min-width: 24px;
+}
+.step-text { padding-top: 4px; }
+.tips {
+    background: #FFF8EE;
+    border-left: 3px solid #C4956A;
+    padding: 10px 14px;
+    margin-top: 16px;
+    border-radius: 0 8px 8px 0;
+    font-size: 12px;
+    font-style: italic;
+    color: #6B5B4A;
+}
+.footer {
+    text-align: center; padding-top: 12px;
+    font-family: 'Playfair Display', serif;
+    font-size: 11px; color: #B8A68E;
+    margin-top: auto;
+}
+.meta-line {
+    display: flex; justify-content: center; gap: 24px;
+    font-size: 12px; color: #8B7355;
+    margin-bottom: 12px;
+}
+</style>
+</head>
+<body>
+<div class="page">
+    <div class="deco-top">✦ ✦ ✦</div>
+    <div class="title">Pâtes Crevettes</div>
+    <div class="subtitle">— Une recette simple et gourmande —</div>
+    <div class="meta-line">
+        <span>⏱️ 20 minutes</span>
+        <span>👥 2 personnes</span>
+        <span>🏷️ Pâtes</span>
+    </div>
+    <div class="divider"></div>
+    <div class="content">
+        <div class="col-left">
+            <h2>Ingrédients</h2>
+            <div class="ingredient">500g tagliatelles fraîches</div>
+            <div class="ingredient">250g crevettes décortiquées</div>
+            <div class="ingredient">1 oignon</div>
+            <div class="ingredient">1 gousse d'ail</div>
+            <div class="ingredient">1 cs rase de sucre</div>
+            <div class="ingredient">1 cs vinaigre balsamique</div>
+            <div class="ingredient">25cl sauce tomate</div>
+        </div>
+        <div class="col-right">
+            <h2>Préparation</h2>
+            <div class="step"><div class="step-num">1.</div><div class="step-text">Faire revenir l'oignon dans de l'huile 5 min</div></div>
+            <div class="step"><div class="step-num">2.</div><div class="step-text">Ajouter l'ail et les crevettes, faire cuire 5 min</div></div>
+            <div class="step"><div class="step-num">3.</div><div class="step-text">Déglacer avec le vinaigre balsamique</div></div>
+            <div class="step"><div class="step-num">4.</div><div class="step-text">Ajouter la sauce tomate, poivre, sel et sucre</div></div>
+            <div class="step"><div class="step-num">5.</div><div class="step-text">Faire cuire les tagliatelles</div></div>
+            <div class="step"><div class="step-num">6.</div><div class="step-text">Une fois cuites, ajouter les pâtes à la poêle</div></div>
+            <div class="tips">💡 <strong>Astuce de Camille :</strong> Un filet de crème fraîche à la fin pour encore plus de gourmandise !</div>
+        </div>
+    </div>
+    <div class="footer">~ Les Recettes de Camille ~</div>
+</div>
+</body>
+</html>

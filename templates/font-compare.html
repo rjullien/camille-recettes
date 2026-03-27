@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Comparaison polices titre</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Cormorant+Garamond:wght@400;500;600;700&family=Bodoni+Moda:wght@400;500;600;700&family=Montserrat:wght@400;500&display=swap');
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { background: #f5f0eb; padding: 40px; font-family: 'Montserrat', sans-serif; }
+
+.compare-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+.font-card {
+    background: white;
+    padding: 32px;
+    border-radius: 8px;
+    text-align: center;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+.font-name {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14px;
+    color: #888;
+    margin-bottom: 16px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+.font-sample-title {
+    font-size: 38px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #1A1A1A;
+    border-bottom: 2.5px solid #1A1A1A;
+    display: inline-block;
+    padding-bottom: 4px;
+    margin-bottom: 20px;
+    line-height: 1.1;
+}
+.font-sample-subtitle {
+    font-family: 'Montserrat', sans-serif;
+    font-style: italic;
+    font-size: 16px;
+    color: #5C5C5C;
+    margin-bottom: 16px;
+}
+.font-sample-text {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14px;
+    color: #3D3D3D;
+    line-height: 1.6;
+}
+
+.f1 .font-sample-title { font-family: 'DM Serif Display', serif; font-weight: 400; }
+.f2 .font-sample-title { font-family: 'Cormorant Garamond', serif; font-weight: 600; }
+.f3 .font-sample-title { font-family: 'Bodoni Moda', serif; font-weight: 500; }
+</style>
+</head>
+<body>
+<div class="compare-grid">
+    <div class="font-card f1">
+        <div class="font-name">A — DM Serif Display</div>
+        <div class="font-sample-title">Tarte de Patate</div>
+        <div class="font-sample-subtitle">Légumes du jardin</div>
+        <div class="font-sample-text">• 500g de pomme de terre<br>• 50g de beurre mou<br>• 50g de farine<br>• 5 cl de crème</div>
+    </div>
+    <div class="font-card f2">
+        <div class="font-name">B — Cormorant Garamond</div>
+        <div class="font-sample-title">Tarte de Patate</div>
+        <div class="font-sample-subtitle">Légumes du jardin</div>
+        <div class="font-sample-text">• 500g de pomme de terre<br>• 50g de beurre mou<br>• 50g de farine<br>• 5 cl de crème</div>
+    </div>
+    <div class="font-card f3">
+        <div class="font-name">C — Bodoni Moda</div>
+        <div class="font-sample-title">Tarte de Patate</div>
+        <div class="font-sample-subtitle">Légumes du jardin</div>
+        <div class="font-sample-text">• 500g de pomme de terre<br>• 50g de beurre mou<br>• 50g de farine<br>• 5 cl de crème</div>
+    </div>
+</div>
+</body>
+</html>
