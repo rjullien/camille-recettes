@@ -262,12 +262,28 @@ function processImageForPDF(imageSrc, callback) {
             var canvas = document.createElement('canvas');
             var ctx = canvas.getContext('2d');
             
-            // Taille optimisée pour PDF
+            // Taille optimisée pour PDF — cover crop (respecte le ratio)
             canvas.width = 794;  // Largeur A4 en px
             canvas.height = 420; // Hauteur photo du template
             
-            // Dessiner l'image redimensionnée
-            ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+            // Cover crop : remplir le rectangle sans déformer l'image
+            var imgRatio = img.naturalWidth / img.naturalHeight;
+            var canvasRatio = canvas.width / canvas.height;
+            var sx, sy, sw, sh;
+            if (imgRatio > canvasRatio) {
+                // Image plus large → crop les côtés
+                sh = img.naturalHeight;
+                sw = sh * canvasRatio;
+                sx = (img.naturalWidth - sw) / 2;
+                sy = 0;
+            } else {
+                // Image plus haute → crop haut/bas
+                sw = img.naturalWidth;
+                sh = sw / canvasRatio;
+                sx = 0;
+                sy = (img.naturalHeight - sh) / 2;
+            }
+            ctx.drawImage(img, sx, sy, sw, sh, 0, 0, canvas.width, canvas.height);
             
             // Convertir en base64
             var dataURL = canvas.toDataURL('image/jpeg', 0.8);
