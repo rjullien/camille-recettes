@@ -88,7 +88,12 @@ function printRecipe(recipeName) {
     
     document.querySelectorAll('.info-chip').forEach(function(chip) {
         if (chip.classList.contains('info-chip--time')) {
-            timeText = chip.textContent.replace('⏱️', '').replace(/^\s+/, '').trim();
+            timeText = chip.textContent.replace('⏱️', '').trim();
+            // Garder seulement le premier temps (ex: "15 min" de "15 min prep + 30 min cuisson")
+            var plusIdx = timeText.indexOf('+');
+            if (plusIdx > 0) timeText = timeText.substring(0, plusIdx).trim();
+            // Enlever "prep", "prép" etc.
+            timeText = timeText.replace(/\s*(prep|prép|préparation)\.?$/i, '').trim();
         }
         if (chip.classList.contains('info-chip--serves')) {
             servesText = chip.textContent.replace('👥', '').replace(/^\s+/, '').trim();
@@ -179,14 +184,17 @@ function printRecipe(recipeName) {
         // Générer les icônes Lucide → PNG, puis construire le PDF
         var clockSvg = lucideSvgToDataUrl('clock', 80, '#1A1A1A');
         var usersSvg = lucideSvgToDataUrl('users', 80, '#1A1A1A');
+        var sproutSvg = lucideSvgToDataUrl('sprout', 80, '#2E7D32');
         svgToPng(clockSvg, 80, function(clockPng) {
             svgToPng(usersSvg, 80, function(peoplePng) {
-                buildPDF(clockPng, peoplePng);
+                svgToPng(sproutSvg, 80, function(sproutPng) {
+                    buildPDF(clockPng, peoplePng, sproutPng);
+                });
             });
         });
     }
 
-    function buildPDF(clockPng, peoplePng) {
+    function buildPDF(clockPng, peoplePng, sproutPng) {
         // =============================================
         // FIDÈLE AU TEMPLATE preview-canva.html
         // =============================================
@@ -196,30 +204,27 @@ function printRecipe(recipeName) {
         var titleZoneY = photoHeight;
         var titlePadTop = 12;
 
-        // Catégorie badge — float right (comme le template, avec icône feuille 🌱)
+        // Catégorie badge — float right, arrondi (comme le template border-radius: 20px)
         var badgeW = 0;
         if (categoryText) {
             pdf.setFont('helvetica', 'normal');
             pdf.setFontSize(10.5);
             var badgeLabel = categoryText;
             var badgeTxtW = pdf.getTextWidth(badgeLabel);
-            var iconSpace = 14; // espace pour l'icône feuille
+            var iconSpace = sproutPng ? 14 : 0;
             var badgePadH = 12;
             var badgeH = 22;
             badgeW = badgeTxtW + badgePadH * 2 + iconSpace;
             var badgeX = pageWidth - badgeW - titlePadLeft;
             var badgeY = titleZoneY + titlePadTop + 4;
+            var badgeR = 11; // rayon arrondi (moitié de badgeH)
+            // Rectangle arrondi
             pdf.setFillColor(232, 245, 233);
             pdf.setDrawColor(232, 245, 233);
-            pdf.rect(badgeX, badgeY, badgeW, badgeH, 'FD');
-            // Icône feuille Lucide (sprout)
-            var leafSvg = lucideSvgToDataUrl('sprout', 80, '#2E7D32');
-            if (leafSvg) {
-                svgToPng(leafSvg, 80, function(leafPng) {
-                    if (leafPng) {
-                        pdf.addImage(leafPng, 'PNG', badgeX + badgePadH - 2, badgeY + 3, 10, 10);
-                    }
-                });
+            pdf.roundedRect(badgeX, badgeY, badgeW, badgeH, badgeR, badgeR, 'FD');
+            // Icône feuille Lucide (sprout) — pré-générée
+            if (sproutPng) {
+                pdf.addImage(sproutPng, 'PNG', badgeX + badgePadH - 2, badgeY + 3, 10, 10);
             }
             pdf.setTextColor(46, 125, 50);
             pdf.text(badgeLabel, badgeX + badgePadH + iconSpace, badgeY + 15);
