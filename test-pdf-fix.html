@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test PDF Fix - Les Recettes de Camille</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        .recipe-main-title { font-size: 24px; margin: 10px 0; }
+        .ingredient-text, .step-text { margin: 5px 0; }
+        .info-chip { padding: 5px 10px; margin: 0 5px; background: #f0f0f0; display: inline-block; }
+        .category-badge { background: #E8F5E9; color: #2E7D32; padding: 5px 10px; }
+        .recipe-hero-image img { width: 200px; height: 150px; object-fit: cover; }
+        .pdf-button { padding: 10px 20px; background: #007cba; color: white; border: none; cursor: pointer; margin: 20px 0; }
+    </style>
+</head>
+<body>
+    <h1>Test de la génération PDF</h1>
+    
+    <!-- Données simulées pour tester -->
+    <div style="display: none;">
+        <div class="recipe-main-title">Test Recette PDF</div>
+        <span class="category-badge">Test Catégorie</span>
+        
+        <div class="info-chip info-chip--time">⏱️ 20 min</div>
+        <div class="info-chip info-chip--serves">👥 4 pers.</div>
+        
+        <div class="recipe-hero-image">
+            <!-- Photo de test avec une image simple -->
+            <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjMwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICA8cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjY2NjIi8+CiAgPHRleHQgeD0iNTAlIiB5PSI1MCUiIGZvbnQtZmFtaWx5PSJBcmlhbCwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSIyNCIgZmlsbD0iIzMzMyIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZHk9Ii4zZW0iPkltYWdlIFRlc3Q8L3RleHQ+Cjwvc3ZnPgo=" alt="Test image">
+        </div>
+        
+        <div class="ingredient-text">500g de pommes de terre</div>
+        <div class="ingredient-text">50g de beurre</div>
+        <div class="ingredient-text">Sel, poivre</div>
+        
+        <div class="step-text">Étape 1 : Éplucher les pommes de terre</div>
+        <div class="step-text">Étape 2 : Les faire cuire 20 minutes</div>
+        <div class="step-text">Étape 3 : Écraser avec le beurre</div>
+    </div>
+    
+    <button class="pdf-button" onclick="printRecipe('Test_PDF')">
+        📄 Tester génération PDF
+    </button>
+    
+    <p><strong>Instructions :</strong></p>
+    <ol>
+        <li>Cliquer sur le bouton pour générer le PDF</li>
+        <li>Vérifier que le PDF se télécharge sans erreur</li>
+        <li>Ouvrir le PDF et vérifier le rendu :</li>
+        <ul>
+            <li>Photo/placeholder en haut (420px de haut)</li>
+            <li>Titre en majuscules avec trait en dessous</li>
+            <li>Badge catégorie en haut à droite</li>
+            <li>2 colonnes : gauche beige (ingrédients), droite blanche (étapes)</li>
+            <li>Barre noire en bas</li>
+        </ul>
+    </ol>
+    
+    <script src="js/app.js?v=10"></script>
+</body>
+</html>

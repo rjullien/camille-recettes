@@ -155,8 +155,8 @@ function printRecipe(recipeName) {
             var badgeX = pageWidth - badgeWidth - 24;
             var badgeY = photoHeight + 12;
             
-            // Rectangle arrondi simulé
-            pdf.roundedRect(badgeX, badgeY, badgeWidth, badgeHeight, 10, 10, 'FD');
+            // Rectangle badge (arrondi simulé par rectangle normal)
+            pdf.rect(badgeX, badgeY, badgeWidth, badgeHeight, 'FD');
             
             pdf.setTextColor(46, 125, 50); // #2E7D32
             pdf.setFontSize(10);
