@@ -142,22 +142,46 @@ function printRecipe(recipeName) {
         pdf.text(text, (width - textWidth) / 2, height / 2 + 12);
     }
     
+    // SVG des icônes du template (identiques à preview-canva.html)
+    var CLOCK_SVG = '<svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="%231A1A1A" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>';
+    var PEOPLE_SVG = '<svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="%231A1A1A" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>';
+
+    // Convertir un SVG string en PNG data URL via <canvas>
+    function svgToPng(svgStr, size, callback) {
+        var img = new Image();
+        img.onload = function() {
+            var c = document.createElement('canvas');
+            c.width = size; c.height = size;
+            c.getContext('2d').drawImage(img, 0, 0, size, size);
+            callback(c.toDataURL('image/png'));
+        };
+        img.onerror = function() { callback(null); };
+        img.src = 'data:image/svg+xml,' + svgStr;
+    }
+
     function continuePDFGeneration() {
+        // Rendre les 2 icônes SVG en PNG, puis continuer
+        svgToPng(CLOCK_SVG, 80, function(clockPng) {
+            svgToPng(PEOPLE_SVG, 80, function(peoplePng) {
+                buildPDF(clockPng, peoplePng);
+            });
+        });
+    }
+
+    function buildPDF(clockPng, peoplePng) {
         // =============================================
         // FIDÈLE AU TEMPLATE preview-canva.html
         // =============================================
-        var margin = 24;  // ~32px / 1.33
-
-        // === 2. ZONE TITRE (title-zone) ===
-        // padding: 16px 32px 12px → 12pt 24pt 9pt
-        var titleZoneY = photoHeight;
-        var titlePadTop = 12;
         var titlePadLeft = 24;
 
-        // Catégorie badge — float right (comme le template)
+        // === 2. ZONE TITRE (title-zone) ===
+        var titleZoneY = photoHeight;
+        var titlePadTop = 12;
+
+        // Catégorie badge — float right (comme le template, avec emoji 🌱)
         if (categoryText) {
             pdf.setFont('helvetica', 'normal');
-            pdf.setFontSize(10.5); // 14px / 1.33
+            pdf.setFontSize(10.5);
             var badgeLabel = categoryText;
             var badgeTxtW = pdf.getTextWidth(badgeLabel);
             var badgePadH = 12;
@@ -165,19 +189,18 @@ function printRecipe(recipeName) {
             var badgeW = badgeTxtW + badgePadH * 2;
             var badgeX = pageWidth - badgeW - titlePadLeft;
             var badgeY = titleZoneY + titlePadTop + 4;
-            // Fond vert clair + coins (pas d'arrondi en jsPDF, rectangle simple)
-            pdf.setFillColor(232, 245, 233); // #E8F5E9
+            pdf.setFillColor(232, 245, 233);
             pdf.setDrawColor(232, 245, 233);
             pdf.rect(badgeX, badgeY, badgeW, badgeH, 'FD');
-            pdf.setTextColor(46, 125, 50); // #2E7D32
+            pdf.setTextColor(46, 125, 50);
             pdf.text(badgeLabel, badgeX + badgePadH, badgeY + 15);
         }
 
-        // Titre principal — Cormorant Garamond ≈ times bold
+        // Titre principal
         pdf.setTextColor(26, 26, 26);
         pdf.setFont('times', 'bold');
-        pdf.setFontSize(36); // 48px / 1.33
-        var titleMaxW = pageWidth - titlePadLeft * 2 - (categoryText ? 130 : 0);
+        pdf.setFontSize(36);
+        var titleMaxW = pageWidth - titlePadLeft * 2 - (categoryText ? badgeW + 40 : 0);
         var titleLines = pdf.splitTextToSize(title.toUpperCase(), titleMaxW);
         var titleStartY = titleZoneY + titlePadTop + 32;
         titleLines.forEach(function(line, i) {
@@ -185,72 +208,53 @@ function printRecipe(recipeName) {
         });
         var titleBottomY = titleStartY + (titleLines.length - 1) * 38;
 
-        // Trait sous le titre (title::after — 20% width, 1.5px)
+        // Trait sous le titre
         pdf.setDrawColor(26, 26, 26);
         pdf.setLineWidth(1.1);
-        var underlineW = titleMaxW * 0.2;
-        pdf.line(titlePadLeft, titleBottomY + 8, titlePadLeft + underlineW, titleBottomY + 8);
+        pdf.line(titlePadLeft, titleBottomY + 8, titlePadLeft + titleMaxW * 0.2, titleBottomY + 8);
 
         // === 3. CONTENT — 2 colonnes ===
         var colStartY = titleBottomY + 18;
-        var colEndY = pageHeight - 4; // barre du bas
+        var colEndY = pageHeight - 4;
 
-        // Colonne gauche — fond beige #E8DCC8 (38%)
+        // Colonne gauche — fond beige
         pdf.setFillColor(232, 220, 200);
         pdf.rect(0, colStartY, leftColWidth, colEndY - colStartY, 'F');
 
-        // --- Meta row (icônes SVG → on dessine horloge + personnes en jsPDF) ---
+        // --- Meta row avec icônes SVG rendues en PNG ---
         var metaRowY = colStartY + 15;
         var metaColCenter1 = leftColWidth * 0.3;
         var metaColCenter2 = leftColWidth * 0.7;
+        var iconSize = 30; // 40px / 1.33
 
-        // Icône horloge (cercle + aiguilles)
-        pdf.setDrawColor(26, 26, 26);
-        pdf.setLineWidth(0.8);
-        var clockR = 12;
-        pdf.circle(metaColCenter1, metaRowY + clockR, clockR);
-        // Aiguille heure (12→12 direction 6h = vers le bas droit)
-        pdf.line(metaColCenter1, metaRowY + clockR, metaColCenter1, metaRowY + clockR - 7);
-        // Aiguille minute
-        pdf.line(metaColCenter1, metaRowY + clockR, metaColCenter1 + 5, metaRowY + clockR + 3);
-
+        // Icône horloge
+        if (clockPng) {
+            pdf.addImage(clockPng, 'PNG', metaColCenter1 - iconSize / 2, metaRowY, iconSize, iconSize);
+        }
         // Texte temps
         if (timeText) {
             pdf.setTextColor(61, 61, 61);
             pdf.setFont('helvetica', 'normal');
             pdf.setFontSize(10.5);
             var timeW = pdf.getTextWidth(timeText);
-            pdf.text(timeText, metaColCenter1 - timeW / 2, metaRowY + clockR * 2 + 12);
+            pdf.text(timeText, metaColCenter1 - timeW / 2, metaRowY + iconSize + 14);
         }
 
-        // Icône personnes (cercle tête + corps simplifié)
-        var persX = metaColCenter2;
-        var persY = metaRowY;
-        pdf.setDrawColor(26, 26, 26);
-        pdf.setLineWidth(0.8);
-        // Tête principale
-        pdf.circle(persX - 3, persY + 7, 5);
-        // Corps
-        pdf.setFillColor(255, 255, 255);
-        // Arc corps (simplify: petit demi-cercle)
-        pdf.line(persX - 12, persY + 24, persX - 9, persY + 15);
-        pdf.line(persX + 3, persY + 24, persX + 3, persY + 15);
-        // 2e personne (plus petite, à droite)
-        pdf.circle(persX + 8, persY + 9, 4);
-        pdf.line(persX + 4, persY + 24, persX + 4, persY + 16);
-        pdf.line(persX + 12, persY + 24, persX + 12, persY + 16);
-
+        // Icône personnes
+        if (peoplePng) {
+            pdf.addImage(peoplePng, 'PNG', metaColCenter2 - iconSize / 2, metaRowY, iconSize, iconSize);
+        }
         // Texte portions
         if (servesText) {
             pdf.setTextColor(61, 61, 61);
             pdf.setFont('helvetica', 'normal');
             pdf.setFontSize(10.5);
             var servW = pdf.getTextWidth(servesText);
-            pdf.text(servesText, metaColCenter2 - servW / 2, metaRowY + clockR * 2 + 12);
+            pdf.text(servesText, metaColCenter2 - servW / 2, metaRowY + iconSize + 14);
         }
 
-        // Séparation après meta (12px padding-bottom dans template)
-        var ingStartY = metaRowY + clockR * 2 + 28;
+        // Séparation après meta
+        var ingStartY = metaRowY + iconSize + 30;
 
         // --- Ingrédients (bullets) ---
         pdf.setTextColor(42, 42, 42);
@@ -310,7 +314,7 @@ function printRecipe(recipeName) {
 
         // Sauvegarder le PDF
         pdf.save(recipeName + '.pdf');
-    }
+    } // end buildPDF
 }
 
 // Fonction utilitaire pour traiter les images
