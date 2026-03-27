@@ -149,14 +149,47 @@ function printRecipe(recipeName) {
     // Génère un SVG data URL à partir du nom d'icône Lucide
     function makeLucideSvg(iconName, size, color) {
         try {
-            if (typeof lucide === 'undefined') return null;
-            // lucide.icons est un objet { iconName: [defaultAttrs, elements] }
-            var iconData = lucide.icons && lucide.icons[iconName];
-            if (!iconData) return null;
-            
-            var elements = iconData[1]; // array of [tag, attrs]
-            if (!elements || !Array.isArray(elements)) return null;
-            
+            if (typeof lucide === 'undefined') {
+                console.error('Lucide not available');
+                return null;
+            }
+
+            // Support pour les différents formats de Lucide
+            var iconData = null;
+
+            // Format récent : lucide.icons.iconName = [attrs, elements]
+            if (lucide.icons && lucide.icons[iconName]) {
+                iconData = lucide.icons[iconName];
+            }
+            // Format alternatif : lucide[iconName]
+            else if (lucide[iconName]) {
+                iconData = lucide[iconName];
+            }
+
+            if (!iconData) {
+                console.error('Icon not found:', iconName);
+                return null;
+            }
+
+            var elements;
+            // Format [attrs, elements]
+            if (Array.isArray(iconData) && iconData.length >= 2) {
+                elements = iconData[1];
+            }
+            // Format direct elements
+            else if (Array.isArray(iconData)) {
+                elements = iconData;
+            }
+            else {
+                console.error('Invalid icon format:', iconName, iconData);
+                return null;
+            }
+
+            if (!elements || !Array.isArray(elements)) {
+                console.error('No elements found for icon:', iconName);
+                return null;
+            }
+
             var svgInner = '';
             for (var i = 0; i < elements.length; i++) {
                 var el = elements[i];
@@ -169,7 +202,9 @@ function printRecipe(recipeName) {
                 }
                 svgInner += '<' + tag + attrStr + '/>';
             }
+
             var svg = '<svg xmlns="http://www.w3.org/2000/svg" width="' + size + '" height="' + size + '" viewBox="0 0 24 24" fill="none" stroke="' + color + '" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">' + svgInner + '</svg>';
+            console.log('Generated SVG for', iconName, ':', svg.substring(0, 100) + '...');
             return 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(svg);
         } catch(e) {
             console.error('Lucide icon error:', iconName, e);
@@ -178,36 +213,69 @@ function printRecipe(recipeName) {
     }
 
     function svgDataUrlToPng(dataUrl, size, callback) {
-        if (!dataUrl) { callback(null); return; }
+        if (!dataUrl) {
+            console.warn('No dataUrl provided for SVG conversion');
+            callback(null);
+            return;
+        }
+
+        console.log('Converting SVG to PNG, size:', size);
         var img = new Image();
+
         img.onload = function() {
             try {
                 var c = document.createElement('canvas');
-                c.width = size; c.height = size;
+                c.width = size;
+                c.height = size;
                 var ctx = c.getContext('2d');
+
+                // Fond transparent
+                ctx.clearRect(0, 0, size, size);
                 ctx.drawImage(img, 0, 0, size, size);
-                callback(c.toDataURL('image/png'));
+
+                var pngData = c.toDataURL('image/png');
+                console.log('SVG to PNG conversion successful');
+                callback(pngData);
             } catch(e) {
-                console.error('svgToPng error:', e);
+                console.error('svgToPng canvas error:', e);
                 callback(null);
             }
         };
-        img.onerror = function() {
-            console.error('svgToPng load error');
+
+        img.onerror = function(e) {
+            console.error('svgToPng image load error:', e);
             callback(null);
         };
+
+        // Timeout de sécurité
+        setTimeout(function() {
+            if (img.complete === false) {
+                console.error('SVG conversion timeout');
+                callback(null);
+            }
+        }, 3000);
+
         img.src = dataUrl;
     }
 
     // Préparer TOUTES les icônes AVANT de construire le PDF
     function prepareIcons() {
+        console.log('=== Preparing icons for PDF ===');
+        console.log('Lucide available:', typeof lucide !== 'undefined');
+
         var clockSvg = makeLucideSvg('clock', 120, '#1A1A1A');
         var usersSvg = makeLucideSvg('users', 120, '#1A1A1A');
         var sproutSvg = makeLucideSvg('sprout', 120, '#2E7D32');
-        
+
+        console.log('SVG generated - clock:', !!clockSvg, 'users:', !!usersSvg, 'sprout:', !!sproutSvg);
+
         svgDataUrlToPng(clockSvg, 120, function(clockPng) {
+            console.log('Clock PNG conversion result:', !!clockPng);
             svgDataUrlToPng(usersSvg, 120, function(usersPng) {
+                console.log('Users PNG conversion result:', !!usersPng);
                 svgDataUrlToPng(sproutSvg, 120, function(sproutPng) {
+                    console.log('Sprout PNG conversion result:', !!sproutPng);
+                    console.log('=== Starting PDF build ===');
                     buildPDF(clockPng, usersPng, sproutPng);
                 });
             });
@@ -222,6 +290,7 @@ function printRecipe(recipeName) {
         // === BADGE CATÉGORIE (vert, arrondi, en haut à droite sous la photo) ===
         var badgeW = 0;
         if (categoryText) {
+            console.log('Drawing category badge:', categoryText);
             pdf.setFont('helvetica', 'normal');
             pdf.setFontSize(10.5);
             var badgeTxtW = pdf.getTextWidth(categoryText);
@@ -232,17 +301,29 @@ function printRecipe(recipeName) {
             var badgeX = pageWidth - badgeW - titlePadLeft;
             var badgeY = titleZoneY + titlePadTop + 4;
 
-            // Fond vert clair (rectangle simple — fiable)
-            pdf.setFillColor(232, 245, 233);
-            pdf.rect(badgeX, badgeY, badgeW, badgeH, 'F');
-            
+            // Fond vert plus foncé et visible (rectangle avec bordure)
+            pdf.setFillColor(200, 230, 201); // Vert plus visible
+            pdf.setDrawColor(76, 175, 80); // Bordure verte
+            pdf.setLineWidth(1);
+            pdf.rect(badgeX, badgeY, badgeW, badgeH, 'FD'); // Fill + Draw (bordure)
+
             // Icône sprout
             if (sproutPng) {
-                pdf.addImage(sproutPng, 'PNG', badgeX + badgePadH, badgeY + 3, 14, 14);
+                console.log('Adding sprout icon to PDF');
+                try {
+                    pdf.addImage(sproutPng, 'PNG', badgeX + badgePadH, badgeY + 3, 14, 14);
+                } catch(e) {
+                    console.error('Error adding sprout icon to PDF:', e);
+                }
+            } else {
+                console.warn('No sprout PNG available');
+                // Fallback : dessiner un cercle vert comme icône
+                pdf.setFillColor(76, 175, 80);
+                pdf.circle(badgeX + badgePadH + 7, badgeY + 10, 5, 'F');
             }
-            
-            // Texte catégorie
-            pdf.setTextColor(46, 125, 50);
+
+            // Texte catégorie (plus foncé)
+            pdf.setTextColor(27, 94, 32); // Vert plus foncé
             pdf.text(categoryText, badgeX + badgePadH + iconSpace, badgeY + 15);
         }
 
@@ -278,7 +359,20 @@ function printRecipe(recipeName) {
         var iconSz = 28;
 
         if (clockPng) {
-            pdf.addImage(clockPng, 'PNG', metaCol1 - iconSz / 2, metaRowY, iconSz, iconSz);
+            console.log('Adding clock icon to PDF');
+            try {
+                pdf.addImage(clockPng, 'PNG', metaCol1 - iconSz / 2, metaRowY, iconSz, iconSz);
+            } catch(e) {
+                console.error('Error adding clock icon to PDF:', e);
+                // Fallback : cercle avec "⏱"
+                pdf.setFillColor(100, 100, 100);
+                pdf.circle(metaCol1, metaRowY + iconSz/2, iconSz/2, 'S');
+            }
+        } else {
+            console.warn('No clock PNG available - drawing fallback');
+            // Fallback : cercle simple
+            pdf.setDrawColor(100, 100, 100);
+            pdf.circle(metaCol1, metaRowY + iconSz/2, iconSz/2, 'S');
         }
         if (timeText) {
             pdf.setTextColor(61, 61, 61);
@@ -289,7 +383,24 @@ function printRecipe(recipeName) {
         }
 
         if (usersPng) {
-            pdf.addImage(usersPng, 'PNG', metaCol2 - iconSz / 2, metaRowY, iconSz, iconSz);
+            console.log('Adding users icon to PDF');
+            try {
+                pdf.addImage(usersPng, 'PNG', metaCol2 - iconSz / 2, metaRowY, iconSz, iconSz);
+            } catch(e) {
+                console.error('Error adding users icon to PDF:', e);
+                // Fallback : cercle avec deux petits cercles
+                pdf.setDrawColor(100, 100, 100);
+                pdf.circle(metaCol2, metaRowY + iconSz/2, iconSz/2, 'S');
+                pdf.circle(metaCol2 - 5, metaRowY + iconSz/2, 3, 'S');
+                pdf.circle(metaCol2 + 5, metaRowY + iconSz/2, 3, 'S');
+            }
+        } else {
+            console.warn('No users PNG available - drawing fallback');
+            // Fallback : cercle avec deux petits cercles
+            pdf.setDrawColor(100, 100, 100);
+            pdf.circle(metaCol2, metaRowY + iconSz/2, iconSz/2, 'S');
+            pdf.circle(metaCol2 - 5, metaRowY + iconSz/2, 3, 'S');
+            pdf.circle(metaCol2 + 5, metaRowY + iconSz/2, 3, 'S');
         }
         if (servesText) {
             pdf.setTextColor(61, 61, 61);
