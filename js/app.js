@@ -62,9 +62,8 @@ function handleFilter(event) {
     });
 }
 
-// === GÉNÉRATION PDF CORRIGÉE ===
-// Nouvelle approche: on évite html2pdf.js qui est buggy avec html2canvas
-// On utilise directement jsPDF + html2canvas pour plus de contrôle
+// === GÉNÉRATION PDF CORRIGÉE POUR iOS ===
+// Solution iOS-compatible : détection mobile + méthodes alternatives
 async function printRecipe(recipeName) {
     try {
         // Vérifier que les librairies sont disponibles
@@ -118,8 +117,40 @@ async function printRecipe(recipeName) {
         const imgData = canvas.toDataURL('image/jpeg', 0.95);
         pdf.addImage(imgData, 'JPEG', 0, 0, 794, 1123);
         
-        // Sauvegarder
-        pdf.save(recipeName + '.pdf');
+        // 🚨 CORRECTION iOS : méthodes alternatives de sauvegarde
+        const isIOS = detectIOS();
+        
+        if (isIOS) {
+            // Sur iOS : ouvrir le PDF dans un nouvel onglet (méthode compatible)
+            const pdfDataUri = pdf.output('datauristring');
+            const newWindow = window.open('', '_blank');
+            if (newWindow) {
+                newWindow.document.write(`
+                    <html>
+                        <head>
+                            <title>${recipeName}.pdf</title>
+                            <meta name="viewport" content="width=device-width,initial-scale=1">
+                        </head>
+                        <body style="margin:0;padding:0;">
+                            <embed width="100%" height="100%" src="${pdfDataUri}" type="application/pdf">
+                            <p style="text-align:center;padding:20px;font-family:Arial,sans-serif;">
+                                <strong>📱 Sur iOS :</strong><br>
+                                • Appuyez sur le bouton Partager<br>
+                                • Sélectionnez "Enregistrer dans Fichiers"<br>
+                                • Ou partagez directement via AirDrop/WhatsApp
+                            </p>
+                        </body>
+                    </html>
+                `);
+                newWindow.document.close();
+            } else {
+                // Popup bloqué : fallback avec data URI direct
+                window.location.href = pdfDataUri;
+            }
+        } else {
+            // Sur desktop/Android : méthode classique qui marche
+            pdf.save(recipeName + '.pdf');
+        }
         
         // Nettoyer
         document.body.removeChild(pdfContainer);
@@ -128,6 +159,20 @@ async function printRecipe(recipeName) {
         console.error('Erreur lors de la génération du PDF:', error);
         alert('Erreur lors de la génération du PDF. Vérifie que ton navigateur autorise les téléchargements et réessaie.');
     }
+}
+
+// Détecter iOS (Safari + Chrome)
+function detectIOS() {
+    return [
+        'iPad Simulator',
+        'iPhone Simulator',
+        'iPod Simulator',
+        'iPad',
+        'iPhone', 
+        'iPod'
+    ].includes(navigator.platform)
+    || (navigator.userAgent.includes("Mac") && "ontouchend" in document)
+    || /iPad|iPhone|iPod/.test(navigator.userAgent);
 }
 
 // Charger les librairies PDF si nécessaire
