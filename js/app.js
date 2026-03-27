@@ -62,136 +62,256 @@ function handleFilter(event) {
     });
 }
 
-// === GÉNÉRATION PDF ===
-// Reproduit exactement le template Canva (preview-canva.html)
-// Template A4 = 794x1123px, 1 seule page
-// html2canvas ne gère pas flex → on utilise float/position absolute
-function printRecipe(recipeName) {
-    if (typeof html2pdf === 'undefined') {
-        alert('La librairie PDF n\'est pas chargée. Actualise la page et réessaie.');
-        return;
-    }
+// === GÉNÉRATION PDF CORRIGÉE ===
+// Nouvelle approche: on évite html2pdf.js qui est buggy avec html2canvas
+// On utilise directement jsPDF + html2canvas pour plus de contrôle
+async function printRecipe(recipeName) {
+    try {
+        // Vérifier que les librairies sont disponibles
+        if (typeof html2canvas === 'undefined' || typeof window.jsPDF === 'undefined') {
+            // Fallback: charger les librairies si pas déjà chargées
+            await loadPDFLibraries();
+        }
 
-    // Récupérer les données de la page recette
-    const title = document.querySelector('.recipe-main-title').textContent;
-    const ingredients = document.querySelectorAll('.ingredient-text');
-    const steps = document.querySelectorAll('.step-text');
+        // Récupérer les données de la page recette
+        const recipeData = extractRecipeData();
+        
+        // Créer le container PDF visible temporairement 
+        const pdfContainer = createPDFContainer(recipeData);
+        
+        // Attendre que tout soit rendu
+        await waitForRender(pdfContainer);
+        
+        // Capturer avec html2canvas
+        const canvas = await html2canvas(pdfContainer, {
+            width: 794,
+            height: 1123,
+            scale: 2,
+            useCORS: true,
+            allowTaint: true,
+            backgroundColor: '#FFFFFF',
+            logging: false,
+            onclone: function(clonedDoc) {
+                // S'assurer que les fonts système sont utilisées dans le clone
+                const style = clonedDoc.createElement('style');
+                style.innerHTML = `
+                    * { 
+                        font-family: Arial, Helvetica, sans-serif !important; 
+                    }
+                    .title-font { 
+                        font-family: Georgia, 'Times New Roman', serif !important; 
+                    }
+                `;
+                clonedDoc.head.appendChild(style);
+            }
+        });
+
+        // Créer le PDF avec jsPDF
+        const { jsPDF } = window.jsPDF;
+        const pdf = new jsPDF({
+            orientation: 'portrait',
+            unit: 'px',
+            format: [794, 1123]
+        });
+
+        // Ajouter l'image au PDF
+        const imgData = canvas.toDataURL('image/jpeg', 0.95);
+        pdf.addImage(imgData, 'JPEG', 0, 0, 794, 1123);
+        
+        // Sauvegarder
+        pdf.save(recipeName + '.pdf');
+        
+        // Nettoyer
+        document.body.removeChild(pdfContainer);
+        
+    } catch (error) {
+        console.error('Erreur lors de la génération du PDF:', error);
+        alert('Erreur lors de la génération du PDF. Vérifie que ton navigateur autorise les téléchargements et réessaie.');
+    }
+}
+
+// Charger les librairies PDF si nécessaire
+async function loadPDFLibraries() {
+    return new Promise((resolve, reject) => {
+        // Charger html2canvas
+        if (typeof html2canvas === 'undefined') {
+            const script1 = document.createElement('script');
+            script1.src = 'https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js';
+            script1.onload = () => {
+                // Charger jsPDF
+                if (typeof window.jsPDF === 'undefined') {
+                    const script2 = document.createElement('script');
+                    script2.src = 'https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js';
+                    script2.onload = resolve;
+                    script2.onerror = reject;
+                    document.head.appendChild(script2);
+                } else {
+                    resolve();
+                }
+            };
+            script1.onerror = reject;
+            document.head.appendChild(script1);
+        } else if (typeof window.jsPDF === 'undefined') {
+            const script2 = document.createElement('script');
+            script2.src = 'https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js';
+            script2.onload = resolve;
+            script2.onerror = reject;
+            document.head.appendChild(script2);
+        } else {
+            resolve();
+        }
+    });
+}
+
+// Extraire les données de la recette depuis la page
+function extractRecipeData() {
+    const title = document.querySelector('.recipe-main-title')?.textContent || 'Recette';
+    const ingredients = Array.from(document.querySelectorAll('.ingredient-text')).map(el => el.textContent);
+    const steps = Array.from(document.querySelectorAll('.step-text')).map(el => el.textContent);
     const categoryBadge = document.querySelector('.category-badge');
     const categoryText = categoryBadge ? categoryBadge.textContent : '';
     
     let timeText = '';
     let servesText = '';
     document.querySelectorAll('.info-chip').forEach(chip => {
-        if (chip.classList.contains('info-chip--time')) timeText = chip.textContent.replace('⏱️ ', '');
-        if (chip.classList.contains('info-chip--serves')) servesText = chip.textContent.replace('👥 ', '');
+        const text = chip.textContent;
+        if (chip.classList.contains('info-chip--time')) {
+            timeText = text.replace('⏱️ ', '').replace(' prep', '').replace(' + ', '/');
+        }
+        if (chip.classList.contains('info-chip--serves')) {
+            servesText = text.replace('👥 ', '').replace(' pers.', ' personnes');
+        }
     });
 
     const heroImg = document.querySelector('.recipe-hero-image img');
+    const imageSrc = heroImg ? heroImg.src : null;
 
-    // Nettoyer ancien container
-    const old = document.getElementById('pdf-render-zone');
-    if (old) old.remove();
+    return {
+        title,
+        ingredients,
+        steps,
+        categoryText,
+        timeText,
+        servesText,
+        imageSrc
+    };
+}
 
-    // Créer le container hors-écran
-    const pdfContainer = document.createElement('div');
-    pdfContainer.id = 'pdf-render-zone';
-    pdfContainer.style.cssText = 'position:fixed;left:0;top:0;width:794px;height:1123px;background:#FFF;overflow:hidden;z-index:-1;opacity:0;pointer-events:none;';
-    document.body.appendChild(pdfContainer);
+// Créer le container PDF avec le template exact
+function createPDFContainer(data) {
+    const container = document.createElement('div');
+    container.style.cssText = `
+        position: fixed;
+        top: 50px;
+        left: 50px;
+        width: 794px;
+        height: 1123px;
+        background: #FFFFFF;
+        font-family: Arial, Helvetica, sans-serif;
+        color: #1A1A1A;
+        overflow: hidden;
+        z-index: 9999;
+        border: 1px solid #ccc;
+    `;
+    
+    // Photo zone
+    const photoHtml = data.imageSrc 
+        ? `<img src="${data.imageSrc}" crossorigin="anonymous" style="width:100%;height:100%;object-fit:cover;" alt="Photo recette">`
+        : `<div style="width:100%;height:100%;background:linear-gradient(135deg,#D4C9B5,#B8A68E);display:flex;align-items:center;justify-content:center;font-size:48px;color:#8B7355;">📸</div>`;
 
-    // === CONSTRUIRE LE TEMPLATE CANVA ===
-    // Reproduction fidèle de templates/preview-canva.html
-    // Pas de flex (html2canvas bug) → float + position absolute
-
-    const photoHtml = heroImg 
-        ? '<img src="' + heroImg.src + '" crossorigin="anonymous" style="width:100%;height:100%;object-fit:cover;">'
-        : '<div style="width:100%;height:100%;background:linear-gradient(135deg,#D4C9B5,#B8A68E);text-align:center;line-height:420px;font-size:48px;color:#8B7355;">📸</div>';
-
-    const ingredientItems = Array.from(ingredients).map(ing => 
-        '<li style="font-size:14px;line-height:1.5;margin-bottom:6px;padding-left:16px;position:relative;color:#2A2A2A;">' +
-        '<span style="position:absolute;left:0;color:#5C5C5C;font-weight:bold;">•</span>' + 
-        ing.textContent + '</li>'
+    // Ingrédients HTML
+    const ingredientItems = data.ingredients.map(ing => 
+        `<li style="font-size:14px;line-height:1.5;margin-bottom:6px;padding-left:16px;position:relative;color:#2A2A2A;">
+            <span style="position:absolute;left:0;color:#5C5C5C;font-weight:bold;">•</span>
+            ${ing}
+        </li>`
     ).join('');
 
-    const stepItems = Array.from(steps).map(step => 
-        '<li style="font-size:14px;line-height:1.6;margin-bottom:10px;padding-left:16px;position:relative;color:#2A2A2A;">' +
-        '<span style="position:absolute;left:0;color:#5C5C5C;font-weight:bold;">•</span>' +
-        step.textContent + '</li>'
+    // Étapes HTML
+    const stepItems = data.steps.map(step => 
+        `<li style="font-size:14px;line-height:1.6;margin-bottom:10px;padding-left:16px;position:relative;color:#2A2A2A;">
+            <span style="position:absolute;left:0;color:#5C5C5C;font-weight:bold;">•</span>
+            ${step}
+        </li>`
     ).join('');
 
-    const categoryHtml = categoryText 
-        ? '<span style="float:right;background:#E8F5E9;color:#2E7D32;padding:6px 16px;border-radius:20px;font-size:14px;font-weight:500;font-family:Montserrat,Helvetica,Arial,sans-serif;margin-top:12px;">🌱 ' + categoryText + '</span>'
+    // Catégorie
+    const categoryHtml = data.categoryText 
+        ? `<div style="float:right;background:#E8F5E9;color:#2E7D32;padding:6px 16px;border-radius:20px;font-size:14px;font-weight:500;margin-top:12px;">🌱 ${data.categoryText}</div>`
         : '';
 
-    pdfContainer.innerHTML = 
-        '<div style="width:794px;height:1123px;font-family:Montserrat,Helvetica,Arial,sans-serif;color:#1A1A1A;background:#FFF;position:relative;overflow:hidden;">' +
-            // === PHOTO (420px, identique au template) ===
-            '<div style="width:794px;height:420px;overflow:hidden;background:linear-gradient(135deg,#D4C9B5,#B8A68E);">' + photoHtml + '</div>' +
-            // === TITRE ZONE ===
-            '<div style="padding:16px 32px 12px;overflow:hidden;">' +
-                categoryHtml +
-                '<div style="font-family:Cormorant Garamond,Georgia,serif;font-size:48px;font-weight:600;text-transform:uppercase;letter-spacing:2px;color:#1A1A1A;display:inline-block;padding-bottom:8px;line-height:1.1;">' + title + '</div>' +
-                '<div style="width:20%;height:1.5px;background:#1A1A1A;clear:both;"></div>' +
-            '</div>' +
-            // === 2 COLONNES (float, position absolute pour remplir) ===
-            '<div style="position:absolute;top:520px;bottom:2px;left:0;right:0;overflow:hidden;">' +
-                // Gauche beige (38%) — Ingrédients
-                '<div style="float:left;width:302px;height:100%;background-color:#E8DCC8;padding:20px 24px;box-sizing:border-box;overflow:hidden;">' +
-                    // Icônes temps + personnes (table au lieu de flex)
-                    '<table style="width:100%;margin-bottom:20px;padding-bottom:12px;"><tr>' +
-                        '<td style="text-align:center;vertical-align:top;">' +
-                            '<svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#1A1A1A" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>' +
-                            '<br><span style="font-size:14px;color:#3D3D3D;font-family:Montserrat,Helvetica,sans-serif;">' + timeText + '</span>' +
-                        '</td>' +
-                        '<td style="text-align:center;vertical-align:top;">' +
-                            '<svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#1A1A1A" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>' +
-                            '<br><span style="font-size:14px;color:#3D3D3D;font-family:Montserrat,Helvetica,sans-serif;">' + servesText + '</span>' +
-                        '</td>' +
-                    '</tr></table>' +
-                    '<ul style="list-style:none;padding:0;margin:0;">' + ingredientItems + '</ul>' +
-                '</div>' +
-                // Droite blanc (62%) — Préparation
-                '<div style="margin-left:302px;padding:0 28px 20px 28px;box-sizing:border-box;overflow:hidden;">' +
-                    '<ul style="list-style:none;padding:0;margin:0;">' + stepItems + '</ul>' +
-                '</div>' +
-            '</div>' +
-            // === BARRE BAS ===
-            '<div style="position:absolute;bottom:0;left:0;width:100%;height:1.5px;background:#1A1A1A;"></div>' +
-        '</div>';
+    // Icônes SVG simplifiées pour éviter les problèmes de rendu
+    const timeIcon = '⏱️';
+    const peopleIcon = '👥';
 
-    // Attendre fonts + images
-    const waitFonts = document.fonts ? document.fonts.ready : Promise.resolve();
-    const images = pdfContainer.querySelectorAll('img');
+    container.innerHTML = `
+        <!-- Photo zone -->
+        <div style="width:794px;height:420px;overflow:hidden;">
+            ${photoHtml}
+        </div>
+        
+        <!-- Titre zone -->
+        <div style="padding:16px 32px 12px;position:relative;height:100px;">
+            ${categoryHtml}
+            <h1 class="title-font" style="font-family:Georgia,serif;font-size:48px;font-weight:600;text-transform:uppercase;letter-spacing:2px;color:#1A1A1A;line-height:1.1;margin:0;padding:0;">
+                ${data.title}
+            </h1>
+            <div style="width:20%;height:1.5px;background:#1A1A1A;margin-top:8px;clear:both;"></div>
+        </div>
+        
+        <!-- Contenu en 2 colonnes -->
+        <div style="position:absolute;top:520px;left:0;right:0;bottom:2px;">
+            <!-- Colonne gauche (ingrédients) -->
+            <div style="position:absolute;left:0;top:0;width:302px;bottom:0;background-color:#E8DCC8;padding:20px 24px;box-sizing:border-box;">
+                <!-- Infos temps/personnes -->
+                <div style="display:flex;justify-content:space-around;margin-bottom:20px;padding-bottom:12px;">
+                    <div style="text-align:center;">
+                        <div style="font-size:24px;margin-bottom:6px;">${timeIcon}</div>
+                        <div style="font-size:14px;color:#3D3D3D;">${data.timeText}</div>
+                    </div>
+                    <div style="text-align:center;">
+                        <div style="font-size:24px;margin-bottom:6px;">${peopleIcon}</div>
+                        <div style="font-size:14px;color:#3D3D3D;">${data.servesText}</div>
+                    </div>
+                </div>
+                <!-- Liste ingrédients -->
+                <ul style="list-style:none;padding:0;margin:0;">
+                    ${ingredientItems}
+                </ul>
+            </div>
+            
+            <!-- Colonne droite (étapes) -->
+            <div style="position:absolute;left:302px;top:0;right:0;bottom:0;background-color:#FFFFFF;padding:0 28px 20px 28px;box-sizing:border-box;">
+                <ul style="list-style:none;padding:0;margin:0;">
+                    ${stepItems}
+                </ul>
+            </div>
+        </div>
+        
+        <!-- Barre du bas -->
+        <div style="position:absolute;bottom:0;left:0;width:100%;height:1.5px;background:#1A1A1A;"></div>
+    `;
+
+    document.body.appendChild(container);
+    return container;
+}
+
+// Attendre que le rendu soit complet
+async function waitForRender(container) {
+    // Attendre les images
+    const images = container.querySelectorAll('img');
     const imagePromises = Array.from(images).map(img => {
         if (img.complete) return Promise.resolve();
-        return new Promise(resolve => { img.onload = resolve; img.onerror = resolve; });
+        return new Promise(resolve => {
+            img.onload = resolve;
+            img.onerror = resolve;
+            // Timeout au cas où l'image ne charge pas
+            setTimeout(resolve, 3000);
+        });
     });
 
-    Promise.all([waitFonts, ...imagePromises]).then(() => {
-        setTimeout(() => {
-            html2pdf().set({
-                margin: 0,
-                filename: recipeName + '.pdf',
-                image: { type: 'jpeg', quality: 0.98 },
-                html2canvas: { 
-                    scale: 2, 
-                    useCORS: true,
-                    logging: false,
-                    width: 794,
-                    height: 1123
-                },
-                jsPDF: { 
-                    unit: 'px', 
-                    format: [794, 1123], 
-                    orientation: 'portrait',
-                    hotfixes: ['px_scaling']
-                }
-            }).from(pdfContainer).save().then(() => {
-                pdfContainer.remove();
-            }).catch(err => {
-                console.error('Erreur PDF:', err);
-                pdfContainer.remove();
-                alert('Erreur lors de la génération du PDF. Réessaie !');
-            });
-        }, 800);
-    });
+    await Promise.all(imagePromises);
+    
+    // Petite pause pour s'assurer que tout est rendu
+    return new Promise(resolve => setTimeout(resolve, 500));
 }
