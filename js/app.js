@@ -143,110 +143,123 @@ function printRecipe(recipeName) {
     }
     
     function continuePDFGeneration() {
+        var margin = 24;
+
         // === 2. ZONE TITRE ===
         pdf.setTextColor(26, 26, 26); // #1A1A1A
-        
-        // Catégorie badge en haut à droite
-        if (categoryText) {
-            pdf.setFillColor(232, 245, 233); // #E8F5E9
-            pdf.setDrawColor(232, 245, 233);
-            var badgeWidth = 80;
-            var badgeHeight = 20;
-            var badgeX = pageWidth - badgeWidth - 24;
-            var badgeY = photoHeight + 12;
-            
-            // Rectangle badge (arrondi simulé par rectangle normal)
-            pdf.rect(badgeX, badgeY, badgeWidth, badgeHeight, 'FD');
-            
-            pdf.setTextColor(46, 125, 50); // #2E7D32
-            pdf.setFontSize(10);
-            pdf.setFont('helvetica', 'normal');
-            var badgeText = '🌱 ' + categoryText;
-            var badgeTextWidth = pdf.getTextWidth(badgeText);
-            pdf.text(badgeText, badgeX + (badgeWidth - badgeTextWidth) / 2, badgeY + 13);
-        }
-        
+
         // Titre principal
-        pdf.setTextColor(26, 26, 26); // #1A1A1A
-        pdf.setFont('times', 'bold');  // Approx Cormorant Garamond
-        pdf.setFontSize(36);
-        var titleY = photoHeight + 50;
-        pdf.text(title.toUpperCase(), 24, titleY);
-        
+        pdf.setFont('times', 'bold');
+        pdf.setFontSize(30);
+        var titleY = photoHeight + 42;
+        var titleLines = pdf.splitTextToSize(title.toUpperCase(), pageWidth - margin * 2 - 120);
+        titleLines.forEach(function(line, i) {
+            pdf.text(line, margin, titleY + i * 32);
+        });
+        var titleBottomY = titleY + (titleLines.length - 1) * 32;
+
+        // Catégorie badge à droite du titre
+        if (categoryText) {
+            pdf.setFont('helvetica', 'normal');
+            pdf.setFontSize(9);
+            var badgeText = categoryText;
+            var badgeTextWidth = pdf.getTextWidth(badgeText);
+            var badgePadH = 10;
+            var badgePadV = 6;
+            var badgeW = badgeTextWidth + badgePadH * 2;
+            var badgeH = 18;
+            var badgeX = pageWidth - badgeW - margin;
+            var badgeY = photoHeight + 22;
+            pdf.setFillColor(232, 245, 233);
+            pdf.setDrawColor(232, 245, 233);
+            pdf.rect(badgeX, badgeY, badgeW, badgeH, 'FD');
+            pdf.setTextColor(46, 125, 50);
+            pdf.text(badgeText, badgeX + badgePadH, badgeY + 12);
+        }
+
         // Trait sous le titre
+        pdf.setTextColor(26, 26, 26);
         var lineWidth = pageWidth * 0.2;
         pdf.setDrawColor(26, 26, 26);
         pdf.setLineWidth(1.5);
-        pdf.line(24, titleY + 8, 24 + lineWidth, titleY + 8);
-        
-        // === 3. COLONNES ===
-        var colStartY = contentStartY + 60;
-        var colEndY = pageHeight - 15; // Laisser place à la barre du bas
-        
-        // Colonne gauche - fond beige
-        pdf.setFillColor(232, 220, 200); // #E8DCC8
-        pdf.rect(0, colStartY, leftColWidth, colEndY - colStartY, 'F');
-        
-        // Meta infos (temps + personnes) centrées
+        pdf.line(margin, titleBottomY + 8, margin + lineWidth, titleBottomY + 8);
+
+        // Meta infos sous le trait
+        var metaY = titleBottomY + 24;
         if (timeText || servesText) {
-            pdf.setTextColor(61, 61, 61); // #3D3D3D
+            pdf.setTextColor(80, 80, 80);
             pdf.setFont('helvetica', 'normal');
-            pdf.setFontSize(10);
-            var metaText = (timeText ? '⏱️ ' + timeText : '') + 
-                          (timeText && servesText ? '  |  ' : '') +
-                          (servesText ? '👥 ' + servesText : '');
-            var metaWidth = pdf.getTextWidth(metaText);
-            pdf.text(metaText, (leftColWidth - metaWidth) / 2, colStartY + 20);
+            pdf.setFontSize(9);
+            var metaText = '';
+            if (timeText) metaText += timeText;
+            if (timeText && servesText) metaText += '   •   ';
+            if (servesText) metaText += servesText;
+            pdf.text(metaText, margin, metaY);
+            metaY += 16;
         }
-        
-        // Ingrédients
-        var currentY = colStartY + 40;
-        pdf.setTextColor(42, 42, 42); // #2A2A2A
-        pdf.setFont('helvetica', 'normal');
+
+        // === 3. COLONNES ===
+        var colStartY = metaY + 6;
+        var colEndY = pageHeight - 12;
+
+        // Colonne gauche - fond beige
+        pdf.setFillColor(232, 220, 200);
+        pdf.rect(0, colStartY, leftColWidth, colEndY - colStartY, 'F');
+
+        // Sous-titre INGRÉDIENTS
+        var currentY = colStartY + 22;
+        pdf.setTextColor(26, 26, 26);
+        pdf.setFont('helvetica', 'bold');
         pdf.setFontSize(10);
-        
+        pdf.text('INGRÉDIENTS', 20, currentY);
+        currentY += 16;
+
+        // Ingrédients
+        pdf.setTextColor(42, 42, 42);
+        pdf.setFont('helvetica', 'normal');
+        pdf.setFontSize(9);
+
         ingredients.forEach(function(ingredient) {
-            if (currentY > colEndY - 15) return; // Éviter débordement
-            
+            if (currentY > colEndY - 12) return;
             var text = '• ' + ingredient.textContent.trim();
             var lines = pdf.splitTextToSize(text, leftColWidth - 40);
-            
-            lines.forEach(function(line, index) {
-                if (currentY > colEndY - 15) return;
+            lines.forEach(function(line) {
+                if (currentY > colEndY - 12) return;
                 pdf.text(line, 20, currentY);
-                if (index < lines.length - 1 || ingredients.length > 1) {
-                    currentY += 12;
-                }
+                currentY += 12;
             });
-            currentY += 4; // Espace entre ingrédients
+            currentY += 2;
         });
-        
-        // Colonne droite - étapes
-        currentY = colStartY + 20;
-        pdf.setTextColor(42, 42, 42); // #2A2A2A
-        pdf.setFont('helvetica', 'normal');
+
+        // Sous-titre PRÉPARATION
+        var rightCurrentY = colStartY + 22;
+        pdf.setTextColor(26, 26, 26);
+        pdf.setFont('helvetica', 'bold');
         pdf.setFontSize(10);
-        
-        steps.forEach(function(step) {
-            if (currentY > colEndY - 15) return; // Éviter débordement
-            
-            var text = '• ' + step.textContent.trim();
+        pdf.text('PRÉPARATION', rightColX + 20, rightCurrentY);
+        rightCurrentY += 16;
+
+        // Étapes
+        pdf.setTextColor(42, 42, 42);
+        pdf.setFont('helvetica', 'normal');
+        pdf.setFontSize(9);
+
+        steps.forEach(function(step, idx) {
+            if (rightCurrentY > colEndY - 12) return;
+            var text = (idx + 1) + '. ' + step.textContent.trim();
             var lines = pdf.splitTextToSize(text, pageWidth - rightColX - 40);
-            
-            lines.forEach(function(line, index) {
-                if (currentY > colEndY - 15) return;
-                pdf.text(line, rightColX + 20, currentY);
-                if (index < lines.length - 1 || steps.length > 1) {
-                    currentY += 14;
-                }
+            lines.forEach(function(line) {
+                if (rightCurrentY > colEndY - 12) return;
+                pdf.text(line, rightColX + 20, rightCurrentY);
+                rightCurrentY += 13;
             });
-            currentY += 8; // Espace entre étapes
+            rightCurrentY += 5;
         });
-        
+
         // === 4. BARRE DU BAS ===
-        pdf.setFillColor(26, 26, 26); // #1A1A1A
-        pdf.rect(0, pageHeight - 2, pageWidth, 2, 'F');
-        
+        pdf.setFillColor(26, 26, 26);
+        pdf.rect(0, pageHeight - 3, pageWidth, 3, 'F');
+
         // Sauvegarder le PDF
         pdf.save(recipeName + '.pdf');
     }
