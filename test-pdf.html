@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test PDF - Tarte de Patate</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .test-data { margin: 20px 0; padding: 10px; background: #f5f5f5; }
+        button { padding: 10px 20px; font-size: 16px; }
+        #status { margin-top: 20px; color: #666; }
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+<body>
+    <h1>Test PDF Generator</h1>
+    
+    <div class="test-data">
+        <!-- Simulated recipe data for testing -->
+        <div style="display: none;">
+            <div class="recipe-main-title">Tarte de Patate</div>
+            <div class="category-badge">Légumes du jardin</div>
+            <div class="info-chip info-chip--time">⏱️ 15 min prep + 30 min cuisson</div>
+            <div class="info-chip info-chip--serves">👥 6 pers.</div>
+            
+            <div class="ingredient-text">500 g de pomme de terre</div>
+            <div class="ingredient-text">50 g de beurre mou</div>
+            <div class="ingredient-text">50 g de farine</div>
+            <div class="ingredient-text">5 cl de crème</div>
+            <div class="ingredient-text">1 œuf + 1 jaune</div>
+            <div class="ingredient-text">Sel, poivre, muscade</div>
+            
+            <div class="step-text">Laver les pommes de terre et les faire cuire dans de l'eau bouillante ou à la vapeur</div>
+            <div class="step-text">Éplucher et écraser les pommes de terre</div>
+            <div class="step-text">Ajouter tous les autres ingrédients et mélanger</div>
+            <div class="step-text">Répartir dans des petits moules</div>
+            <div class="step-text">Cuire à 210°C pendant 30 min</div>
+            
+            <div class="recipe-hero-image">
+                <img src="images/tarte-patate.jpg" alt="Tarte de Patate">
+            </div>
+        </div>
+    </div>
+    
+    <button onclick="testPDF()">🧪 Test Génération PDF</button>
+    <div id="status"></div>
+    
+    <script>
+        // Version simplifiée de la fonction pour test
+        async function testPDF() {
+            const status = document.getElementById('status');
+            status.innerHTML = 'Démarrage test PDF...';
+            
+            try {
+                const testData = {
+                    title: 'Tarte de Patate',
+                    categoryText: 'Légumes du jardin',
+                    timeText: '15 min + 30 min cuisson',
+                    servesText: '6 personnes',
+                    ingredients: [
+                        '500 g de pomme de terre',
+                        '50 g de beurre mou',
+                        '50 g de farine',
+                        '5 cl de crème',
+                        '1 œuf + 1 jaune',
+                        'Sel, poivre, muscade'
+                    ],
+                    steps: [
+                        'Laver les pommes de terre et les faire cuire dans de l\'eau bouillante ou à la vapeur',
+                        'Éplucher et écraser les pommes de terre',
+                        'Ajouter tous les autres ingrédients et mélanger',
+                        'Répartir dans des petits moules',
+                        'Cuire à 210°C pendant 30 min'
+                    ],
+                    imageSrc: null
+                };
+                
+                status.innerHTML = 'Création container PDF...';
+                const container = createTestContainer(testData);
+                
+                status.innerHTML = 'Attente rendu...';
+                await new Promise(resolve => setTimeout(resolve, 1000));
+                
+                status.innerHTML = 'Capture html2canvas...';
+                const canvas = await html2canvas(container, {
+                    width: 794,
+                    height: 1123,
+                    scale: 1,
+                    useCORS: true,
+                    backgroundColor: '#FFFFFF'
+                });
+                
+                status.innerHTML = 'Génération PDF...';
+                const { jsPDF } = window.jsPDF;
+                const pdf = new jsPDF({
+                    orientation: 'portrait',
+                    unit: 'px',
+                    format: [794, 1123]
+                });
+                
+                const imgData = canvas.toDataURL('image/jpeg', 0.95);
+                pdf.addImage(imgData, 'JPEG', 0, 0, 794, 1123);
+                pdf.save('test-tarte-patate.pdf');
+                
+                document.body.removeChild(container);
+                status.innerHTML = '✅ PDF généré avec succès !';
+                
+            } catch (error) {
+                status.innerHTML = '❌ Erreur: ' + error.message;
+                console.error('Erreur test PDF:', error);
+            }
+        }
+        
+        function createTestContainer(data) {
+            const container = document.createElement('div');
+            container.style.cssText = `
+                position: fixed;
+                top: 50px;
+                left: 50px;
+                width: 794px;
+                height: 1123px;
+                background: #FFFFFF;
+                font-family: Arial, sans-serif;
+                color: #1A1A1A;
+                overflow: hidden;
+                z-index: 9999;
+                border: 2px solid #ff0000;
+            `;
+            
+            const ingredientItems = data.ingredients.map(ing => 
+                `<li style="font-size:14px;line-height:1.5;margin-bottom:6px;padding-left:16px;position:relative;color:#2A2A2A;">
+                    <span style="position:absolute;left:0;color:#5C5C5C;font-weight:bold;">•</span>
+                    ${ing}
+                </li>`
+            ).join('');
+            
+            const stepItems = data.steps.map(step => 
+                `<li style="font-size:14px;line-height:1.6;margin-bottom:10px;padding-left:16px;position:relative;color:#2A2A2A;">
+                    <span style="position:absolute;left:0;color:#5C5C5C;font-weight:bold;">•</span>
+                    ${step}
+                </li>`
+            ).join('');
+            
+            container.innerHTML = `
+                <div style="width:794px;height:420px;background:linear-gradient(135deg,#D4C9B5,#B8A68E);display:flex;align-items:center;justify-content:center;font-size:48px;color:#8B7355;">
+                    📸 Photo du plat
+                </div>
+                
+                <div style="padding:16px 32px 12px;position:relative;height:100px;">
+                    <div style="float:right;background:#E8F5E9;color:#2E7D32;padding:6px 16px;border-radius:20px;font-size:14px;margin-top:12px;">
+                        🌱 ${data.categoryText}
+                    </div>
+                    <h1 style="font-family:Georgia,serif;font-size:48px;font-weight:600;text-transform:uppercase;letter-spacing:2px;color:#1A1A1A;line-height:1.1;margin:0;">
+                        ${data.title}
+                    </h1>
+                    <div style="width:20%;height:1.5px;background:#1A1A1A;margin-top:8px;clear:both;"></div>
+                </div>
+                
+                <div style="position:absolute;top:520px;left:0;right:0;bottom:2px;">
+                    <div style="position:absolute;left:0;top:0;width:302px;bottom:0;background-color:#E8DCC8;padding:20px 24px;box-sizing:border-box;">
+                        <div style="display:flex;justify-content:space-around;margin-bottom:20px;">
+                            <div style="text-align:center;">
+                                <div style="font-size:24px;margin-bottom:6px;">⏱️</div>
+                                <div style="font-size:14px;color:#3D3D3D;">${data.timeText}</div>
+                            </div>
+                            <div style="text-align:center;">
+                                <div style="font-size:24px;margin-bottom:6px;">👥</div>
+                                <div style="font-size:14px;color:#3D3D3D;">${data.servesText}</div>
+                            </div>
+                        </div>
+                        <ul style="list-style:none;padding:0;margin:0;">
+                            ${ingredientItems}
+                        </ul>
+                    </div>
+                    
+                    <div style="position:absolute;left:302px;top:0;right:0;bottom:0;background-color:#FFFFFF;padding:0 28px 20px 28px;box-sizing:border-box;">
+                        <ul style="list-style:none;padding:0;margin:0;">
+                            ${stepItems}
+                        </ul>
+                    </div>
+                </div>
+                
+                <div style="position:absolute;bottom:0;left:0;width:100%;height:1.5px;background:#1A1A1A;"></div>
+            `;
+            
+            document.body.appendChild(container);
+            return container;
+        }
+    </script>
+</body>
+</html>
