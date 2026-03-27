@@ -64,13 +64,7 @@ function handleFilter(event) {
 
 // === GÉNÉRATION PDF ===
 function printRecipe(recipeName) {
-    // Vérifier html2canvas
-    if (typeof html2canvas === 'undefined') {
-        alert('Librairie PDF non chargée. Actualise la page.');
-        return;
-    }
-    
-    // Trouver jsPDF (l'export varie selon la version)
+    // Vérifier jsPDF uniquement
     var jsPDFClass = null;
     if (window.jspdf && window.jspdf.jsPDF) {
         jsPDFClass = window.jspdf.jsPDF; // jspdf 2.x UMD
@@ -83,109 +77,211 @@ function printRecipe(recipeName) {
         return;
     }
 
-    // Récupérer données
-    var title = document.querySelector('.recipe-main-title').textContent;
+    // Récupérer données de la page
+    var title = document.querySelector('.recipe-main-title').textContent.trim();
     var ingredients = document.querySelectorAll('.ingredient-text');
     var steps = document.querySelectorAll('.step-text');
     var categoryBadge = document.querySelector('.category-badge');
-    var categoryText = categoryBadge ? categoryBadge.textContent : '';
+    var categoryText = categoryBadge ? categoryBadge.textContent.trim() : '';
     var timeText = '';
     var servesText = '';
+    
     document.querySelectorAll('.info-chip').forEach(function(chip) {
-        if (chip.classList.contains('info-chip--time')) timeText = chip.textContent.replace('⏱️ ', '');
-        if (chip.classList.contains('info-chip--serves')) servesText = chip.textContent.replace('👥 ', '');
+        if (chip.classList.contains('info-chip--time')) {
+            timeText = chip.textContent.replace('⏱️', '').replace(/^\s+/, '').trim();
+        }
+        if (chip.classList.contains('info-chip--serves')) {
+            servesText = chip.textContent.replace('👥', '').replace(/^\s+/, '').trim();
+        }
     });
+    
     var heroImg = document.querySelector('.recipe-hero-image img');
-
-    // Nettoyer ancien container
-    var old = document.getElementById('pdf-zone');
-    if (old) old.remove();
-
-    // Créer container VISIBLE (html2canvas ne capture pas les éléments cachés)
-    var box = document.createElement('div');
-    box.id = 'pdf-zone';
-    box.style.cssText = 'position:fixed;top:0;left:0;width:794px;height:1123px;background:#FFF;z-index:99999;overflow:hidden;';
-    document.body.appendChild(box);
-
-    // Photo
-    var photoHtml = heroImg
-        ? '<img src="' + heroImg.src + '" style="width:100%;height:100%;object-fit:cover;">'
-        : '<div style="width:100%;height:100%;background:linear-gradient(135deg,#D4C9B5,#B8A68E);text-align:center;line-height:420px;font-size:48px;">📸</div>';
-
-    // Ingrédients
-    var ingHtml = '';
-    ingredients.forEach(function(ing) {
-        ingHtml += '<div style="font-size:13px;line-height:1.5;margin-bottom:5px;color:#2A2A2A;">• ' + ing.textContent + '</div>';
+    
+    // Créer le PDF A4 (210x297mm = 794x1123px à 96 DPI)
+    var pdf = new jsPDFClass({
+        orientation: 'portrait',
+        unit: 'pt',  // points (1pt = 96/72 px = 1.333 px)
+        format: 'a4'
     });
-
-    // Étapes
-    var stepsHtml = '';
-    steps.forEach(function(step) {
-        stepsHtml += '<div style="font-size:13px;line-height:1.6;margin-bottom:8px;color:#2A2A2A;">• ' + step.textContent + '</div>';
-    });
-
-    // Catégorie
-    var catHtml = categoryText
-        ? '<div style="position:absolute;top:16px;right:32px;background:#E8F5E9;color:#2E7D32;padding:5px 14px;border-radius:20px;font-size:13px;">🌱 ' + categoryText + '</div>'
-        : '';
-
-    // Template A4 exact
-    box.innerHTML =
-        '<div style="width:794px;height:1123px;font-family:Arial,Helvetica,sans-serif;color:#1A1A1A;background:#FFF;position:relative;overflow:hidden;">' +
-        // Photo 420px
-        '<div style="width:794px;height:420px;overflow:hidden;background:#ccc;">' + photoHtml + '</div>' +
-        // Titre
-        '<div style="padding:14px 32px 10px;position:relative;">' +
-        catHtml +
-        '<div style="font-family:Georgia,serif;font-size:42px;font-weight:bold;text-transform:uppercase;letter-spacing:2px;color:#1A1A1A;line-height:1.1;">' + title + '</div>' +
-        '<div style="width:80px;height:2px;background:#1A1A1A;margin-top:6px;"></div>' +
-        '</div>' +
-        // 2 colonnes
-        '<div style="position:absolute;top:520px;bottom:2px;left:0;right:0;">' +
-        // Gauche beige
-        '<div style="position:absolute;left:0;top:0;bottom:0;width:302px;background-color:#E8DCC8;padding:16px 20px;">' +
-        '<div style="text-align:center;margin-bottom:14px;font-size:12px;color:#3D3D3D;">⏱️ ' + timeText + '  |  👥 ' + servesText + '</div>' +
-        ingHtml +
-        '</div>' +
-        // Droite blanc
-        '<div style="position:absolute;left:302px;top:0;bottom:0;right:0;padding:16px 24px;background:#FFF;">' +
-        stepsHtml +
-        '</div>' +
-        '</div>' +
-        // Barre bas
-        '<div style="position:absolute;bottom:0;left:0;width:100%;height:2px;background:#1A1A1A;"></div>' +
-        '</div>';
-
-    // Attendre image puis capturer
-    var img = box.querySelector('img');
-    var waitImg = (!img || img.complete) ? Promise.resolve() : new Promise(function(r) { img.onload = r; img.onerror = r; });
-
-    waitImg.then(function() {
-        return new Promise(function(r) { setTimeout(r, 600); });
-    }).then(function() {
-        return html2canvas(box, {
-            width: 794,
-            height: 1123,
-            scale: 2,
-            useCORS: true,
-            allowTaint: true,
-            backgroundColor: '#FFFFFF',
-            logging: false
+    
+    // Dimensions A4 en points : 595.28 x 841.89
+    var pageWidth = pdf.internal.pageSize.getWidth();
+    var pageHeight = pdf.internal.pageSize.getHeight();
+    
+    // Variables de positionnement (conversion px -> pt : diviser par ~1.33)
+    var photoHeight = 315; // 420px / 1.33
+    var leftColWidth = pageWidth * 0.38; // 38% comme le template
+    var rightColX = leftColWidth;
+    var contentStartY = photoHeight + 20;
+    
+    // === 1. PHOTO ===
+    if (heroImg && heroImg.src) {
+        processImageForPDF(heroImg.src, function(imgData) {
+            if (imgData) {
+                pdf.addImage(imgData, 'JPEG', 0, 0, pageWidth, photoHeight);
+            } else {
+                drawPlaceholderPhoto(pdf, pageWidth, photoHeight);
+            }
+            continuePDFGeneration();
         });
-    }).then(function(canvas) {
-        var pdf = new jsPDFClass({
-            orientation: 'portrait',
-            unit: 'px',
-            format: [794, 1123],
-            hotfixes: ['px_scaling']
+    } else {
+        drawPlaceholderPhoto(pdf, pageWidth, photoHeight);
+        continuePDFGeneration();
+    }
+    
+    function drawPlaceholderPhoto(pdf, width, height) {
+        // Fond gradient simulé (dégradé beige)
+        pdf.setFillColor(212, 201, 181); // #D4C9B5
+        pdf.rect(0, 0, width, height, 'F');
+        
+        // Emoji photo centré
+        pdf.setFontSize(36);
+        pdf.setTextColor(139, 115, 85); // #8B7355
+        var text = '📸';
+        var textWidth = pdf.getTextWidth(text);
+        pdf.text(text, (width - textWidth) / 2, height / 2 + 12);
+    }
+    
+    function continuePDFGeneration() {
+        // === 2. ZONE TITRE ===
+        pdf.setTextColor(26, 26, 26); // #1A1A1A
+        
+        // Catégorie badge en haut à droite
+        if (categoryText) {
+            pdf.setFillColor(232, 245, 233); // #E8F5E9
+            pdf.setDrawColor(232, 245, 233);
+            var badgeWidth = 80;
+            var badgeHeight = 20;
+            var badgeX = pageWidth - badgeWidth - 24;
+            var badgeY = photoHeight + 12;
+            
+            // Rectangle arrondi simulé
+            pdf.roundedRect(badgeX, badgeY, badgeWidth, badgeHeight, 10, 10, 'FD');
+            
+            pdf.setTextColor(46, 125, 50); // #2E7D32
+            pdf.setFontSize(10);
+            pdf.setFont('helvetica', 'normal');
+            var badgeText = '🌱 ' + categoryText;
+            var badgeTextWidth = pdf.getTextWidth(badgeText);
+            pdf.text(badgeText, badgeX + (badgeWidth - badgeTextWidth) / 2, badgeY + 13);
+        }
+        
+        // Titre principal
+        pdf.setTextColor(26, 26, 26); // #1A1A1A
+        pdf.setFont('times', 'bold');  // Approx Cormorant Garamond
+        pdf.setFontSize(36);
+        var titleY = photoHeight + 50;
+        pdf.text(title.toUpperCase(), 24, titleY);
+        
+        // Trait sous le titre
+        var lineWidth = pageWidth * 0.2;
+        pdf.setDrawColor(26, 26, 26);
+        pdf.setLineWidth(1.5);
+        pdf.line(24, titleY + 8, 24 + lineWidth, titleY + 8);
+        
+        // === 3. COLONNES ===
+        var colStartY = contentStartY + 60;
+        var colEndY = pageHeight - 15; // Laisser place à la barre du bas
+        
+        // Colonne gauche - fond beige
+        pdf.setFillColor(232, 220, 200); // #E8DCC8
+        pdf.rect(0, colStartY, leftColWidth, colEndY - colStartY, 'F');
+        
+        // Meta infos (temps + personnes) centrées
+        if (timeText || servesText) {
+            pdf.setTextColor(61, 61, 61); // #3D3D3D
+            pdf.setFont('helvetica', 'normal');
+            pdf.setFontSize(10);
+            var metaText = (timeText ? '⏱️ ' + timeText : '') + 
+                          (timeText && servesText ? '  |  ' : '') +
+                          (servesText ? '👥 ' + servesText : '');
+            var metaWidth = pdf.getTextWidth(metaText);
+            pdf.text(metaText, (leftColWidth - metaWidth) / 2, colStartY + 20);
+        }
+        
+        // Ingrédients
+        var currentY = colStartY + 40;
+        pdf.setTextColor(42, 42, 42); // #2A2A2A
+        pdf.setFont('helvetica', 'normal');
+        pdf.setFontSize(10);
+        
+        ingredients.forEach(function(ingredient) {
+            if (currentY > colEndY - 15) return; // Éviter débordement
+            
+            var text = '• ' + ingredient.textContent.trim();
+            var lines = pdf.splitTextToSize(text, leftColWidth - 40);
+            
+            lines.forEach(function(line, index) {
+                if (currentY > colEndY - 15) return;
+                pdf.text(line, 20, currentY);
+                if (index < lines.length - 1 || ingredients.length > 1) {
+                    currentY += 12;
+                }
+            });
+            currentY += 4; // Espace entre ingrédients
         });
-        var imgData = canvas.toDataURL('image/jpeg', 0.92);
-        pdf.addImage(imgData, 'JPEG', 0, 0, 794, 1123);
+        
+        // Colonne droite - étapes
+        currentY = colStartY + 20;
+        pdf.setTextColor(42, 42, 42); // #2A2A2A
+        pdf.setFont('helvetica', 'normal');
+        pdf.setFontSize(10);
+        
+        steps.forEach(function(step) {
+            if (currentY > colEndY - 15) return; // Éviter débordement
+            
+            var text = '• ' + step.textContent.trim();
+            var lines = pdf.splitTextToSize(text, pageWidth - rightColX - 40);
+            
+            lines.forEach(function(line, index) {
+                if (currentY > colEndY - 15) return;
+                pdf.text(line, rightColX + 20, currentY);
+                if (index < lines.length - 1 || steps.length > 1) {
+                    currentY += 14;
+                }
+            });
+            currentY += 8; // Espace entre étapes
+        });
+        
+        // === 4. BARRE DU BAS ===
+        pdf.setFillColor(26, 26, 26); // #1A1A1A
+        pdf.rect(0, pageHeight - 2, pageWidth, 2, 'F');
+        
+        // Sauvegarder le PDF
         pdf.save(recipeName + '.pdf');
-        box.remove();
-    }).catch(function(err) {
-        console.error('PDF error:', err);
-        box.remove();
-        alert('Erreur PDF: ' + err.message);
-    });
+    }
+}
+
+// Fonction utilitaire pour traiter les images
+function processImageForPDF(imageSrc, callback) {
+    var img = new Image();
+    img.crossOrigin = 'anonymous';
+    
+    img.onload = function() {
+        try {
+            var canvas = document.createElement('canvas');
+            var ctx = canvas.getContext('2d');
+            
+            // Taille optimisée pour PDF
+            canvas.width = 794;  // Largeur A4 en px
+            canvas.height = 420; // Hauteur photo du template
+            
+            // Dessiner l'image redimensionnée
+            ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+            
+            // Convertir en base64
+            var dataURL = canvas.toDataURL('image/jpeg', 0.8);
+            callback(dataURL);
+        } catch (error) {
+            console.error('Erreur traitement image:', error);
+            callback(null);
+        }
+    };
+    
+    img.onerror = function() {
+        console.error('Erreur chargement image:', imageSrc);
+        callback(null);
+    };
+    
+    img.src = imageSrc;
 }
