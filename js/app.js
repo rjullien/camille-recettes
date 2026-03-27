@@ -81,43 +81,44 @@ function printRecipe(recipeName) {
     var title = document.querySelector('.recipe-main-title').textContent.trim();
     var ingredients = document.querySelectorAll('.ingredient-text');
     var steps = document.querySelectorAll('.step-text');
-    var categoryBadge = document.querySelector('.info-chip--category') || document.querySelector('.category-badge');
-    var categoryText = categoryBadge ? categoryBadge.textContent.replace('🌱', '').replace('🌿', '').trim() : '';
+
+    // Catégorie : chercher dans info-chip OU category-badge
+    var categoryEl = document.querySelector('.info-chip--category') || document.querySelector('.category-badge');
+    var categoryText = '';
+    if (categoryEl) {
+        categoryText = categoryEl.textContent.replace(/[\u{1F300}-\u{1F9FF}]/gu, '').trim();
+    }
+
     var timeText = '';
     var servesText = '';
     
     document.querySelectorAll('.info-chip').forEach(function(chip) {
         if (chip.classList.contains('info-chip--time')) {
-            timeText = chip.textContent.replace('⏱️', '').trim();
+            timeText = chip.textContent.replace(/[\u{1F300}-\u{1F9FF}]/gu, '').trim();
             // Garder seulement le premier temps (ex: "15 min" de "15 min prep + 30 min cuisson")
             var plusIdx = timeText.indexOf('+');
             if (plusIdx > 0) timeText = timeText.substring(0, plusIdx).trim();
-            // Enlever "prep", "prép" etc.
             timeText = timeText.replace(/\s*(prep|prép|préparation)\.?$/i, '').trim();
         }
         if (chip.classList.contains('info-chip--serves')) {
-            servesText = chip.textContent.replace('👥', '').replace(/^\s+/, '').trim();
+            servesText = chip.textContent.replace(/[\u{1F300}-\u{1F9FF}]/gu, '').trim();
         }
     });
     
     var heroImg = document.querySelector('.recipe-hero-image img');
     
-    // Créer le PDF A4 (210x297mm = 794x1123px à 96 DPI)
+    // Créer le PDF A4
     var pdf = new jsPDFClass({
         orientation: 'portrait',
-        unit: 'pt',  // points (1pt = 96/72 px = 1.333 px)
+        unit: 'pt',
         format: 'a4'
     });
     
-    // Dimensions A4 en points : 595.28 x 841.89
     var pageWidth = pdf.internal.pageSize.getWidth();
     var pageHeight = pdf.internal.pageSize.getHeight();
-    
-    // Variables de positionnement (conversion px -> pt : diviser par ~1.33)
-    var photoHeight = 315; // 420px / 1.33
-    var leftColWidth = pageWidth * 0.38; // 38% comme le template
+    var photoHeight = 315;
+    var leftColWidth = pageWidth * 0.38;
     var rightColX = leftColWidth;
-    var contentStartY = photoHeight + 20;
     
     // === 1. PHOTO ===
     if (heroImg && heroImg.src) {
@@ -127,137 +128,134 @@ function printRecipe(recipeName) {
             } else {
                 drawPlaceholderPhoto(pdf, pageWidth, photoHeight);
             }
-            continuePDFGeneration();
+            prepareIcons();
         });
     } else {
         drawPlaceholderPhoto(pdf, pageWidth, photoHeight);
-        continuePDFGeneration();
+        prepareIcons();
     }
     
-    function drawPlaceholderPhoto(pdf, width, height) {
-        // Fond gradient simulé (dégradé beige)
-        pdf.setFillColor(212, 201, 181); // #D4C9B5
-        pdf.rect(0, 0, width, height, 'F');
-        
-        // Emoji photo centré
-        pdf.setFontSize(36);
-        pdf.setTextColor(139, 115, 85); // #8B7355
-        var text = '📸';
-        var textWidth = pdf.getTextWidth(text);
-        pdf.text(text, (width - textWidth) / 2, height / 2 + 12);
+    function drawPlaceholderPhoto(doc, width, height) {
+        doc.setFillColor(212, 201, 181);
+        doc.rect(0, 0, width, height, 'F');
+        doc.setFontSize(36);
+        doc.setTextColor(139, 115, 85);
+        var text = 'Photo';
+        var textWidth = doc.getTextWidth(text);
+        doc.text(text, (width - textWidth) / 2, height / 2 + 12);
     }
     
-    // Icônes via Lucide Icons (librairie open source, chargée via CDN)
-    function lucideSvgToDataUrl(iconName, size, color) {
-        if (typeof lucide === 'undefined' || !lucide.icons || !lucide.icons[iconName]) return null;
-        var iconDef = lucide.icons[iconName];
-        // iconDef = [defaultAttributes, elements]
-        var elements = iconDef[1];
-        var svgInner = elements.map(function(el) {
-            var tag = el[0];
-            var attrs = el[1];
-            var attrStr = '';
-            for (var k in attrs) {
-                if (attrs.hasOwnProperty(k)) attrStr += ' ' + k + '="' + attrs[k] + '"';
+    // === ICÔNES LUCIDE ===
+    // Génère un SVG data URL à partir du nom d'icône Lucide
+    function makeLucideSvg(iconName, size, color) {
+        try {
+            if (typeof lucide === 'undefined') return null;
+            // lucide.icons est un objet { iconName: [defaultAttrs, elements] }
+            var iconData = lucide.icons && lucide.icons[iconName];
+            if (!iconData) return null;
+            
+            var elements = iconData[1]; // array of [tag, attrs]
+            if (!elements || !Array.isArray(elements)) return null;
+            
+            var svgInner = '';
+            for (var i = 0; i < elements.length; i++) {
+                var el = elements[i];
+                var tag = el[0];
+                var attrs = el[1] || {};
+                var attrStr = '';
+                var keys = Object.keys(attrs);
+                for (var j = 0; j < keys.length; j++) {
+                    attrStr += ' ' + keys[j] + '="' + attrs[keys[j]] + '"';
+                }
+                svgInner += '<' + tag + attrStr + '/>';
             }
-            return '<' + tag + attrStr + '/>';
-        }).join('');
-        var svg = '<svg xmlns="http://www.w3.org/2000/svg" width="' + size + '" height="' + size + '" viewBox="0 0 24 24" fill="none" stroke="' + color + '" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">' + svgInner + '</svg>';
-        return 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(svg);
+            var svg = '<svg xmlns="http://www.w3.org/2000/svg" width="' + size + '" height="' + size + '" viewBox="0 0 24 24" fill="none" stroke="' + color + '" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">' + svgInner + '</svg>';
+            return 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(svg);
+        } catch(e) {
+            console.error('Lucide icon error:', iconName, e);
+            return null;
+        }
     }
 
-    function svgToPng(dataUrl, size, callback) {
+    function svgDataUrlToPng(dataUrl, size, callback) {
         if (!dataUrl) { callback(null); return; }
         var img = new Image();
         img.onload = function() {
-            var c = document.createElement('canvas');
-            c.width = size * 2; c.height = size * 2; // 2x pour la netteté
-            var ctx = c.getContext('2d');
-            ctx.drawImage(img, 0, 0, size * 2, size * 2);
-            callback(c.toDataURL('image/png'));
+            try {
+                var c = document.createElement('canvas');
+                c.width = size; c.height = size;
+                var ctx = c.getContext('2d');
+                ctx.drawImage(img, 0, 0, size, size);
+                callback(c.toDataURL('image/png'));
+            } catch(e) {
+                console.error('svgToPng error:', e);
+                callback(null);
+            }
         };
-        img.onerror = function() { callback(null); };
+        img.onerror = function() {
+            console.error('svgToPng load error');
+            callback(null);
+        };
         img.src = dataUrl;
     }
 
-    function continuePDFGeneration() {
-        // Générer les icônes Lucide → PNG, puis construire le PDF
-        var clockSvg = lucideSvgToDataUrl('clock', 80, '#1A1A1A');
-        var usersSvg = lucideSvgToDataUrl('users', 80, '#1A1A1A');
-        var sproutSvg = lucideSvgToDataUrl('sprout', 80, '#2E7D32');
-        svgToPng(clockSvg, 80, function(clockPng) {
-            svgToPng(usersSvg, 80, function(peoplePng) {
-                svgToPng(sproutSvg, 80, function(sproutPng) {
-                    buildPDF(clockPng, peoplePng, sproutPng);
+    // Préparer TOUTES les icônes AVANT de construire le PDF
+    function prepareIcons() {
+        var clockSvg = makeLucideSvg('clock', 120, '#1A1A1A');
+        var usersSvg = makeLucideSvg('users', 120, '#1A1A1A');
+        var sproutSvg = makeLucideSvg('sprout', 120, '#2E7D32');
+        
+        svgDataUrlToPng(clockSvg, 120, function(clockPng) {
+            svgDataUrlToPng(usersSvg, 120, function(usersPng) {
+                svgDataUrlToPng(sproutSvg, 120, function(sproutPng) {
+                    buildPDF(clockPng, usersPng, sproutPng);
                 });
             });
         });
     }
 
-    function buildPDF(clockPng, peoplePng, sproutPng) {
-        // =============================================
-        // FIDÈLE AU TEMPLATE preview-canva.html
-        // =============================================
-
-        // Helper : rectangle arrondi (jsPDF 2.5 n'a pas roundedRect natif)
-        function drawRoundedRect(doc, x, y, w, h, r) {
-            doc.lines(
-                [
-                    [w - 2 * r, 0],  // top edge
-                    [r, 0, r, r, 0, r],  // top-right corner (Bézier)
-                    [0, h - 2 * r],  // right edge
-                    [0, r, -r, r, -r, 0],  // bottom-right corner
-                    [-(w - 2 * r), 0],  // bottom edge
-                    [-r, 0, -r, -r, 0, -r],  // bottom-left corner
-                    [0, -(h - 2 * r)],  // left edge
-                    [0, -r, r, -r, r, 0]  // top-left corner
-                ],
-                x + r, y, [1, 1], 'FD', true
-            );
-        }
-
+    function buildPDF(clockPng, usersPng, sproutPng) {
         var titlePadLeft = 24;
-
-        // === 2. ZONE TITRE (title-zone) ===
         var titleZoneY = photoHeight;
         var titlePadTop = 12;
 
-        // Catégorie badge — float right, arrondi (comme le template border-radius: 20px)
+        // === BADGE CATÉGORIE (vert, arrondi, en haut à droite sous la photo) ===
         var badgeW = 0;
         if (categoryText) {
             pdf.setFont('helvetica', 'normal');
             pdf.setFontSize(10.5);
-            var badgeLabel = categoryText;
-            var badgeTxtW = pdf.getTextWidth(badgeLabel);
-            var iconSpace = sproutPng ? 14 : 0;
-            var badgePadH = 12;
+            var badgeTxtW = pdf.getTextWidth(categoryText);
+            var iconSpace = sproutPng ? 16 : 0;
+            var badgePadH = 10;
             var badgeH = 22;
             badgeW = badgeTxtW + badgePadH * 2 + iconSpace;
             var badgeX = pageWidth - badgeW - titlePadLeft;
             var badgeY = titleZoneY + titlePadTop + 4;
-            var badgeR = 11; // rayon arrondi (moitié de badgeH)
-            // Rectangle arrondi (helper car jsPDF 2.5 n'a pas roundedRect)
+
+            // Fond vert clair (rectangle simple — fiable)
             pdf.setFillColor(232, 245, 233);
-            pdf.setDrawColor(232, 245, 233);
-            drawRoundedRect(pdf, badgeX, badgeY, badgeW, badgeH, badgeR);
-            // Icône feuille Lucide (sprout) — pré-générée
+            pdf.rect(badgeX, badgeY, badgeW, badgeH, 'F');
+            
+            // Icône sprout
             if (sproutPng) {
-                pdf.addImage(sproutPng, 'PNG', badgeX + badgePadH - 2, badgeY + 4, 14, 14);
+                pdf.addImage(sproutPng, 'PNG', badgeX + badgePadH, badgeY + 3, 14, 14);
             }
+            
+            // Texte catégorie
             pdf.setTextColor(46, 125, 50);
-            pdf.text(badgeLabel, badgeX + badgePadH + iconSpace, badgeY + 15);
+            pdf.text(categoryText, badgeX + badgePadH + iconSpace, badgeY + 15);
         }
 
-        // Titre principal
+        // === TITRE ===
         pdf.setTextColor(26, 26, 26);
         pdf.setFont('times', 'bold');
         pdf.setFontSize(36);
-        var titleMaxW = pageWidth - titlePadLeft * 2 - (categoryText ? badgeW + 40 : 0);
+        var titleMaxW = pageWidth - titlePadLeft * 2 - (badgeW > 0 ? badgeW + 40 : 0);
         var titleLines = pdf.splitTextToSize(title.toUpperCase(), titleMaxW);
         var titleStartY = titleZoneY + titlePadTop + 32;
-        titleLines.forEach(function(line, i) {
-            pdf.text(line, titlePadLeft, titleStartY + i * 38);
-        });
+        for (var i = 0; i < titleLines.length; i++) {
+            pdf.text(titleLines[i], titlePadLeft, titleStartY + i * 38);
+        }
         var titleBottomY = titleStartY + (titleLines.length - 1) * 38;
 
         // Trait sous le titre
@@ -265,7 +263,7 @@ function printRecipe(recipeName) {
         pdf.setLineWidth(1.1);
         pdf.line(titlePadLeft, titleBottomY + 8, titlePadLeft + titleMaxW * 0.2, titleBottomY + 8);
 
-        // === 3. CONTENT — 2 colonnes ===
+        // === COLONNES ===
         var colStartY = titleBottomY + 18;
         var colEndY = pageHeight - 4;
 
@@ -273,100 +271,88 @@ function printRecipe(recipeName) {
         pdf.setFillColor(232, 220, 200);
         pdf.rect(0, colStartY, leftColWidth, colEndY - colStartY, 'F');
 
-        // --- Meta row avec icônes SVG rendues en PNG ---
+        // --- Icônes temps / portions ---
         var metaRowY = colStartY + 15;
-        var metaColCenter1 = leftColWidth * 0.3;
-        var metaColCenter2 = leftColWidth * 0.7;
-        var iconSize = 30; // 40px / 1.33
+        var metaCol1 = leftColWidth * 0.3;
+        var metaCol2 = leftColWidth * 0.7;
+        var iconSz = 28;
 
-        // Icône horloge
         if (clockPng) {
-            pdf.addImage(clockPng, 'PNG', metaColCenter1 - iconSize / 2, metaRowY, iconSize, iconSize);
+            pdf.addImage(clockPng, 'PNG', metaCol1 - iconSz / 2, metaRowY, iconSz, iconSz);
         }
-        // Texte temps
         if (timeText) {
             pdf.setTextColor(61, 61, 61);
             pdf.setFont('helvetica', 'normal');
             pdf.setFontSize(10.5);
-            var timeW = pdf.getTextWidth(timeText);
-            pdf.text(timeText, metaColCenter1 - timeW / 2, metaRowY + iconSize + 14);
+            var tw = pdf.getTextWidth(timeText);
+            pdf.text(timeText, metaCol1 - tw / 2, metaRowY + iconSz + 14);
         }
 
-        // Icône personnes
-        if (peoplePng) {
-            pdf.addImage(peoplePng, 'PNG', metaColCenter2 - iconSize / 2, metaRowY, iconSize, iconSize);
+        if (usersPng) {
+            pdf.addImage(usersPng, 'PNG', metaCol2 - iconSz / 2, metaRowY, iconSz, iconSz);
         }
-        // Texte portions
         if (servesText) {
             pdf.setTextColor(61, 61, 61);
             pdf.setFont('helvetica', 'normal');
             pdf.setFontSize(10.5);
-            var servW = pdf.getTextWidth(servesText);
-            pdf.text(servesText, metaColCenter2 - servW / 2, metaRowY + iconSize + 14);
+            var sw = pdf.getTextWidth(servesText);
+            pdf.text(servesText, metaCol2 - sw / 2, metaRowY + iconSz + 14);
         }
 
-        // Séparation après meta
-        var ingStartY = metaRowY + iconSize + 30;
-
-        // --- Ingrédients (bullets) ---
-        pdf.setTextColor(42, 42, 42);
-        pdf.setFont('helvetica', 'normal');
-        pdf.setFontSize(10.5); // 14px / 1.33
+        // --- Ingrédients ---
+        var ingStartY = metaRowY + iconSz + 30;
         var ingY = ingStartY;
         var ingPadLeft = 18;
         var ingTextLeft = ingPadLeft + 12;
         var ingMaxW = leftColWidth - ingTextLeft - 10;
 
-        ingredients.forEach(function(ingredient) {
-            if (ingY > colEndY - 10) return;
-            // Bullet
-            pdf.setTextColor(92, 92, 92); // #5C5C5C
+        pdf.setFontSize(10.5);
+        for (var ii = 0; ii < ingredients.length; ii++) {
+            if (ingY > colEndY - 10) break;
+            pdf.setTextColor(92, 92, 92);
             pdf.setFont('helvetica', 'bold');
-            pdf.text('•', ingPadLeft, ingY);
-            // Texte
+            pdf.text('\u2022', ingPadLeft, ingY);
             pdf.setTextColor(42, 42, 42);
             pdf.setFont('helvetica', 'normal');
-            var lines = pdf.splitTextToSize(ingredient.textContent.trim(), ingMaxW);
-            lines.forEach(function(line, li) {
-                if (ingY > colEndY - 10) return;
-                pdf.text(line, ingTextLeft, ingY);
-                ingY += 14; // line-height 1.5 × 14px ≈ 14pt
-            });
-            ingY += 3; // margin-bottom: 6px ≈ 4.5pt
-        });
+            var lines = pdf.splitTextToSize(ingredients[ii].textContent.trim(), ingMaxW);
+            for (var li = 0; li < lines.length; li++) {
+                if (ingY > colEndY - 10) break;
+                pdf.text(lines[li], ingTextLeft, ingY);
+                ingY += 14;
+            }
+            ingY += 3;
+        }
 
-        // --- Colonne droite — Étapes (fond blanc, padding 0 28px 20px 28px) ---
-        var stepPadLeft = rightColX + 21; // 28px / 1.33
+        // --- Étapes (colonne droite) ---
+        var stepPadLeft = rightColX + 21;
         var stepTextLeft = stepPadLeft + 12;
         var stepMaxW = pageWidth - stepTextLeft - 16;
         var stepY = colStartY + 15;
 
         pdf.setFontSize(10.5);
-        steps.forEach(function(step) {
-            if (stepY > colEndY - 10) return;
-            // Bullet
+        for (var si = 0; si < steps.length; si++) {
+            if (stepY > colEndY - 10) break;
             pdf.setTextColor(92, 92, 92);
             pdf.setFont('helvetica', 'bold');
-            pdf.text('•', stepPadLeft, stepY);
-            // Texte
+            pdf.text('\u2022', stepPadLeft, stepY);
             pdf.setTextColor(42, 42, 42);
             pdf.setFont('helvetica', 'normal');
-            var lines = pdf.splitTextToSize(step.textContent.trim(), stepMaxW);
-            lines.forEach(function(line) {
-                if (stepY > colEndY - 10) return;
-                pdf.text(line, stepTextLeft, stepY);
-                stepY += 15; // line-height 1.6 × ~14px
-            });
-            stepY += 5; // margin-bottom: 10px ≈ 7.5pt
-        });
+            var slines = pdf.splitTextToSize(steps[si].textContent.trim(), stepMaxW);
+            for (var sli = 0; sli < slines.length; sli++) {
+                if (stepY > colEndY - 10) break;
+                pdf.text(slines[sli], stepTextLeft, stepY);
+                stepY += 15;
+            }
+            stepY += 5;
+        }
 
-        // === 4. BARRE DU BAS (bottom-bar — 1.5px #1A1A1A) ===
+        // === BARRE DU BAS ===
         pdf.setFillColor(26, 26, 26);
         pdf.rect(0, pageHeight - 1.5, pageWidth, 1.5, 'F');
 
-        // Sauvegarder le PDF
+        // Sauvegarder
         pdf.save(recipeName + '.pdf');
-    } // end buildPDF
+    }
 }
 
 // Fonction utilitaire pour traiter les images
@@ -378,33 +364,25 @@ function processImageForPDF(imageSrc, callback) {
         try {
             var canvas = document.createElement('canvas');
             var ctx = canvas.getContext('2d');
+            canvas.width = 794;
+            canvas.height = 420;
             
-            // Taille optimisée pour PDF — cover crop (respecte le ratio)
-            canvas.width = 794;  // Largeur A4 en px
-            canvas.height = 420; // Hauteur photo du template
-            
-            // Cover crop : remplir le rectangle sans déformer l'image
             var imgRatio = img.naturalWidth / img.naturalHeight;
             var canvasRatio = canvas.width / canvas.height;
             var sx, sy, sw, sh;
             if (imgRatio > canvasRatio) {
-                // Image plus large → crop les côtés
                 sh = img.naturalHeight;
                 sw = sh * canvasRatio;
                 sx = (img.naturalWidth - sw) / 2;
                 sy = 0;
             } else {
-                // Image plus haute → crop haut/bas
                 sw = img.naturalWidth;
                 sh = sw / canvasRatio;
                 sx = 0;
                 sy = (img.naturalHeight - sh) / 2;
             }
             ctx.drawImage(img, sx, sy, sw, sh, 0, 0, canvas.width, canvas.height);
-            
-            // Convertir en base64
-            var dataURL = canvas.toDataURL('image/jpeg', 0.8);
-            callback(dataURL);
+            callback(canvas.toDataURL('image/jpeg', 0.8));
         } catch (error) {
             console.error('Erreur traitement image:', error);
             callback(null);
