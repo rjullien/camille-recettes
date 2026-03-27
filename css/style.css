@@ -526,3 +526,89 @@ body {
         gap: var(--spacing-xs);
     }
 }
+/* === STYLES IMPRESSION (@media print) === */
+/* Utilisé par window.print() sur mobile et en fallback */
+@media print {
+    /* Cacher éléments inutiles */
+    .site-header,
+    .site-footer,
+    .recipe-back-link,
+    .pdf-button,
+    .search-container,
+    .filters,
+    #pdf-render-zone {
+        display: none !important;
+    }
+
+    /* Reset page */
+    body {
+        background: white !important;
+        font-family: Helvetica, Arial, sans-serif !important;
+        color: #1A1A1A !important;
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+
+    .main-content {
+        padding: 0 !important;
+    }
+
+    .container {
+        max-width: 100% !important;
+        padding: 0 16px !important;
+    }
+
+    /* Photo principale */
+    .recipe-hero-image {
+        height: 280px !important;
+        border-radius: 0 !important;
+        margin-bottom: 16px !important;
+        page-break-inside: avoid;
+    }
+
+    /* Titre */
+    .recipe-main-title {
+        font-size: 28px !important;
+        margin-bottom: 8px !important;
+    }
+
+    /* Infos */
+    .recipe-info-line {
+        margin-bottom: 20px !important;
+    }
+
+    /* Ingrédients */
+    .ingredients-section {
+        background-color: #F5F0E8 !important;
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+        border-radius: 8px !important;
+        padding: 16px !important;
+        page-break-inside: avoid;
+    }
+
+    /* Numéros étapes */
+    .step-number {
+        background-color: #D4764E !important;
+        color: white !important;
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+    }
+
+    .check-circle {
+        background-color: #4A7C59 !important;
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+    }
+
+    /* Pas de coupure dans les sections */
+    .preparation-section {
+        page-break-inside: avoid;
+    }
+
+    /* Page A4 */
+    @page {
+        size: A4 portrait;
+        margin: 10mm;
+    }
+}
