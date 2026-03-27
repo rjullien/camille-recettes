@@ -196,22 +196,33 @@ function printRecipe(recipeName) {
         var titleZoneY = photoHeight;
         var titlePadTop = 12;
 
-        // Catégorie badge — float right (comme le template, avec emoji 🌱)
+        // Catégorie badge — float right (comme le template, avec icône feuille 🌱)
+        var badgeW = 0;
         if (categoryText) {
             pdf.setFont('helvetica', 'normal');
             pdf.setFontSize(10.5);
             var badgeLabel = categoryText;
             var badgeTxtW = pdf.getTextWidth(badgeLabel);
+            var iconSpace = 14; // espace pour l'icône feuille
             var badgePadH = 12;
             var badgeH = 22;
-            var badgeW = badgeTxtW + badgePadH * 2;
+            badgeW = badgeTxtW + badgePadH * 2 + iconSpace;
             var badgeX = pageWidth - badgeW - titlePadLeft;
             var badgeY = titleZoneY + titlePadTop + 4;
             pdf.setFillColor(232, 245, 233);
             pdf.setDrawColor(232, 245, 233);
             pdf.rect(badgeX, badgeY, badgeW, badgeH, 'FD');
+            // Icône feuille Lucide (sprout)
+            var leafSvg = lucideSvgToDataUrl('sprout', 80, '#2E7D32');
+            if (leafSvg) {
+                svgToPng(leafSvg, 80, function(leafPng) {
+                    if (leafPng) {
+                        pdf.addImage(leafPng, 'PNG', badgeX + badgePadH - 2, badgeY + 3, 10, 10);
+                    }
+                });
+            }
             pdf.setTextColor(46, 125, 50);
-            pdf.text(badgeLabel, badgeX + badgePadH, badgeY + 15);
+            pdf.text(badgeLabel, badgeX + badgePadH + iconSpace, badgeY + 15);
         }
 
         // Titre principal
