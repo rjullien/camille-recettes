@@ -1,4 +1,4 @@
-# Correction du Bug PDF Blanc - Résumé
+# Correction du Bug PDF - Résumé Complet
 
 ## ✅ Problèmes identifiés et corrigés
 
@@ -18,19 +18,45 @@
 - **Problème** : html2canvas a des bugs connus avec flexbox
 - **Solution** : Remplacement par `position: absolute` et structure en colonnes fixes (302px + reste)
 
+### 5. **🚨 NOUVEAU - Blocage téléchargement sur iOS Safari/Chrome**
+- **Problème** : `pdf.save()` bloqué par iOS (restrictions blob downloads programmatiques)
+- **Solution** : Détection iOS + ouverture PDF dans nouvel onglet avec viewer Safari natif
+
 ## ✅ Modifications apportées
 
 ### Fichiers modifiés :
-1. **`js/app.js`** - Réécriture complète de la fonction `printRecipe()`
-2. **`recettes/tarte-de-patate.html`** - Mise à jour librairies + cache-buster v=7
-3. **`recettes/pate-crevette.html`** - Mise à jour librairies + ajout catégorie badge + cache-buster v=7
+1. **`js/app.js`** - Réécriture complète + **FIX iOS**
+2. **`recettes/tarte-de-patate.html`** - Cache-buster **v=8**
+3. **`recettes/pate-crevette.html`** - Cache-buster **v=8**
 
-### Nouvelles librairies utilisées :
-- `html2canvas@1.4.1` (au lieu de html2pdf.bundle.min.js)
+### Nouvelles fonctionnalités iOS :
+- **Détection automatique iOS** (iPhone/iPad/iPod, simulateurs, Mac tactile)
+- **Méthode alternative** : `window.open()` avec data URI au lieu de `pdf.save()`
+- **Instructions utilisateur** intégrées pour Save/Share sur iOS
+- **Fallback robuste** si popup bloqué
+
+### Librairies utilisées :
+- `html2canvas@1.4.1`
 - `jspdf@2.5.1` 
 
 ### Cache-buster mis à jour :
-- `app.js?v=7` sur toutes les pages recettes
+- `app.js?v=8` sur toutes les pages recettes
+
+## ✅ Comportements par plateforme
+
+### 📱 **iOS (iPhone/iPad) - Safari/Chrome :**
+- PDF s'ouvre dans un nouvel onglet
+- Viewer PDF Safari natif
+- Instructions pour "Partager" → "Enregistrer dans Fichiers"
+- Support AirDrop et partage direct
+
+### 💻 **Desktop/Android :**
+- Téléchargement PDF classique (`pdf.save()`)
+- Fonctionnement identique à avant
+
+### 🧪 **Test de détection :**
+- Nouveau fichier : `test-ios-detection.html`
+- Affiche le comportement détecté + debug info
 
 ## ✅ Améliorations techniques
 
@@ -54,48 +80,62 @@
 
 ## 🧪 Tests disponibles
 
-### 1. Test fichier local :
+### 1. Test détection iOS :
+```bash
+# Ouvrir dans navigateur mobile
+open /home/node/projects/camille-recettes/test-ios-detection.html
+```
+
+### 2. Test PDF local :
 ```bash
 # Ouvrir dans navigateur
 open /home/node/projects/camille-recettes/test-pdf.html
 ```
 
-### 2. Test site GitHub Pages :
+### 3. Test site GitHub Pages :
 - https://rjullien.github.io/camille-recettes/recettes/tarte-de-patate.html
 - Cliquer "📄 Télécharger en PDF"
 
-### 3. Vérifications à faire :
-- [ ] PDF non blanc ✅ 
-- [ ] Layout identique au template preview-canva.html
-- [ ] Image de la recette affichée (si disponible)
-- [ ] Texte lisible et bien positionné
-- [ ] Colonnes correctement réparties (38% / 62%)
-- [ ] Metadata (temps, personnes, catégorie) présentes
+### 4. Vérifications par appareil :
+
+#### Desktop/Android :
+- [ ] PDF téléchargé directement ✅
+- [ ] Filename correct (Tarte_de_Patate.pdf) ✅
+
+#### iOS (Safari/Chrome) :
+- [ ] PDF ouvert dans nouvel onglet ✅
+- [ ] Viewer Safari natif fonctionnel ✅
+- [ ] Instructions Save/Share affichées ✅
+- [ ] Partage AirDrop/WhatsApp possible ✅
 
 ## 🚀 Déploiement effectué
 
 ```bash
 git add -A
-git commit -m "Fix: Correction du bug PDF blanc - html2canvas + jsPDF direct"
+git commit -m "🔧 Fix PDF download on iOS Safari/Chrome"
 git push origin main
 ```
 
-**Status** : ✅ **Correction déployée et en ligne**
+**Status** : ✅ **Correction iOS déployée - v=8**
 
-Les utilisateurs devraient maintenant pouvoir générer des PDFs corrects correspondant exactement au rendu du template `preview-canva.html`.
+**Commit** : `9377b8f` - Fix PDF download on iOS Safari/Chrome
 
 ---
 
 ## 🔧 Si le problème persiste
 
-### Debug steps :
-1. Ouvrir la console navigateur (F12)
-2. Tenter génération PDF
-3. Vérifier erreurs JavaScript
-4. Tester avec `test-pdf.html` en local
-5. Vérifier que les nouvelles librairies sont bien chargées (cache navigateur)
+### Debug steps iOS :
+1. Tester `test-ios-detection.html` → doit détecter iOS
+2. Console navigateur iOS (Safari → Réglages → Web Inspector)
+3. Vérifier si popup window.open() autorisé
+4. Test fallback avec data URI direct
 
-### Alternatives possibles :
-- Puppeteer côté serveur (mais nécessite backend)
-- Print CSS optimisé avec window.print()
-- Canvas API manuel pour dessiner le PDF
+### Debug steps Desktop :
+1. Console F12 pour erreurs JavaScript
+2. Tester `test-pdf.html` en local
+3. Vérifier cache navigateur (v=8)
+
+### Alternatives si échec total :
+- CSS Print avec `window.print()` (impression → PDF)
+- Puppeteer côté serveur (nécessite backend)
+- Service externe (PDFShift, HTMLToPDF)

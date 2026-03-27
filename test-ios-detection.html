@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test iOS Detection</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        .result { padding: 15px; margin: 10px 0; border-radius: 8px; }
+        .ios { background: #e8f5e9; color: #2e7d32; }
+        .not-ios { background: #fff3e0; color: #f57c00; }
+        .debug { background: #f5f5f5; padding: 10px; margin-top: 20px; font-family: monospace; }
+    </style>
+</head>
+<body>
+    <h1>🧪 Test de détection iOS</h1>
+    
+    <div id="result" class="result">
+        <strong>Détection en cours...</strong>
+    </div>
+    
+    <div class="debug">
+        <strong>Debug info:</strong><br>
+        <span id="debug-info"></span>
+    </div>
+
+    <script>
+        // Fonction de détection iOS (identique à app.js)
+        function detectIOS() {
+            return [
+                'iPad Simulator',
+                'iPhone Simulator',
+                'iPod Simulator',
+                'iPad',
+                'iPhone', 
+                'iPod'
+            ].includes(navigator.platform)
+            || (navigator.userAgent.includes("Mac") && "ontouchend" in document)
+            || /iPad|iPhone|iPod/.test(navigator.userAgent);
+        }
+
+        // Test
+        const isIOS = detectIOS();
+        const resultDiv = document.getElementById('result');
+        const debugDiv = document.getElementById('debug-info');
+        
+        if (isIOS) {
+            resultDiv.className = 'result ios';
+            resultDiv.innerHTML = '📱 <strong>iOS détecté !</strong><br>Le PDF s\'ouvrira dans un nouvel onglet avec le viewer Safari.';
+        } else {
+            resultDiv.className = 'result not-ios';
+            resultDiv.innerHTML = '💻 <strong>Pas iOS.</strong><br>Le PDF utilisera la méthode classique (téléchargement direct).';
+        }
+        
+        debugDiv.innerHTML = `
+            Platform: ${navigator.platform}<br>
+            User Agent: ${navigator.userAgent}<br>
+            Touchend support: ${"ontouchend" in document}<br>
+            RegExp test: ${/iPad|iPhone|iPod/.test(navigator.userAgent)}
+        `;
+    </script>
+</body>
+</html>
