@@ -81,8 +81,8 @@ function printRecipe(recipeName) {
     var title = document.querySelector('.recipe-main-title').textContent.trim();
     var ingredients = document.querySelectorAll('.ingredient-text');
     var steps = document.querySelectorAll('.step-text');
-    var categoryBadge = document.querySelector('.category-badge');
-    var categoryText = categoryBadge ? categoryBadge.textContent.trim() : '';
+    var categoryBadge = document.querySelector('.info-chip--category') || document.querySelector('.category-badge');
+    var categoryText = categoryBadge ? categoryBadge.textContent.replace('🌱', '').replace('🌿', '').trim() : '';
     var timeText = '';
     var servesText = '';
     
@@ -198,6 +198,24 @@ function printRecipe(recipeName) {
         // =============================================
         // FIDÈLE AU TEMPLATE preview-canva.html
         // =============================================
+
+        // Helper : rectangle arrondi (jsPDF 2.5 n'a pas roundedRect natif)
+        function drawRoundedRect(doc, x, y, w, h, r) {
+            doc.lines(
+                [
+                    [w - 2 * r, 0],  // top edge
+                    [r, 0, r, r, 0, r],  // top-right corner (Bézier)
+                    [0, h - 2 * r],  // right edge
+                    [0, r, -r, r, -r, 0],  // bottom-right corner
+                    [-(w - 2 * r), 0],  // bottom edge
+                    [-r, 0, -r, -r, 0, -r],  // bottom-left corner
+                    [0, -(h - 2 * r)],  // left edge
+                    [0, -r, r, -r, r, 0]  // top-left corner
+                ],
+                x + r, y, [1, 1], 'FD', true
+            );
+        }
+
         var titlePadLeft = 24;
 
         // === 2. ZONE TITRE (title-zone) ===
@@ -218,13 +236,13 @@ function printRecipe(recipeName) {
             var badgeX = pageWidth - badgeW - titlePadLeft;
             var badgeY = titleZoneY + titlePadTop + 4;
             var badgeR = 11; // rayon arrondi (moitié de badgeH)
-            // Rectangle arrondi
+            // Rectangle arrondi (helper car jsPDF 2.5 n'a pas roundedRect)
             pdf.setFillColor(232, 245, 233);
             pdf.setDrawColor(232, 245, 233);
-            pdf.roundedRect(badgeX, badgeY, badgeW, badgeH, badgeR, badgeR, 'FD');
+            drawRoundedRect(pdf, badgeX, badgeY, badgeW, badgeH, badgeR);
             // Icône feuille Lucide (sprout) — pré-générée
             if (sproutPng) {
-                pdf.addImage(sproutPng, 'PNG', badgeX + badgePadH - 2, badgeY + 3, 10, 10);
+                pdf.addImage(sproutPng, 'PNG', badgeX + badgePadH - 2, badgeY + 4, 14, 14);
             }
             pdf.setTextColor(46, 125, 50);
             pdf.text(badgeLabel, badgeX + badgePadH + iconSpace, badgeY + 15);
