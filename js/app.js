@@ -88,20 +88,20 @@ function extractRecipeData() {
     var categoryEl = document.querySelector('.info-chip--category') || document.querySelector('.category-badge');
     var categoryText = '';
     if (categoryEl) {
-        categoryText = categoryEl.textContent.replace(/[\u{1F300}-\u{1F9FF}]/gu, '').trim();
+        categoryText = categoryEl.textContent.replace(/[\p{Emoji_Presentation}\p{Extended_Pictographic}\u{FE0F}]/gu, '').trim();
     }
 
     var timeText = '';
     var servesText = '';
     document.querySelectorAll('.info-chip').forEach(function(chip) {
         if (chip.classList.contains('info-chip--time')) {
-            timeText = chip.textContent.replace(/[\u{1F300}-\u{1F9FF}]/gu, '').trim();
+            timeText = chip.textContent.replace(/[\p{Emoji_Presentation}\p{Extended_Pictographic}\u{FE0F}]/gu, '').trim();
             var plusIdx = timeText.indexOf('+');
             if (plusIdx > 0) timeText = timeText.substring(0, plusIdx).trim();
             timeText = timeText.replace(/\s*(prep|prép|préparation)\.?$/i, '').trim();
         }
         if (chip.classList.contains('info-chip--serves')) {
-            servesText = chip.textContent.replace(/[\u{1F300}-\u{1F9FF}]/gu, '').trim();
+            servesText = chip.textContent.replace(/[\p{Emoji_Presentation}\p{Extended_Pictographic}\u{FE0F}]/gu, '').trim();
         }
     });
 
