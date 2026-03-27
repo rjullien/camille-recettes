@@ -435,6 +435,13 @@ body {
 }
 
 /* === BOUTON PDF === */
+.download-buttons {
+    display: flex;
+    justify-content: center;
+    gap: var(--spacing-md);
+    margin: var(--spacing-xl) auto 0;
+}
+
 .pdf-button {
     display: flex;
     align-items: center;
@@ -451,7 +458,6 @@ body {
     border-radius: var(--radius-pill);
     box-shadow: var(--shadow-medium);
     transition: all 0.3s ease;
-    margin: var(--spacing-xl) auto 0;
     width: fit-content;
     cursor: pointer;
 }
@@ -459,6 +465,14 @@ body {
 .pdf-button:hover {
     background-color: #3d6a4a;
     box-shadow: var(--shadow-hover);
+}
+
+.img-button {
+    background-color: #5C6BC0;
+}
+
+.img-button:hover {
+    background-color: #3F51B5;
 }
 
 /* === FOOTER MINIMAL === */

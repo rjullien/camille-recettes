@@ -9,7 +9,6 @@
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600;700&family=Inter:wght@300;400;500;600&family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../css/style.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-    <script src="https://unpkg.com/lucide@latest"></script>
 </head>
 <body>
     <main class="main-content">
@@ -99,10 +98,15 @@
                 </ul>
             </section>
 
-            <!-- Bouton PDF -->
-            <button type="button" class="pdf-button" onclick="printRecipe('Pate_Crevette')">
-                📄 Télécharger en PDF
-            </button>
+            <!-- Boutons téléchargement -->
+            <div class="download-buttons">
+                <button type="button" class="pdf-button" onclick="printRecipe('Pate_Crevette')">
+                    📄 PDF
+                </button>
+                <button type="button" class="pdf-button img-button" onclick="downloadRecipeAsImage('Pate_Crevette')">
+                    🖼️ IMG
+                </button>
+            </div>
         </div>
     </main>
 
@@ -113,6 +117,6 @@
         </div>
     </footer>
 
-    <script src="../js/app.js?v=10"></script>
+    <script src="../js/app.js?v=19"></script>
 </body>
 </html>
