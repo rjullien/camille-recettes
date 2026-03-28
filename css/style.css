@@ -282,7 +282,7 @@ body {
 .recipe-hero-image {
     width: 100%;
     max-width: 800px;
-    height: 280px;
+    aspect-ratio: 4 / 3;
     margin: 0 auto var(--spacing-lg) auto;
     border-radius: var(--radius-lg);
     overflow: hidden;
@@ -509,7 +509,7 @@ body {
     }
     
     .recipe-hero-image {
-        height: 240px;
+        aspect-ratio: 4 / 3;
     }
     
     .filters {
@@ -533,7 +533,7 @@ body {
     }
     
     .recipe-hero-image {
-        height: 200px;
+        aspect-ratio: 4 / 3;
     }
     
     .recipe-info-line {
@@ -574,7 +574,8 @@ body {
 
     /* Photo principale */
     .recipe-hero-image {
-        height: 280px !important;
+        aspect-ratio: 4 / 3 !important;
+        height: auto !important;
         border-radius: 0 !important;
         margin-bottom: 16px !important;
         page-break-inside: avoid;
