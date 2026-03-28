@@ -282,7 +282,7 @@ body {
 .recipe-hero-image {
     width: 100%;
     max-width: 800px;
-    aspect-ratio: 4 / 3;
+    aspect-ratio: 13 / 10;
     margin: 0 auto var(--spacing-lg) auto;
     border-radius: var(--radius-lg);
     overflow: hidden;
