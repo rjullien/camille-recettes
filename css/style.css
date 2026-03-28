@@ -282,7 +282,7 @@ body {
 .recipe-hero-image {
     width: 100%;
     max-width: 800px;
-    height: 450px;
+    height: 280px;
     margin: 0 auto var(--spacing-lg) auto;
     border-radius: var(--radius-lg);
     overflow: hidden;
@@ -509,7 +509,7 @@ body {
     }
     
     .recipe-hero-image {
-        height: 350px;
+        height: 240px;
     }
     
     .filters {
@@ -533,7 +533,7 @@ body {
     }
     
     .recipe-hero-image {
-        height: 300px;
+        height: 200px;
     }
     
     .recipe-info-line {
