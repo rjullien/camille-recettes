@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crousti Salade - Les Recettes de Camille</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600;700&family=Inter:wght@300;400;500;600&family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+<body>
+    <main class="main-content">
+        <div class="container">
+            <!-- Bouton retour -->
+            <a href="../index.html" class="recipe-back-link">← Recettes</a>
+
+            <!-- Grande photo -->
+            <div class="recipe-hero-image">
+                <img src="../images/crousti-salade.jpg" alt="Crousti Salade" style="width:100%;height:100%;object-fit:cover;border-radius:16px;">
+            </div>
+
+            <!-- Titre centré -->
+            <h1 class="recipe-main-title">Crousti Salade</h1>
+
+            <!-- Ligne d'infos centrée -->
+            <div class="recipe-info-line">
+                <span class="info-chip info-chip--time">⏱️ 15 min</span>
+                <span class="info-chip info-chip--time">🔥 10 min</span>
+                <span class="info-chip info-chip--serves">👥 4 pers.</span>
+                <span class="info-chip info-chip--category">🥗 Accompagnement</span>
+            </div>
+
+            <!-- Section Ingrédients -->
+            <section class="ingredients-section">
+                <h2 class="section-title">Ingrédients</h2>
+                <ul class="ingredients-list">
+                    <li>
+                        <div class="check-circle"></div>
+                        <span class="ingredient-text">1 cs de moutarde</span>
+                    </li>
+                    <li>
+                        <div class="check-circle"></div>
+                        <span class="ingredient-text">1 cs de vinaigre de vin rouge</span>
+                    </li>
+                    <li>
+                        <div class="check-circle"></div>
+                        <span class="ingredient-text">1 cc de miel</span>
+                    </li>
+                    <li>
+                        <div class="check-circle"></div>
+                        <span class="ingredient-text">2 cs d'huile d'olive</span>
+                    </li>
+                    <li>
+                        <div class="check-circle"></div>
+                        <span class="ingredient-text">1 concombre</span>
+                    </li>
+                    <li>
+                        <div class="check-circle"></div>
+                        <span class="ingredient-text">1 salade (sucrine)</span>
+                    </li>
+                    <li>
+                        <div class="check-circle"></div>
+                        <span class="ingredient-text">5 tranches de poitrine fumée</span>
+                    </li>
+                    <li>
+                        <div class="check-circle"></div>
+                        <span class="ingredient-text">Sel, poivre</span>
+                    </li>
+                </ul>
+            </section>
+
+            <!-- Section Préparation -->
+            <section class="preparation-section">
+                <h2 class="section-title">Préparation</h2>
+                <ul class="steps-list">
+                    <li class="step-item">
+                        <div class="step-number">1</div>
+                        <div class="step-text">Faire chauffer une poêle à sec, à feu moyen-vif et y faire dorer les tranches de poitrine 3 à 5 min — elles doivent être dorées et croustillantes</div>
+                    </li>
+                    <li class="step-item">
+                        <div class="step-number">2</div>
+                        <div class="step-text">Faire une vinaigrette en mélangeant le miel, la moutarde, un filet d'huile d'olive et de vinaigre dans un saladier. Saler et poivrer</div>
+                    </li>
+                    <li class="step-item">
+                        <div class="step-number">3</div>
+                        <div class="step-text">Couper la salade en lanières</div>
+                    </li>
+                    <li class="step-item">
+                        <div class="step-number">4</div>
+                        <div class="step-text">Couper le concombre en fines demi-lunes</div>
+                    </li>
+                    <li class="step-item">
+                        <div class="step-number">5</div>
+                        <div class="step-text">Ajouter la poitrine fumée, la salade et le concombre à la vinaigrette</div>
+                    </li>
+                </ul>
+            </section>
+
+            <!-- Bonus optionnel -->
+            <section class="preparation-section">
+                <h2 class="section-title">💡 Bonus</h2>
+                <ul class="steps-list">
+                    <li class="step-item">
+                        <div class="step-number">+</div>
+                        <div class="step-text">Frotter des tranches de pain avec de l'ail et les enfourner à 180°C pendant 10 min. Couper en petits carrés et ajouter les croutons à la salade</div>
+                    </li>
+                </ul>
+            </section>
+
+            <!-- Boutons téléchargement -->
+            <div class="download-buttons">
+                <button type="button" class="pdf-button" onclick="printRecipe('Crousti_Salade')">
+                    📄 PDF
+                </button>
+                <button type="button" class="pdf-button img-button" onclick="downloadRecipeAsImage('Crousti_Salade')">
+                    🖼️ IMG
+                </button>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer minimal -->
+    <footer class="site-footer">
+        <div class="container">
+            <p>Fait avec ❤️ par Camille</p>
+        </div>
+    </footer>
+
+    <script src="../js/app.js?v=19"></script>
+</body>
+</html>
