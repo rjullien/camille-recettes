@@ -1,7 +1,7 @@
 {
-  "pate-crevette": false,
-  "tarte-de-patate": false,
+  "pate-crevette": true,
+  "tarte-de-patate": true,
   "lasagne": false,
-  "sauce-bechamel": false,
-  "sauce-tomate": false
+  "sauce-bechamel": true,
+  "sauce-tomate": true
 }
