@@ -185,7 +185,7 @@ body {
     color: var(--white-pure);
 }
 
-/* Tag badges sur les cartes */
+/* Tag badges sur les cartes (catégorie) */
 .recipe-tags {
     display: flex;
     gap: 6px;
@@ -201,6 +201,22 @@ body {
     color: var(--green-main);
     font-family: var(--font-body);
     font-weight: 500;
+}
+
+.tag-badge--category {
+    background-color: rgba(212, 118, 78, 0.1);
+    color: var(--terracotta);
+}
+
+/* Tags multiples sur image */
+.image-tags {
+    position: absolute;
+    top: var(--spacing-sm);
+    right: var(--spacing-sm);
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    align-items: flex-end;
 }
 
 /* === GRILLE RECETTES MODERNE === */
