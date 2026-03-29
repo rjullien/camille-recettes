@@ -219,6 +219,10 @@ body {
     align-items: flex-end;
 }
 
+.image-tags .category-badge {
+    position: static;
+}
+
 /* === GRILLE RECETTES MODERNE === */
 .recipes-grid {
     display: grid;
