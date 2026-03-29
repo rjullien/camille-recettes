@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sauce Tomate (au robot) - Les Recettes de Camille</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600;700&family=Inter:wght@300;400;500;600&family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+<body>
+    <main class="main-content">
+        <div class="container">
+            <!-- Bouton retour -->
+            <a href="../index.html" class="recipe-back-link">← Recettes</a>
+
+            <!-- Grande photo -->
+            <div class="recipe-hero-image">
+                <img src="../images/sauce-tomate.jpg" alt="Sauce Tomate maison" style="width:100%;height:100%;object-fit:cover;border-radius:16px;">
+            </div>
+
+            <!-- Titre centré -->
+            <h1 class="recipe-main-title">Sauce Tomate</h1>
+
+            <!-- Ligne d'infos centrée -->
+            <div class="recipe-info-line">
+                <span class="info-chip info-chip--time">⏱️ 30 min</span>
+                <span class="info-chip info-chip--serves">👥 4 pers.</span>
+                <span class="info-chip info-chip--category">🍅 Légumes du jardin</span>
+            </div>
+
+            <!-- Section Ingrédients -->
+            <section class="ingredients-section">
+                <h2 class="section-title">Ingrédients</h2>
+                <ul class="ingredients-list">
+                    <li>
+                        <div class="check-circle"></div>
+                        <span class="ingredient-text">1 kg de tomates</span>
+                    </li>
+                    <li>
+                        <div class="check-circle"></div>
+                        <span class="ingredient-text">2 oignons (200 g)</span>
+                    </li>
+                    <li>
+                        <div class="check-circle"></div>
+                        <span class="ingredient-text">2 gousses d'ail</span>
+                    </li>
+                    <li>
+                        <div class="check-circle"></div>
+                        <span class="ingredient-text">10 feuilles de basilic</span>
+                    </li>
+                    <li>
+                        <div class="check-circle"></div>
+                        <span class="ingredient-text">1 cc de sel</span>
+                    </li>
+                    <li>
+                        <div class="check-circle"></div>
+                        <span class="ingredient-text">1 pincée de poivre</span>
+                    </li>
+                    <li>
+                        <div class="check-circle"></div>
+                        <span class="ingredient-text">1 cs rase de sucre</span>
+                    </li>
+                </ul>
+            </section>
+
+            <!-- Section Préparation -->
+            <section class="preparation-section">
+                <h2 class="section-title">Préparation</h2>
+                <ul class="steps-list">
+                    <li class="step-item">
+                        <div class="step-number">1</div>
+                        <div class="step-text">Plonger les tomates dans une casserole d'eau bouillante pendant 1 min</div>
+                    </li>
+                    <li class="step-item">
+                        <div class="step-number">2</div>
+                        <div class="step-text">Déposer les tomates dans un saladier d'eau froide pendant 2 min</div>
+                    </li>
+                    <li class="step-item">
+                        <div class="step-number">3</div>
+                        <div class="step-text">Peler les tomates</div>
+                    </li>
+                    <li class="step-item">
+                        <div class="step-number">4</div>
+                        <div class="step-text">Couper les tomates en morceaux</div>
+                    </li>
+                    <li class="step-item">
+                        <div class="step-number">5</div>
+                        <div class="step-text">Éplucher et émincer l'oignon</div>
+                    </li>
+                    <li class="step-item">
+                        <div class="step-number">6</div>
+                        <div class="step-text">Écraser une gousse d'ail dégermée</div>
+                    </li>
+                    <li class="step-item">
+                        <div class="step-number">7</div>
+                        <div class="step-text">Mettre les tomates dans une casserole</div>
+                    </li>
+                    <li class="step-item">
+                        <div class="step-number">8</div>
+                        <div class="step-text">Ajouter l'oignon et la gousse d'ail</div>
+                    </li>
+                    <li class="step-item">
+                        <div class="step-number">9</div>
+                        <div class="step-text">Faire cuire le tout 20 min sous couvert ou 30 min à 100°C vit 1 (au robot)</div>
+                    </li>
+                    <li class="step-item">
+                        <div class="step-number">10</div>
+                        <div class="step-text">Ajouter les feuilles de basilic lavées</div>
+                    </li>
+                    <li class="step-item">
+                        <div class="step-number">11</div>
+                        <div class="step-text">Ajouter le sel, le poivre et le sucre</div>
+                    </li>
+                    <li class="step-item">
+                        <div class="step-number">12</div>
+                        <div class="step-text">Mixer la préparation, la sauce doit être lisse — 10 sec, vit 7 (au robot)</div>
+                    </li>
+                </ul>
+            </section>
+
+            <!-- Boutons export -->
+            <div class="export-buttons" style="text-align:center;margin:2rem 0;">
+                <button onclick="exportPDF()" class="export-btn" style="padding:12px 24px;border:none;border-radius:12px;background:#2d5016;color:white;font-size:0.95rem;cursor:pointer;margin:0.5rem;">📄 Télécharger PDF</button>
+                <button onclick="exportImage()" class="export-btn" style="padding:12px 24px;border:none;border-radius:12px;background:#8b6914;color:white;font-size:0.95rem;cursor:pointer;margin:0.5rem;">🖼️ Télécharger Image</button>
+            </div>
+        </div>
+    </main>
+
+    <script src="../js/app.js"></script>
+</body>
+</html>
