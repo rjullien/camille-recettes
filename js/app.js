@@ -37,6 +37,9 @@ function handleSearch() {
 }
 
 // === FILTRES ===
+var activeCategory = 'all';
+var activeTag = null;
+
 function setupFilters() {
     const filterButtons = document.querySelectorAll('.filter-btn');
     filterButtons.forEach(button => {
@@ -46,19 +49,39 @@ function setupFilters() {
 
 function handleFilter(event) {
     const button = event.target;
-    const category = button.dataset.category;
+    const filterType = button.dataset.filter;
+    const value = button.dataset.value;
 
-    document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
-    button.classList.add('active');
+    if (filterType === 'category') {
+        // Catégories : un seul actif à la fois
+        document.querySelectorAll('[data-filter="category"]').forEach(btn => btn.classList.remove('active'));
+        button.classList.add('active');
+        activeCategory = value;
+    } else if (filterType === 'tag') {
+        // Tags : toggle on/off
+        if (button.classList.contains('active')) {
+            button.classList.remove('active');
+            activeTag = null;
+        } else {
+            document.querySelectorAll('[data-filter="tag"]').forEach(btn => btn.classList.remove('active'));
+            button.classList.add('active');
+            activeTag = value;
+        }
+    }
 
+    applyFilters();
+}
+
+function applyFilters() {
     const recipeCards = document.querySelectorAll('.recipe-card');
     recipeCards.forEach(card => {
         const cardCategory = card.dataset.category;
-        if (category === 'all' || cardCategory === category) {
-            card.style.display = 'block';
-        } else {
-            card.style.display = 'none';
-        }
+        const cardTags = card.dataset.tags || '';
+
+        const matchCategory = (activeCategory === 'all' || cardCategory === activeCategory);
+        const matchTag = (!activeTag || cardTags.includes(activeTag));
+
+        card.style.display = (matchCategory && matchTag) ? 'block' : 'none';
     });
 }
 

@@ -140,9 +140,13 @@ body {
     display: flex;
     justify-content: center;
     gap: var(--spacing-sm);
-    margin-bottom: var(--spacing-xxl);
+    margin-bottom: var(--spacing-md);
     overflow-x: auto;
     padding: 0 var(--spacing-md);
+}
+
+.filters--tags {
+    margin-bottom: var(--spacing-xxl);
 }
 
 .filter-btn {
@@ -166,6 +170,37 @@ body {
     background-color: var(--green-main);
     border-color: var(--green-main);
     color: var(--white-pure);
+}
+
+/* Tags style (plus petit, bordure colorée) */
+.filter-btn--tag {
+    padding: 6px var(--spacing-md);
+    font-size: 0.85rem;
+    border-color: var(--green-main);
+    color: var(--green-main);
+}
+
+.filter-btn--tag.active {
+    background-color: var(--green-main);
+    color: var(--white-pure);
+}
+
+/* Tag badges sur les cartes */
+.recipe-tags {
+    display: flex;
+    gap: 6px;
+    margin-top: var(--spacing-xs);
+    flex-wrap: wrap;
+}
+
+.tag-badge {
+    font-size: 0.75rem;
+    padding: 2px 8px;
+    border-radius: var(--radius-pill);
+    background-color: rgba(74, 124, 89, 0.08);
+    color: var(--green-main);
+    font-family: var(--font-body);
+    font-weight: 500;
 }
 
 /* === GRILLE RECETTES MODERNE === */
