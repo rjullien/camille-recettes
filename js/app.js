@@ -86,7 +86,7 @@ function applyFilters() {
     });
 }
 
-// === NOTE "IMPRIMÉE" (localStorage, visible uniquement sur l'appareil) ===
+// === NOTE "IMPRIMÉE" (chargée depuis data/printed.json, synchro partout) ===
 function setupPrintedToggle() {
     // Seulement sur les pages recettes (pas l'index)
     var prepSection = document.querySelector('.preparation-section');
@@ -95,37 +95,30 @@ function setupPrintedToggle() {
     // Identifier la recette par l'URL
     var recipeId = window.location.pathname.replace(/.*\//, '').replace('.html', '');
 
-    // Lire l'état
-    var printed = localStorage.getItem('printed_' + recipeId) === 'true';
+    // Charger le JSON
+    fetch('../data/printed.json?' + Date.now())
+        .then(function(r) { return r.json(); })
+        .then(function(data) {
+            var printed = data[recipeId] === true;
 
-    // Créer le toggle
-    var container = document.createElement('div');
-    container.className = 'printed-note';
-    container.style.cssText = 'text-align:center;margin:1.5rem 0 0.5rem;padding:8px 16px;cursor:pointer;user-select:none;';
+            var container = document.createElement('div');
+            container.className = 'printed-note';
+            container.style.cssText = 'text-align:center;margin:1.5rem 0 0.5rem;padding:8px 16px;';
 
-    function render() {
-        if (printed) {
-            container.innerHTML = '<span style="font-size:0.85rem;color:#999;opacity:0.6;">📄 Imprimée ✅</span>';
-        } else {
-            container.innerHTML = '<span style="font-size:0.85rem;color:#ccc;opacity:0.5;">📄 Non imprimée</span>';
-        }
-    }
+            if (printed) {
+                container.innerHTML = '<span style="font-size:0.85rem;color:#999;opacity:0.6;">📄 Imprimée ✅</span>';
+            } else {
+                container.innerHTML = '<span style="font-size:0.85rem;color:#ccc;opacity:0.5;">📄 Non imprimée</span>';
+            }
 
-    container.addEventListener('click', function() {
-        printed = !printed;
-        localStorage.setItem('printed_' + recipeId, printed);
-        render();
-    });
-
-    render();
-
-    // Insérer après la section préparation, avant les boutons export
-    var exportBtns = document.querySelector('.export-buttons');
-    if (exportBtns) {
-        exportBtns.parentNode.insertBefore(container, exportBtns);
-    } else {
-        prepSection.parentNode.insertBefore(container, prepSection.nextSibling);
-    }
+            var exportBtns = document.querySelector('.export-buttons');
+            if (exportBtns) {
+                exportBtns.parentNode.insertBefore(container, exportBtns);
+            } else {
+                prepSection.parentNode.insertBefore(container, prepSection.nextSibling);
+            }
+        })
+        .catch(function() { /* silencieux si pas de JSON */ });
 }
 
 // ============================================================
