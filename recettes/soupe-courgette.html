@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soupe Courgette - Les Recettes de Camille</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600;700&family=Inter:wght@300;400;500;600&family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+<body>
+    <main class="main-content">
+        <div class="container">
+            <!-- Bouton retour -->
+            <a href="../index.html" class="recipe-back-link">← Recettes</a>
+
+            <!-- Grande photo -->
+            <div class="recipe-hero-image">
+                <div class="recipe-placeholder" style="width:100%;height:300px;display:flex;align-items:center;justify-content:center;font-size:4rem;background:var(--sand-light);border-radius:16px;">📸</div>
+            </div>
+
+            <!-- Titre centré -->
+            <h1 class="recipe-main-title">Soupe Courgette</h1>
+
+            <!-- Ligne d'infos centrée -->
+            <div class="recipe-info-line">
+                <span class="info-chip info-chip--time">⏱️ 20 min</span>
+                <span class="info-chip info-chip--time">🔥 20 min</span>
+                <span class="info-chip info-chip--serves">👥 4 pers.</span>
+                <span class="info-chip info-chip--category">🍽️ Plat</span>
+                <span class="info-chip info-chip--tag">🌱 Légumes du jardin</span>
+            </div>
+
+            <!-- Section Ingrédients -->
+            <section class="ingredients-section">
+                <h2 class="section-title">Ingrédients</h2>
+                <ul class="ingredients-list">
+                    <li>
+                        <div class="check-circle"></div>
+                        <span class="ingredient-text">3 courgettes</span>
+                    </li>
+                    <li>
+                        <div class="check-circle"></div>
+                        <span class="ingredient-text">2 pommes de terre</span>
+                    </li>
+                    <li>
+                        <div class="check-circle"></div>
+                        <span class="ingredient-text">1 oignon</span>
+                    </li>
+                    <li>
+                        <div class="check-circle"></div>
+                        <span class="ingredient-text">2 gousses d'ail</span>
+                    </li>
+                    <li>
+                        <div class="check-circle"></div>
+                        <span class="ingredient-text">2 cubes de bouillon de volaille</span>
+                    </li>
+                    <li>
+                        <div class="check-circle"></div>
+                        <span class="ingredient-text">4 portions de Kiri</span>
+                    </li>
+                    <li>
+                        <div class="check-circle"></div>
+                        <span class="ingredient-text">3 cs d'huile</span>
+                    </li>
+                    <li>
+                        <div class="check-circle"></div>
+                        <span class="ingredient-text">50 g de pignons</span>
+                    </li>
+                </ul>
+            </section>
+
+            <!-- Section Préparation -->
+            <section class="preparation-section">
+                <h2 class="section-title">Préparation</h2>
+                <ul class="steps-list">
+                    <li class="step-item">
+                        <div class="step-number">1</div>
+                        <div class="step-text">Éplucher les pommes de terre et les couper en petits morceaux</div>
+                    </li>
+                    <li class="step-item">
+                        <div class="step-number">2</div>
+                        <div class="step-text">Couper les courgettes en rondelles</div>
+                    </li>
+                    <li class="step-item">
+                        <div class="step-number">3</div>
+                        <div class="step-text">Éplucher et émincer l'oignon</div>
+                    </li>
+                    <li class="step-item">
+                        <div class="step-number">4</div>
+                        <div class="step-text">Faire chauffer de l'huile dans une grande casserole</div>
+                    </li>
+                    <li class="step-item">
+                        <div class="step-number">5</div>
+                        <div class="step-text">Faire revenir l'oignon à feu vif</div>
+                    </li>
+                    <li class="step-item">
+                        <div class="step-number">6</div>
+                        <div class="step-text">Baisser le feu et ajouter l'ail, les courgettes et les pommes de terre</div>
+                    </li>
+                    <li class="step-item">
+                        <div class="step-number">7</div>
+                        <div class="step-text">Laisser revenir quelque minute en remuant bien</div>
+                    </li>
+                    <li class="step-item">
+                        <div class="step-number">8</div>
+                        <div class="step-text">Recouvrir d'eau et ajouter les bouillons</div>
+                    </li>
+                    <li class="step-item">
+                        <div class="step-number">9</div>
+                        <div class="step-text">Laisser mijoter 20 min</div>
+                    </li>
+                    <li class="step-item">
+                        <div class="step-number">10</div>
+                        <div class="step-text">Lorsque les légumes sont fondants, mettre les légumes avec une partie du bouillon dans un mixeur</div>
+                    </li>
+                    <li class="step-item">
+                        <div class="step-number">11</div>
+                        <div class="step-text">Mixer le tout est ajouter du bouillon pour obtenir la consistance désirée</div>
+                    </li>
+                    <li class="step-item">
+                        <div class="step-number">12</div>
+                        <div class="step-text">Ajouter les portions de Kiri et les pignons</div>
+                    </li>
+                    <li class="step-item">
+                        <div class="step-number">13</div>
+                        <div class="step-text">Mixer à nouveau</div>
+                    </li>
+                </ul>
+            </section>
+
+            <!-- Boutons téléchargement -->
+            <div class="download-buttons">
+                <button type="button" class="pdf-button" onclick="printRecipe('Soupe_Courgette')">
+                    📄 PDF
+                </button>
+                <button type="button" class="pdf-button img-button" onclick="downloadRecipeAsImage('Soupe_Courgette')">
+                    🖼️ IMG
+                </button>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer minimal -->
+    <footer class="site-footer">
+        <div class="container">
+            <p>Fait avec ❤️ par Camille</p>
+        </div>
+    </footer>
+
+    <script src="../js/app.js?v=19"></script>
+</body>
+</html>
