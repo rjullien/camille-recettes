@@ -10,6 +10,7 @@ document.addEventListener('DOMContentLoaded', function() {
 function initializeApp() {
     setupSearch();
     setupFilters();
+    setupPrintedToggle();
 }
 
 // === RECHERCHE ===
@@ -83,6 +84,48 @@ function applyFilters() {
 
         card.style.display = (matchCategory && matchTag) ? 'block' : 'none';
     });
+}
+
+// === NOTE "IMPRIMÉE" (localStorage, visible uniquement sur l'appareil) ===
+function setupPrintedToggle() {
+    // Seulement sur les pages recettes (pas l'index)
+    var prepSection = document.querySelector('.preparation-section');
+    if (!prepSection) return;
+
+    // Identifier la recette par l'URL
+    var recipeId = window.location.pathname.replace(/.*\//, '').replace('.html', '');
+
+    // Lire l'état
+    var printed = localStorage.getItem('printed_' + recipeId) === 'true';
+
+    // Créer le toggle
+    var container = document.createElement('div');
+    container.className = 'printed-note';
+    container.style.cssText = 'text-align:center;margin:1.5rem 0 0.5rem;padding:8px 16px;cursor:pointer;user-select:none;';
+
+    function render() {
+        if (printed) {
+            container.innerHTML = '<span style="font-size:0.85rem;color:#999;opacity:0.6;">📄 Imprimée ✅</span>';
+        } else {
+            container.innerHTML = '<span style="font-size:0.85rem;color:#ccc;opacity:0.5;">📄 Non imprimée</span>';
+        }
+    }
+
+    container.addEventListener('click', function() {
+        printed = !printed;
+        localStorage.setItem('printed_' + recipeId, printed);
+        render();
+    });
+
+    render();
+
+    // Insérer après la section préparation, avant les boutons export
+    var exportBtns = document.querySelector('.export-buttons');
+    if (exportBtns) {
+        exportBtns.parentNode.insertBefore(container, exportBtns);
+    } else {
+        prepSection.parentNode.insertBefore(container, prepSection.nextSibling);
+    }
 }
 
 // ============================================================
