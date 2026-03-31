@@ -1,15 +1,1 @@
-{
-  "pate-crevette": true,
-  "tarte-de-patate": true,
-  "lasagne": false,
-  "sauce-bechamel": true,
-  "sauce-tomate": true,
-  "cake-aux-olives": false,
-  "crousti-salade": false,
-  "tomate-mozza": false,
-  "salade-rapido": false,
-  "caviar-aubergine": false,
-  "lasagne-fraiche": false,
-  "soupe-courgette": false,
-  "tarte-tomate": false
-}
+{"cake-aux-olives":false,"caviar-aubergine":false,"crepes-maison":false,"crousti-salade":false,"lasagne":false,"lasagne-fraiche":false,"pate-crevette":true,"salade-rapido":false,"sauce-bechamel":true,"sauce-tomate":true,"soupe-courgette":false,"tarte-de-patate":true,"tarte-tomate":false,"tomate-mozza":false}
