@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Poulet Miel-Moutarde - Les Recettes de Camille</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600;700&family=Inter:wght@300;400;500;600&family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+<body>
+    <main class="main-content">
+        <div class="container">
+            <!-- Bouton retour -->
+            <a href="../index.html" class="recipe-back-link">← Recettes</a>
+
+            <!-- Grande photo -->
+            <div class="recipe-hero-image">
+                <div class="recipe-placeholder">📸</div>
+            </div>
+
+            <!-- Titre centré -->
+            <h1 class="recipe-main-title">Poulet Miel-Moutarde</h1>
+
+            <!-- Badge -->
+            <div style="text-align:center;margin-bottom:1rem;">
+                <span style="background:#fff3cd;color:#856404;padding:4px 12px;border-radius:12px;font-size:0.85rem;font-weight:600;">🆕 Jamais essayée</span>
+            </div>
+
+            <!-- Ligne d'infos centrée -->
+            <div class="recipe-info-line">
+                <span class="info-chip info-chip--time">⏱️ 10 min + marinade</span>
+                <span class="info-chip info-chip--time">🔥 15 min (Air Fryer)</span>
+                <span class="info-chip info-chip--serves">👥 2 pers.</span>
+                <span class="info-chip info-chip--category">🍽️ Plat</span>
+            </div>
+
+            <!-- Section Ingrédients -->
+            <section class="ingredients-section">
+                <h2 class="section-title">Ingrédients</h2>
+                <h3 style="font-size:1rem;color:#666;margin:1rem 0 0.5rem;">Poulet</h3>
+                <ul class="ingredients-list">
+                    <li>
+                        <div class="check-circle"></div>
+                        <span class="ingredient-text">2 filets de poulet</span>
+                    </li>
+                    <li>
+                        <div class="check-circle"></div>
+                        <span class="ingredient-text">2 cs de moutarde à l'ancienne (ou Dijon)</span>
+                    </li>
+                    <li>
+                        <div class="check-circle"></div>
+                        <span class="ingredient-text">2 cs de miel</span>
+                    </li>
+                    <li>
+                        <div class="check-circle"></div>
+                        <span class="ingredient-text">1 cs d'huile d'olive</span>
+                    </li>
+                    <li>
+                        <div class="check-circle"></div>
+                        <span class="ingredient-text">1 gousse d'ail écrasée</span>
+                    </li>
+                    <li>
+                        <div class="check-circle"></div>
+                        <span class="ingredient-text">1 cs de sauce soja (optionnel, pour le caramélisé)</span>
+                    </li>
+                    <li>
+                        <div class="check-circle"></div>
+                        <span class="ingredient-text">Sel, poivre</span>
+                    </li>
+                </ul>
+                <h3 style="font-size:1rem;color:#666;margin:1rem 0 0.5rem;">Accompagnement</h3>
+                <ul class="ingredients-list">
+                    <li>
+                        <div class="check-circle"></div>
+                        <span class="ingredient-text">200 g de haricots verts (frais ou surgelés)</span>
+                    </li>
+                    <li>
+                        <div class="check-circle"></div>
+                        <span class="ingredient-text">Riz basmati (ou pommes de terre grenaille)</span>
+                    </li>
+                    <li>
+                        <div class="check-circle"></div>
+                        <span class="ingredient-text">1 noisette de beurre + 1 gousse d'ail (pour les haricots)</span>
+                    </li>
+                </ul>
+            </section>
+
+            <!-- Section Préparation -->
+            <section class="preparation-section">
+                <h2 class="section-title">Préparation</h2>
+                <ul class="steps-list">
+                    <li class="step-item">
+                        <div class="step-number">1</div>
+                        <div class="step-text">Mélanger dans un bol : moutarde + miel + huile + ail + sel/poivre (+ sauce soja si souhaité)</div>
+                    </li>
+                    <li class="step-item">
+                        <div class="step-number">2</div>
+                        <div class="step-text">Entailler les filets de poulet (2-3 entailles) pour que la marinade pénètre</div>
+                    </li>
+                    <li class="step-item">
+                        <div class="step-number">3</div>
+                        <div class="step-text">Badigeonner les filets avec la sauce, garder 2 cs de côté. Mariner 15-30 min au frigo</div>
+                    </li>
+                    <li class="step-item">
+                        <div class="step-number">4</div>
+                        <div class="step-text">Lancer le riz (ou les patates grenaille à l'Air Fryer 200°C 10 min avant le poulet)</div>
+                    </li>
+                    <li class="step-item">
+                        <div class="step-number">5</div>
+                        <div class="step-text">Air Fryer : 180°C, 12 min — retourner à mi-cuisson</div>
+                    </li>
+                    <li class="step-item">
+                        <div class="step-number">6</div>
+                        <div class="step-text">Badigeonner avec la sauce restante, puis 200°C, 3 min pour caraméliser</div>
+                    </li>
+                    <li class="step-item">
+                        <div class="step-number">7</div>
+                        <div class="step-text">Haricots verts : cuire 8 min à l'eau bouillante salée, égoutter, sauter à la poêle avec beurre + ail 2 min</div>
+                    </li>
+                </ul>
+            </section>
+
+            <!-- Boutons téléchargement -->
+            <div class="download-buttons">
+                <button type="button" class="pdf-button" onclick="printRecipe('Poulet_Miel_Moutarde')">
+                    📄 PDF
+                </button>
+                <button type="button" class="pdf-button img-button" onclick="downloadRecipeAsImage('Poulet_Miel_Moutarde')">
+                    🖼️ IMG
+                </button>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer minimal -->
+    <footer class="site-footer">
+        <div class="container">
+            <p>Fait avec ❤️ par Camille</p>
+        </div>
+    </footer>
+
+    <script src="../js/app.js?v=19"></script>
+</body>
+</html>
