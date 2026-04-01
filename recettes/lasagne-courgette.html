@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lasagne Courgette - Les Recettes de Camille</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600;700&family=Inter:wght@300;400;500;600&family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+<body>
+    <main class="main-content">
+        <div class="container">
+            <!-- Bouton retour -->
+            <a href="../index.html" class="recipe-back-link">← Recettes</a>
+
+            <!-- Image placeholder -->
+            <div class="recipe-hero-image" style="position:relative;overflow:hidden;background:#e8e0d0;display:flex;align-items:center;justify-content:center;min-height:200px;border-radius:16px;">
+                <span style="font-size:4rem;">🥒</span>
+            </div>
+
+            <!-- Titre centré -->
+            <h1 class="recipe-main-title">Lasagne Courgette</h1>
+
+            <!-- Ligne d'infos centrée -->
+            <div class="recipe-info-line">
+                <span class="info-chip info-chip--time">⏱️ 15 min</span>
+                <span class="info-chip info-chip--time">🔥 30 min</span>
+                <span class="info-chip info-chip--serves">👥 4 pers.</span>
+                <span class="info-chip info-chip--category">🍽️ Plat</span>
+                <span class="info-chip info-chip--tag">🥬 Légumes du jardin</span>
+            </div>
+
+            <!-- Section Ingrédients -->
+            <section class="ingredients-section">
+                <h2 class="section-title">Ingrédients</h2>
+                <ul class="ingredients-list">
+                    <li>
+                        <div class="check-circle"></div>
+                        <span class="ingredient-text">4 courgettes (1 kg)</span>
+                    </li>
+                    <li>
+                        <div class="check-circle"></div>
+                        <span class="ingredient-text">2 échalotes</span>
+                    </li>
+                    <li>
+                        <div class="check-circle"></div>
+                        <span class="ingredient-text">600 g de bœuf haché</span>
+                    </li>
+                    <li>
+                        <div class="check-circle"></div>
+                        <span class="ingredient-text">20 cl de coulis de tomate</span>
+                    </li>
+                    <li>
+                        <div class="check-circle"></div>
+                        <span class="ingredient-text">3 pincées de thym</span>
+                    </li>
+                    <li>
+                        <div class="check-circle"></div>
+                        <span class="ingredient-text">Feuilles de lasagne</span>
+                    </li>
+                    <li>
+                        <div class="check-circle"></div>
+                        <span class="ingredient-text">150 g de fromage râpé</span>
+                    </li>
+                    <li>
+                        <div class="check-circle"></div>
+                        <span class="ingredient-text">Huile d'olive</span>
+                    </li>
+                    <li>
+                        <div class="check-circle"></div>
+                        <span class="ingredient-text">Noisette de beurre</span>
+                    </li>
+                    <li>
+                        <div class="check-circle"></div>
+                        <span class="ingredient-text">Sel, poivre</span>
+                    </li>
+                </ul>
+            </section>
+
+            <!-- Section Préparation -->
+            <section class="preparation-section">
+                <h2 class="section-title">Préparation</h2>
+                <ul class="steps-list">
+                    <li class="step-item">
+                        <div class="step-number">1</div>
+                        <div class="step-text">Couper les courgettes en rondelles</div>
+                    </li>
+                    <li class="step-item">
+                        <div class="step-number">2</div>
+                        <div class="step-text">Faire cuire les courgettes avec un filet d'huile dans une poêle pendant 13 min</div>
+                    </li>
+                    <li class="step-item">
+                        <div class="step-number">3</div>
+                        <div class="step-text">Éplucher les échalotes et les couper finement</div>
+                    </li>
+                    <li class="step-item">
+                        <div class="step-number">4</div>
+                        <div class="step-text">Faire chauffer une belle noisette de beurre dans une poêle</div>
+                    </li>
+                    <li class="step-item">
+                        <div class="step-number">5</div>
+                        <div class="step-text">Ajouter les échalotes et les faire revenir 3 min</div>
+                    </li>
+                    <li class="step-item">
+                        <div class="step-number">6</div>
+                        <div class="step-text">Ajouter le bœuf et laisser cuire 5 min</div>
+                    </li>
+                    <li class="step-item">
+                        <div class="step-number">7</div>
+                        <div class="step-text">Verser le coulis de tomate et parsemer de thym</div>
+                    </li>
+                    <li class="step-item">
+                        <div class="step-number">8</div>
+                        <div class="step-text">Saler et poivrer, laisser réduire 8 min</div>
+                    </li>
+                    <li class="step-item">
+                        <div class="step-number">9</div>
+                        <div class="step-text">Monter les lasagnes en alternant une couche de pâte à lasagne, une couche de courgette, une couche de viande et une couche de gruyère</div>
+                    </li>
+                    <li class="step-item">
+                        <div class="step-number">10</div>
+                        <div class="step-text">Enfourner 30 min à 210°C</div>
+                    </li>
+                </ul>
+            </section>
+
+            <!-- Boutons export -->
+            <div class="export-buttons" style="text-align:center;margin:2rem 0;">
+                <button onclick="exportPDF()" class="export-btn" style="padding:12px 24px;border:none;border-radius:12px;background:#2d5016;color:white;font-size:0.95rem;cursor:pointer;margin:0.5rem;">📄 Télécharger PDF</button>
+                <button onclick="exportImage()" class="export-btn" style="padding:12px 24px;border:none;border-radius:12px;background:#8b6914;color:white;font-size:0.95rem;cursor:pointer;margin:0.5rem;">🖼️ Télécharger Image</button>
+            </div>
+        </div>
+    </main>
+
+    <script src="../js/app.js"></script>
+</body>
+</html>
