@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://rjullien.github.io/camille-recettes/sitemap.xml
