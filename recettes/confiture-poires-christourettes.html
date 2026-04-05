@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Confiture traditionnelle de poires Christourettes, variété rustique récoltée avant les gelées. Recette familiale avec poires entières confites.">
+    <meta property="og:title" content="Confiture de Poires Christourettes - Les Recettes de Camille">
+    <meta property="og:description" content="Confiture traditionnelle de poires Christourettes, variété rustique récoltée avant les gelées. Recette familiale avec poires entières confites.">
+    <meta property="og:type" content="article">
+    <meta property="og:image" content="https://rjullien.github.io/camille-recettes/images/confiture-poires-christourettes-1.jpg">
+    <meta property="og:url" content="https://rjullien.github.io/camille-recettes/recettes/confiture-poires-christourettes.html">
+    <title>Confiture de Poires Christourettes - Les Recettes de Camille</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600;700&family=Inter:wght@300;400;500;600&family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+<body>
+    <main class="main-content">
+        <div class="container">
+            <!-- Bouton retour -->
+            <a href="../index.html" class="recipe-back-link">← Recettes</a>
+
+            <!-- Carrousel photos (swipe) -->
+            <div class="recipe-hero-image" style="position:relative;overflow:hidden;">
+                <div class="photo-carousel" style="display:flex;transition:transform 0.3s ease;touch-action:pan-y;">
+                    <img src="../images/confiture-poires-christourettes-1.jpg" alt="Poires Christourettes fraîches du jardin" style="min-width:100%;height:auto;object-fit:contain;border-radius:16px;">
+                    <img src="../images/confiture-poires-christourettes-2.jpg" alt="Poires avec le sucre avant cuisson" style="min-width:100%;height:auto;object-fit:contain;border-radius:16px;">
+                </div>
+                <!-- Indicateurs -->
+                <div style="position:absolute;bottom:12px;left:50%;transform:translateX(-50%);display:flex;gap:8px;">
+                    <div class="carousel-dot" style="width:8px;height:8px;border-radius:50%;background:white;opacity:1;transition:opacity 0.3s;"></div>
+                    <div class="carousel-dot" style="width:8px;height:8px;border-radius:50%;background:white;opacity:0.4;transition:opacity 0.3s;"></div>
+                </div>
+            </div>
+            <script>
+            (function(){
+                const c = document.querySelector('.photo-carousel');
+                const dots = document.querySelectorAll('.carousel-dot');
+                let idx = 0, startX = 0, diff = 0;
+                const go = i => { idx = i; c.style.transform = `translateX(-${idx*100}%)`; dots.forEach((d,j) => d.style.opacity = j===idx?'1':'0.4'); };
+                c.addEventListener('touchstart', e => { startX = e.touches[0].clientX; diff = 0; });
+                c.addEventListener('touchmove', e => { diff = startX - e.touches[0].clientX; });
+                c.addEventListener('touchend', () => { if(Math.abs(diff)>50){ if(diff>0 && idx<1) go(1); else if(diff<0 && idx>0) go(0); } });
+                c.addEventListener('click', () => go(idx===0?1:0));
+            })();
+            </script>
+
+            <!-- Titre centré -->
+            <h1 class="recipe-main-title">Confiture de Poires Christourettes</h1>
+
+            <!-- Badges -->
+            <div style="text-align:center;margin-bottom:1rem;">
+                <span style="background:#fff3e0;color:#e65100;padding:4px 12px;border-radius:12px;font-size:0.85rem;font-weight:600;margin-right:8px;">⚠️ À vérifier</span>
+                <span style="background:#e8f5e8;color:#2e7d32;padding:4px 12px;border-radius:12px;font-size:0.85rem;font-weight:600;">👨‍🍳 Recette familiale</span>
+            </div>
+
+            <!-- Ligne d'infos centrée -->
+            <div class="recipe-info-line">
+                <span class="info-chip info-chip--time">⏱️ 2h</span>
+                <span class="info-chip info-chip--serves">🫙 2-3 pots</span>
+                <span class="info-chip info-chip--category">🍯 Confiture</span>
+            </div>
+
+            <!-- Section Ingrédients -->
+            <section class="ingredients-section">
+                <h2 class="section-title">Ingrédients</h2>
+                <ul class="ingredients-list">
+                    <li>
+                        <div class="check-circle"></div>
+                        <span class="ingredient-text">2,25 kg de poires Christourettes</span>
+                    </li>
+                    <li>
+                        <div class="check-circle"></div>
+                        <span class="ingredient-text">1,8 kg de sucre (800g par kg de fruits)</span>
+                    </li>
+                    <li>
+                        <div class="check-circle"></div>
+                        <span class="ingredient-text">Le jus d'1 citron</span>
+                    </li>
+                    <li>
+                        <div class="check-circle"></div>
+                        <span class="ingredient-text">1 verre d'eau (si nécessaire)</span>
+                    </li>
+                </ul>
+            </section>
+
+            <!-- Section Préparation -->
+            <section class="preparation-section">
+                <h2 class="section-title">Préparation</h2>
+                <ul class="steps-list">
+                    <li class="step-item">
+                        <div class="step-number">1</div>
+                        <div class="step-text">Éplucher délicatement les poires Christourettes avec un épluche-légumes. <strong>Garder les poires entières</strong> et conserver les queues (pour faciliter la prise dans le pot)</div>
+                    </li>
+                    <li class="step-item">
+                        <div class="step-number">2</div>
+                        <div class="step-text">Placer les poires dans une bassine à confiture en inox ou en cuivre</div>
+                    </li>
+                    <li class="step-item">
+                        <div class="step-number">3</div>
+                        <div class="step-text">Ajouter le jus de citron (pour acidifier et prévenir la cristallisation du sucre)</div>
+                    </li>
+                    <li class="step-item">
+                        <div class="step-number">4</div>
+                        <div class="step-text">Ajouter le sucre (800g par kg de fruits ou selon votre goût)</div>
+                    </li>
+                    <li class="step-item">
+                        <div class="step-number">5</div>
+                        <div class="step-text"><strong>Laisser reposer idéalement 24h</strong> (minimum 30 min) pour que le sucre se dissolve et les poires libèrent leur jus. Cela rendra la confiture plus onctueuse</div>
+                    </li>
+                    <li class="step-item">
+                        <div class="step-number">6</div>
+                        <div class="step-text">Porter à ébullition, puis <strong>cuire à feu doux pendant 1 à 2 heures</strong></div>
+                    </li>
+                    <li class="step-item">
+                        <div class="step-number">7</div>
+                        <div class="step-text">Si le sucre commence à caraméliser, ajouter un verre d'eau</div>
+                    </li>
+                    <li class="step-item">
+                        <div class="step-number">8</div>
+                        <div class="step-text">Mettre en pots et fermer hermétiquement à chaud pour garantir une bonne conservation</div>
+                    </li>
+                </ul>
+            </section>
+
+            <!-- Notes -->
+            <section class="ingredients-section" style="margin-top:1.5rem;">
+                <h2 class="section-title">Notes</h2>
+                <ul class="ingredients-list">
+                    <li>
+                        <div class="check-circle"></div>
+                        <span class="ingredient-text">Les poires Christourettes sont une variété rustique récoltée avant les gelées</span>
+                    </li>
+                    <li>
+                        <div class="check-circle"></div>
+                        <span class="ingredient-text">Elles deviennent tendres en cuisant tout en restant entières, comme des poires confites</span>
+                    </li>
+                    <li>
+                        <div class="check-circle"></div>
+                        <span class="ingredient-text">Possibilité d'utiliser jusqu'à 1,3 kg de sucre par kg de fruits selon vos goûts</span>
+                    </li>
+                </ul>
+            </section>
+
+            <!-- Boutons téléchargement -->
+            <div class="download-buttons">
+                <button type="button" class="pdf-button" onclick="printRecipe('Confiture_Poires_Christourettes')">
+                    📄 PDF
+                </button>
+                <button type="button" class="pdf-button img-button" onclick="downloadRecipeAsImage('Confiture_Poires_Christourettes')">
+                    🖼️ IMG
+                </button>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer minimal -->
+    <footer class="site-footer">
+        <div class="container">
+            <p>Fait avec ❤️ par Camille</p>
+        </div>
+    </footer>
+
+    <script src="../js/app.js?v=20"></script>
+</body>
+</html>

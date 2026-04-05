@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Farcies niçois traditionnels aux légumes et à la viande. Spécialité du sud avec tomates, courgettes, aubergines et champignons farcis.">
+    <meta property="og:title" content="Farcies Niçois - Les Recettes de Camille">
+    <meta property="og:description" content="Farcies niçois traditionnels aux légumes et à la viande. Spécialité du sud avec tomates, courgettes, aubergines et champignons farcis.">
+    <meta property="og:type" content="article">
+    <meta property="og:image" content="https://rjullien.github.io/camille-recettes/images/farcies-nicois-1.jpg">
+    <meta property="og:url" content="https://rjullien.github.io/camille-recettes/recettes/farcies-nicois.html">
+    <title>Farcies Niçois - Les Recettes de Camille</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600;700&family=Inter:wght@300;400;500;600&family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+<body>
+    <main class="main-content">
+        <div class="container">
+            <!-- Bouton retour -->
+            <a href="../index.html" class="recipe-back-link">← Recettes</a>
+
+            <!-- Photo principale -->
+            <div class="recipe-hero-image">
+                <img src="../images/farcies-nicois-1.jpg" alt="Légumes évidés prêts à farcir" style="width:100%;height:auto;object-fit:contain;border-radius:16px;">
+            </div>
+
+            <!-- Titre centré -->
+            <h1 class="recipe-main-title">Farcies Niçois</h1>
+
+            <!-- Badges -->
+            <div style="text-align:center;margin-bottom:1rem;">
+                <span style="background:#fff3e0;color:#e65100;padding:4px 12px;border-radius:12px;font-size:0.85rem;font-weight:600;margin-right:8px;">⚠️ À vérifier</span>
+                <span style="background:#e8f5e8;color:#2e7d32;padding:4px 12px;border-radius:12px;font-size:0.85rem;font-weight:600;margin-right:8px;">👨‍🍳 Recette familiale</span>
+                <span style="background:#e1f5fe;color:#0277bd;padding:4px 12px;border-radius:12px;font-size:0.85rem;font-weight:600;">⭐ Spécialité Niçoise</span>
+            </div>
+
+            <!-- Ligne d'infos centrée -->
+            <div class="recipe-info-line">
+                <span class="info-chip info-chip--time">⏱️ 2h</span>
+                <span class="info-chip info-chip--serves">👥 12 pers.</span>
+                <span class="info-chip info-chip--category">🍽️ Plat</span>
+            </div>
+
+            <!-- Section Ingrédients -->
+            <section class="ingredients-section">
+                <h2 class="section-title">Ingrédients</h2>
+                <h3 style="font-size:1rem;color:#666;margin:1rem 0 0.5rem;">Farce</h3>
+                <ul class="ingredients-list">
+                    <li><div class="check-circle"></div><span class="ingredient-text">30 feuilles de bette</span></li>
+                    <li><div class="check-circle"></div><span class="ingredient-text">4 tranches de pain de mie</span></li>
+                    <li><div class="check-circle"></div><span class="ingredient-text">Lait</span></li>
+                    <li><div class="check-circle"></div><span class="ingredient-text">400 g de viande de bœuf hachée</span></li>
+                    <li><div class="check-circle"></div><span class="ingredient-text">4 tranches de jambon cuit</span></li>
+                    <li><div class="check-circle"></div><span class="ingredient-text">1 œuf</span></li>
+                    <li><div class="check-circle"></div><span class="ingredient-text">Sel, poivre</span></li>
+                </ul>
+                <h3 style="font-size:1rem;color:#666;margin:1rem 0 0.5rem;">Légumes (adapter selon vos goûts)</h3>
+                <ul class="ingredients-list">
+                    <li><div class="check-circle"></div><span class="ingredient-text">12 petites tomates très mûres</span></li>
+                    <li><div class="check-circle"></div><span class="ingredient-text">1-2 gros oignons</span></li>
+                    <li><div class="check-circle"></div><span class="ingredient-text">2 courgettes longues</span></li>
+                    <li><div class="check-circle"></div><span class="ingredient-text">2 aubergines longues</span></li>
+                    <li><div class="check-circle"></div><span class="ingredient-text">4 petits poivrons</span></li>
+                    <li><div class="check-circle"></div><span class="ingredient-text">12 champignons de Paris frais</span></li>
+                    <li><div class="check-circle"></div><span class="ingredient-text">12 petites pommes de terre</span></li>
+                    <li><div class="check-circle"></div><span class="ingredient-text">Chapelure</span></li>
+                    <li><div class="check-circle"></div><span class="ingredient-text">Huile d'olive</span></li>
+                </ul>
+            </section>
+
+            <!-- Section Préparation -->
+            <section class="preparation-section">
+                <h2 class="section-title">Préparation de la farce</h2>
+                <ul class="steps-list">
+                    <li class="step-item"><div class="step-number">1</div><div class="step-text">Faire bouillir la partie verte des bettes pendant 5 minutes</div></li>
+                    <li class="step-item"><div class="step-number">2</div><div class="step-text">Hacher les bettes au robot (pas trop fin)</div></li>
+                    <li class="step-item"><div class="step-number">3</div><div class="step-text">Ajouter le jambon cuit, hacher sans broyer</div></li>
+                    <li class="step-item"><div class="step-number">4</div><div class="step-text">Faire revenir la viande hachée à part</div></li>
+                    <li class="step-item"><div class="step-number">5</div><div class="step-text">Mouiller le pain de mie avec du lait et l'ajouter à la viande</div></li>
+                    <li class="step-item"><div class="step-number">6</div><div class="step-text">Mélanger le tout, ajouter l'œuf, saler et poivrer</div></li>
+                </ul>
+
+                <h2 class="section-title" style="margin-top:2rem;">Préparation des légumes</h2>
+                <ul class="steps-list">
+                    <li class="step-item"><div class="step-number">7</div><div class="step-text"><strong>Tomates :</strong> Évider les tomates crues (garder l'intérieur pour un coulis)</div></li>
+                    <li class="step-item"><div class="step-number">8</div><div class="step-text"><strong>Oignons :</strong> Faire bouillir entiers 15 min, récupérer chaque peau</div></li>
+                    <li class="step-item"><div class="step-number">9</div><div class="step-text"><strong>Courgettes :</strong> Bouillir coupées en deux, creuser (garder l'intérieur pour la farce)</div></li>
+                    <li class="step-item"><div class="step-number">10</div><div class="step-text"><strong>Aubergines :</strong> Éplucher partiellement, creuser, découper en morceaux</div></li>
+                    <li class="step-item"><div class="step-number">11</div><div class="step-text"><strong>Poivrons :</strong> Éplucher, épépiner, couper en deux</div></li>
+                    <li class="step-item"><div class="step-number">12</div><div class="step-text"><strong>Champignons :</strong> Éplucher, enlever les pieds</div></li>
+                    <li class="step-item"><div class="step-number">13</div><div class="step-text"><strong>Pommes de terre :</strong> Éplucher et creuser (plat séparé)</div></li>
+                </ul>
+
+                <h2 class="section-title" style="margin-top:2rem;">Farcir et cuire</h2>
+                <ul class="steps-list">
+                    <li class="step-item"><div class="step-number">14</div><div class="step-text">Remplir chaque légume de farce</div></li>
+                    <li class="step-item"><div class="step-number">15</div><div class="step-text">Saupoudrer de chapelure</div></li>
+                    <li class="step-item"><div class="step-number">16</div><div class="step-text">Arroser d'une larme d'huile d'olive</div></li>
+                    <li class="step-item"><div class="step-number">17</div><div class="step-text">Enfourner <strong>1h à 180°C chaleur tournante</strong></div></li>
+                    <li class="step-item"><div class="step-number">18</div><div class="step-text">Vérifier la cuisson au bout de 45 minutes</div></li>
+                </ul>
+            </section>
+
+            <!-- Notes -->
+            <section class="ingredients-section" style="margin-top:1.5rem;">
+                <h2 class="section-title">Notes</h2>
+                <ul class="ingredients-list">
+                    <li><div class="check-circle"></div><span class="ingredient-text">L'oignon farci est le plus long à réaliser, mais un des meilleurs !</span></li>
+                    <li><div class="check-circle"></div><span class="ingredient-text">Servir les pommes de terre chaudes (ne s'améliorent pas réchauffées)</span></li>
+                    <li><div class="check-circle"></div><span class="ingredient-text">Les autres farcies peuvent se réchauffer et sont même meilleurs le lendemain</span></li>
+                </ul>
+            </section>
+
+            <!-- Boutons téléchargement -->
+            <div class="download-buttons">
+                <button type="button" class="pdf-button" onclick="printRecipe('Farcies_Nicois')">📄 PDF</button>
+                <button type="button" class="pdf-button img-button" onclick="downloadRecipeAsImage('Farcies_Nicois')">🖼️ IMG</button>
+            </div>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container"><p>Fait avec ❤️ par Camille</p></div>
+    </footer>
+
+    <script src="../js/app.js?v=20"></script>
+</body>
+</html>

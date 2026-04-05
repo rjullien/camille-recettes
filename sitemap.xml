@@ -7,7 +7,19 @@
     <priority>1.0</priority>
   </url>
   <url>
+    <loc>https://rjullien.github.io/camille-recettes/recettes/beignets-fleurs-courgettes.html</loc>
+    <lastmod>2026-04-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://rjullien.github.io/camille-recettes/recettes/blanquette-chevreau.html</loc>
+    <lastmod>2026-04-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://rjullien.github.io/camille-recettes/recettes/brioche-rois-nicoise.html</loc>
     <lastmod>2026-04-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -20,6 +32,12 @@
   </url>
   <url>
     <loc>https://rjullien.github.io/camille-recettes/recettes/caviar-aubergine.html</loc>
+    <lastmod>2026-04-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://rjullien.github.io/camille-recettes/recettes/confiture-poires-christourettes.html</loc>
     <lastmod>2026-04-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -43,6 +61,24 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://rjullien.github.io/camille-recettes/recettes/farcies-nicois.html</loc>
+    <lastmod>2026-04-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://rjullien.github.io/camille-recettes/recettes/flan-prunes.html</loc>
+    <lastmod>2026-04-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://rjullien.github.io/camille-recettes/recettes/gnocchis-pommes-terre.html</loc>
+    <lastmod>2026-04-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://rjullien.github.io/camille-recettes/recettes/lasagne-courgette.html</loc>
     <lastmod>2026-04-05</lastmod>
     <changefreq>monthly</changefreq>
@@ -61,13 +97,43 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://rjullien.github.io/camille-recettes/recettes/pain-depices.html</loc>
+    <lastmod>2026-04-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://rjullien.github.io/camille-recettes/recettes/pain-maison-map.html</loc>
+    <lastmod>2026-04-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://rjullien.github.io/camille-recettes/recettes/pate-crevette.html</loc>
     <lastmod>2026-04-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://rjullien.github.io/camille-recettes/recettes/pate-gelee-coings.html</loc>
+    <lastmod>2026-04-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://rjullien.github.io/camille-recettes/recettes/pommes-confiture-myrtilles.html</loc>
+    <lastmod>2026-04-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://rjullien.github.io/camille-recettes/recettes/poulet-miel-moutarde.html</loc>
+    <lastmod>2026-04-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://rjullien.github.io/camille-recettes/recettes/ratatouille-legumes.html</loc>
     <lastmod>2026-04-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -103,13 +169,61 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://rjullien.github.io/camille-recettes/recettes/tarte-poire-chocolat.html</loc>
+    <lastmod>2026-04-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://rjullien.github.io/camille-recettes/recettes/tarte-poires-framboises-chocolat.html</loc>
+    <lastmod>2026-04-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://rjullien.github.io/camille-recettes/recettes/tarte-quetsches.html</loc>
+    <lastmod>2026-04-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://rjullien.github.io/camille-recettes/recettes/tarte-tomate.html</loc>
     <lastmod>2026-04-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://rjullien.github.io/camille-recettes/recettes/tarte-tomates-moutarde.html</loc>
+    <lastmod>2026-04-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://rjullien.github.io/camille-recettes/recettes/tomate-mozza.html</loc>
+    <lastmod>2026-04-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://rjullien.github.io/camille-recettes/recettes/verrines-poire-chocolat.html</loc>
+    <lastmod>2026-04-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://rjullien.github.io/camille-recettes/recettes/verrines-pommes-myrtilles.html</loc>
+    <lastmod>2026-04-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://rjullien.github.io/camille-recettes/recettes/yaourts-boire-fraise.html</loc>
+    <lastmod>2026-04-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://rjullien.github.io/camille-recettes/recettes/yaourts-citron-maison.html</loc>
     <lastmod>2026-04-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>

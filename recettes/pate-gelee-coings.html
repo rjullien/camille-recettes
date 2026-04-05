@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Pâte et gelée de coings traditionnelle. Recette familiale d'automne avec méthode complète de préparation des fruits.">
+    <meta property="og:title" content="Pâte et Gelée de Coings - Les Recettes de Camille">
+    <meta property="og:description" content="Pâte et gelée de coings traditionnelle. Recette familiale d'automne avec méthode complète de préparation des fruits.">
+    <meta property="og:type" content="article">
+    <meta property="og:image" content="https://rjullien.github.io/camille-recettes/images/pate-coings-1.jpg">
+    <meta property="og:url" content="https://rjullien.github.io/camille-recettes/recettes/pate-gelee-coings.html">
+    <title>Pâte et Gelée de Coings - Les Recettes de Camille</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600;700&family=Inter:wght@300;400;500;600&family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+<body>
+    <main class="main-content">
+        <div class="container">
+            <!-- Bouton retour -->
+            <a href="../index.html" class="recipe-back-link">← Recettes</a>
+
+            <!-- Photo principale -->
+            <div class="recipe-hero-image">
+                <img src="../images/pate-coings-1.jpg" alt="Coings frais pour la confection" style="width:100%;height:auto;object-fit:contain;border-radius:16px;">
+            </div>
+
+            <!-- Titre centré -->
+            <h1 class="recipe-main-title">Pâte et Gelée de Coings</h1>
+
+            <!-- Badges -->
+            <div style="text-align:center;margin-bottom:1rem;">
+                <span style="background:#fff3e0;color:#e65100;padding:4px 12px;border-radius:12px;font-size:0.85rem;font-weight:600;margin-right:8px;">⚠️ À vérifier</span>
+                <span style="background:#e8f5e8;color:#2e7d32;padding:4px 12px;border-radius:12px;font-size:0.85rem;font-weight:600;margin-right:8px;">👨‍🍳 Recette familiale</span>
+                <span style="background:#f3e5f5;color:#7b1fa2;padding:4px 12px;border-radius:12px;font-size:0.85rem;font-weight:600;">🍂 Automne</span>
+            </div>
+
+            <!-- Ligne d'infos centrée -->
+            <div class="recipe-info-line">
+                <span class="info-chip info-chip--time">⏱️ 4-5h</span>
+                <span class="info-chip info-chip--serves">🫙 Plusieurs pots</span>
+                <span class="info-chip info-chip--category">🍯 Confiture</span>
+            </div>
+
+            <!-- Section Ingrédients -->
+            <section class="ingredients-section">
+                <h2 class="section-title">Ingrédients</h2>
+                <ul class="ingredients-list">
+                    <li>
+                        <div class="check-circle"></div>
+                        <span class="ingredient-text">Quelques kilos de coings</span>
+                    </li>
+                    <li>
+                        <div class="check-circle"></div>
+                        <span class="ingredient-text">Même poids de sucre que de pulpe obtenue</span>
+                    </li>
+                    <li>
+                        <div class="check-circle"></div>
+                        <span class="ingredient-text">Une demi-journée libre</span>
+                    </li>
+                </ul>
+            </section>
+
+            <!-- Section Préparation -->
+            <section class="preparation-section">
+                <h2 class="section-title">Préparation</h2>
+                <ul class="steps-list">
+                    <li class="step-item">
+                        <div class="step-number">1</div>
+                        <div class="step-text">Cueillir les coings, parfois les gauler</div>
+                    </li>
+                    <li class="step-item">
+                        <div class="step-number">2</div>
+                        <div class="step-text">Laver les coings pour enlever le duvet, les couper en quatre, <strong>sans les éplucher ni enlever les pépins</strong></div>
+                    </li>
+                    <li class="step-item">
+                        <div class="step-number">3</div>
+                        <div class="step-text">Mettre à bouillir dans de l'eau jusqu'à ce qu'ils soient tendres (prévoir <strong>1 à 2 heures de cuisson</strong> selon la qualité des coings)</div>
+                    </li>
+                    <li class="step-item">
+                        <div class="step-number">4</div>
+                        <div class="step-text">Prélever les coings au fur et à mesure avec une écumoire, enlever délicatement les pépins avec une cuillère à soupe et un couteau</div>
+                    </li>
+                    <li class="step-item">
+                        <div class="step-number">5</div>
+                        <div class="step-text">Passer la chair au moulin à légumes</div>
+                    </li>
+                    <li class="step-item">
+                        <div class="step-number">6</div>
+                        <div class="step-text"><strong>Peser la chair</strong> obtenue et ajouter le même poids en sucre. Mélanger délicatement</div>
+                    </li>
+                    <li class="step-item">
+                        <div class="step-number">7</div>
+                        <div class="step-text">Mettre la chair à chauffer sur gaz de préférence. <strong>Tourner en permanence</strong> (attention sur plaque électrique, ça brûle facilement au fond)</div>
+                    </li>
+                    <li class="step-item">
+                        <div class="step-number">8</div>
+                        <div class="step-text">Pendant ce temps, <strong>filtrer l'eau de cuisson</strong> et la remettre sur feu pour la faire réduire à gros bouillons pendant 30 minutes</div>
+                    </li>
+                    <li class="step-item">
+                        <div class="step-number">9</div>
+                        <div class="step-text">Dès que la pâte bout fort, <strong>chronométrer 5 minutes</strong> et mettre en barquettes</div>
+                    </li>
+                    <li class="step-item">
+                        <div class="step-number">10</div>
+                        <div class="step-text">Peser la gelée obtenue, ajouter le même poids de sucre et remettre à cuire</div>
+                    </li>
+                    <li class="step-item">
+                        <div class="step-number">11</div>
+                        <div class="step-text">Dès que la gelée bout, chronométrer 5 minutes, mettre en pots et fermer à chaud</div>
+                    </li>
+                </ul>
+            </section>
+
+            <!-- Notes -->
+            <section class="ingredients-section" style="margin-top:1.5rem;">
+                <h2 class="section-title">Notes</h2>
+                <ul class="ingredients-list">
+                    <li>
+                        <div class="check-circle"></div>
+                        <span class="ingredient-text">Si la pâte cristallise sur le dessus : pas assez cuite</span>
+                    </li>
+                    <li>
+                        <div class="check-circle"></div>
+                        <span class="ingredient-text">Si elle est foncée : a accroché au fond ou trop cuite</span>
+                    </li>
+                    <li>
+                        <div class="check-circle"></div>
+                        <span class="ingredient-text">Fin octobre = saison idéale des coings dans les Hautes-Alpes</span>
+                    </li>
+                    <li>
+                        <div class="check-circle"></div>
+                        <span class="ingredient-text">Prévoir une demi-journée complète pour cette recette</span>
+                    </li>
+                </ul>
+            </section>
+
+            <!-- Boutons téléchargement -->
+            <div class="download-buttons">
+                <button type="button" class="pdf-button" onclick="printRecipe('Pate_Gelee_Coings')">
+                    📄 PDF
+                </button>
+                <button type="button" class="pdf-button img-button" onclick="downloadRecipeAsImage('Pate_Gelee_Coings')">
+                    🖼️ IMG
+                </button>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer minimal -->
+    <footer class="site-footer">
+        <div class="container">
+            <p>Fait avec ❤️ par Camille</p>
+        </div>
+    </footer>
+
+    <script src="../js/app.js?v=20"></script>
+</body>
+</html>

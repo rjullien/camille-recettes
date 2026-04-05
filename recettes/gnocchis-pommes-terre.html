@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Gnocchis de pommes de terre maison faciles à préparer. Recette familiale traditionnelle avec technique étape par étape.">
+    <meta property="og:title" content="Gnocchis de Pommes de Terre - Les Recettes de Camille">
+    <meta property="og:description" content="Gnocchis de pommes de terre maison faciles à préparer. Recette familiale traditionnelle avec technique étape par étape.">
+    <meta property="og:type" content="article">
+    <meta property="og:image" content="https://rjullien.github.io/camille-recettes/images/gnocchis-1.jpg">
+    <meta property="og:url" content="https://rjullien.github.io/camille-recettes/recettes/gnocchis-pommes-terre.html">
+    <title>Gnocchis de Pommes de Terre - Les Recettes de Camille</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600;700&family=Inter:wght@300;400;500;600&family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+<body>
+    <main class="main-content">
+        <div class="container">
+            <!-- Bouton retour -->
+            <a href="../index.html" class="recipe-back-link">← Recettes</a>
+
+            <!-- Titre centré (sans image pour l'instant) -->
+            <h1 class="recipe-main-title">Gnocchis de Pommes de Terre</h1>
+
+            <!-- Badges -->
+            <div style="text-align:center;margin-bottom:1rem;">
+                <span style="background:#fff3e0;color:#e65100;padding:4px 12px;border-radius:12px;font-size:0.85rem;font-weight:600;margin-right:8px;">⚠️ À vérifier</span>
+                <span style="background:#e8f5e8;color:#2e7d32;padding:4px 12px;border-radius:12px;font-size:0.85rem;font-weight:600;margin-right:8px;">👨‍🍳 Recette familiale</span>
+                <span style="background:#f3e5f5;color:#7b1fa2;padding:4px 12px;border-radius:12px;font-size:0.85rem;font-weight:600;">🇮🇹 Italien</span>
+            </div>
+
+            <!-- Ligne d'infos centrée -->
+            <div class="recipe-info-line">
+                <span class="info-chip info-chip--time">⏱️ 2h</span>
+                <span class="info-chip info-chip--serves">👥 6 pers.</span>
+                <span class="info-chip info-chip--category">🍝 Plat</span>
+            </div>
+
+            <!-- Section Ingrédients -->
+            <section class="ingredients-section">
+                <h2 class="section-title">Ingrédients</h2>
+                <ul class="ingredients-list">
+                    <li>
+                        <div class="check-circle"></div>
+                        <span class="ingredient-text">1 kg de pommes de terre</span>
+                    </li>
+                    <li>
+                        <div class="check-circle"></div>
+                        <span class="ingredient-text">250 g de farine</span>
+                    </li>
+                    <li>
+                        <div class="check-circle"></div>
+                        <span class="ingredient-text">1 œuf</span>
+                    </li>
+                    <li>
+                        <div class="check-circle"></div>
+                        <span class="ingredient-text">1 cc de sel</span>
+                    </li>
+                </ul>
+            </section>
+
+            <!-- Section Préparation -->
+            <section class="preparation-section">
+                <h2 class="section-title">Préparation</h2>
+                <ul class="steps-list">
+                    <li class="step-item">
+                        <div class="step-number">1</div>
+                        <div class="step-text">Faire bouillir les pommes de terre <strong>avec la peau</strong> dans de l'eau salée (pour éviter qu'elles se gorgent d'eau)</div>
+                    </li>
+                    <li class="step-item">
+                        <div class="step-number">2</div>
+                        <div class="step-text">Peler et écraser les pommes de terre comme pour une purée</div>
+                    </li>
+                    <li class="step-item">
+                        <div class="step-number">3</div>
+                        <div class="step-text">Mélanger avec la farine et l'œuf, saler et former un rectangle</div>
+                    </li>
+                    <li class="step-item">
+                        <div class="step-number">4</div>
+                        <div class="step-text">Laisser reposer 30 minutes</div>
+                    </li>
+                    <li class="step-item">
+                        <div class="step-number">5</div>
+                        <div class="step-text">Découper une tranche et la rouler en boudin <strong>de la grosseur d'un doigt</strong></div>
+                    </li>
+                    <li class="step-item">
+                        <div class="step-number">6</div>
+                        <div class="step-text">Découper en morceaux d'environ 2 centimètres</div>
+                    </li>
+                    <li class="step-item">
+                        <div class="step-number">7</div>
+                        <div class="step-text">Continuer ainsi jusqu'à épuisement de la pâte</div>
+                    </li>
+                    <li class="step-item">
+                        <div class="step-number">8</div>
+                        <div class="step-text">Pour perfectionner l'aspect : les rouler sur le dos d'une fourchette</div>
+                    </li>
+                    <li class="step-item">
+                        <div class="step-number">9</div>
+                        <div class="step-text">Les jeter dans une grande quantité d'eau bouillante salée</div>
+                    </li>
+                    <li class="step-item">
+                        <div class="step-number">10</div>
+                        <div class="step-text"><strong>Dès qu'ils remontent à la surface</strong>, les récupérer avec une écumoire</div>
+                    </li>
+                    <li class="step-item">
+                        <div class="step-number">11</div>
+                        <div class="step-text">Assaisonner avec la sauce de votre choix (beurre, tomate, bolognaise...)</div>
+                    </li>
+                    <li class="step-item">
+                        <div class="step-number">12</div>
+                        <div class="step-text">Ajouter votre fromage râpé favori et servir immédiatement</div>
+                    </li>
+                </ul>
+            </section>
+
+            <!-- Notes -->
+            <section class="ingredients-section" style="margin-top:1.5rem;">
+                <h2 class="section-title">Notes</h2>
+                <ul class="ingredients-list">
+                    <li>
+                        <div class="check-circle"></div>
+                        <span class="ingredient-text">Important : cuire les pommes de terre avec la peau pour éviter qu'elles se gorgent d'eau</span>
+                    </li>
+                    <li>
+                        <div class="check-circle"></div>
+                        <span class="ingredient-text">Les gnocchis peuvent être préparés à l'avance et conservés au réfrigérateur</span>
+                    </li>
+                    <li>
+                        <div class="check-circle"></div>
+                        <span class="ingredient-text">Cuisson rapide : ils sont cuits dès qu'ils remontent à la surface</span>
+                    </li>
+                </ul>
+            </section>
+
+            <!-- Boutons téléchargement -->
+            <div class="download-buttons">
+                <button type="button" class="pdf-button" onclick="printRecipe('Gnocchis_Pommes_Terre')">
+                    📄 PDF
+                </button>
+                <button type="button" class="pdf-button img-button" onclick="downloadRecipeAsImage('Gnocchis_Pommes_Terre')">
+                    🖼️ IMG
+                </button>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer minimal -->
+    <footer class="site-footer">
+        <div class="container">
+            <p>Fait avec ❤️ par Camille</p>
+        </div>
+    </footer>
+
+    <script src="../js/app.js?v=20"></script>
+</body>
+</html>

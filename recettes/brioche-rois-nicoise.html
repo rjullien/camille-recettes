@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Brioche des rois niçoise traditionnelle à la machine à pain, garnie de gelée de coing et fruits confits. Recette familiale pour l'Épiphanie.">
+    <meta property="og:title" content="Brioche des Rois Niçoise - Les Recettes de Camille">
+    <meta property="og:description" content="Brioche des rois niçoise traditionnelle à la machine à pain, garnie de gelée de coing et fruits confits. Recette familiale pour l'Épiphanie.">
+    <meta property="og:type" content="article">
+    <meta property="og:image" content="https://rjullien.github.io/camille-recettes/images/brioche-rois-nicoise-1.jpg">
+    <meta property="og:url" content="https://rjullien.github.io/camille-recettes/recettes/brioche-rois-nicoise.html">
+    <title>Brioche des Rois Niçoise - Les Recettes de Camille</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600;700&family=Inter:wght@300;400;500;600&family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+<body>
+    <main class="main-content">
+        <div class="container">
+            <!-- Bouton retour -->
+            <a href="../index.html" class="recipe-back-link">← Recettes</a>
+
+            <!-- Carrousel photos (swipe) -->
+            <div class="recipe-hero-image" style="position:relative;overflow:hidden;">
+                <div class="photo-carousel" style="display:flex;transition:transform 0.3s ease;touch-action:pan-y;">
+                    <img src="../images/brioche-rois-nicoise-1.jpg" alt="Brioche des rois niçoise décorée" style="min-width:100%;height:auto;object-fit:contain;border-radius:16px;">
+                    <img src="../images/brioche-rois-nicoise-2.jpg" alt="Brioche après cuisson avant décoration" style="min-width:100%;height:auto;object-fit:contain;border-radius:16px;">
+                </div>
+                <!-- Indicateurs -->
+                <div style="position:absolute;bottom:12px;left:50%;transform:translateX(-50%);display:flex;gap:8px;">
+                    <div class="carousel-dot" style="width:8px;height:8px;border-radius:50%;background:white;opacity:1;transition:opacity 0.3s;"></div>
+                    <div class="carousel-dot" style="width:8px;height:8px;border-radius:50%;background:white;opacity:0.4;transition:opacity 0.3s;"></div>
+                </div>
+            </div>
+            <script>
+            (function(){
+                const c = document.querySelector('.photo-carousel');
+                const dots = document.querySelectorAll('.carousel-dot');
+                let idx = 0, startX = 0, diff = 0;
+                const go = i => { idx = i; c.style.transform = `translateX(-${idx*100}%)`; dots.forEach((d,j) => d.style.opacity = j===idx?'1':'0.4'); };
+                c.addEventListener('touchstart', e => { startX = e.touches[0].clientX; diff = 0; });
+                c.addEventListener('touchmove', e => { diff = startX - e.touches[0].clientX; });
+                c.addEventListener('touchend', () => { if(Math.abs(diff)>50){ if(diff>0 && idx<1) go(1); else if(diff<0 && idx>0) go(0); } });
+                c.addEventListener('click', () => go(idx===0?1:0));
+            })();
+            </script>
+
+            <!-- Titre centré -->
+            <h1 class="recipe-main-title">Brioche des Rois Niçoise</h1>
+
+            <!-- Badges -->
+            <div style="text-align:center;margin-bottom:1rem;">
+                <span style="background:#fff3e0;color:#e65100;padding:4px 12px;border-radius:12px;font-size:0.85rem;font-weight:600;margin-right:8px;">⚠️ À vérifier</span>
+                <span style="background:#e8f5e8;color:#2e7d32;padding:4px 12px;border-radius:12px;font-size:0.85rem;font-weight:600;margin-right:8px;">👨‍🍳 Recette familiale</span>
+                <span style="background:#fce4ec;color:#c62828;padding:4px 12px;border-radius:12px;font-size:0.85rem;font-weight:600;">👑 Épiphanie</span>
+            </div>
+
+            <!-- Ligne d'infos centrée -->
+            <div class="recipe-info-line">
+                <span class="info-chip info-chip--time">⏱️ 5h</span>
+                <span class="info-chip info-chip--serves">👥 6-8 pers.</span>
+                <span class="info-chip info-chip--category">🍞 Pain & Brioche</span>
+            </div>
+
+            <!-- Section Ingrédients -->
+            <section class="ingredients-section">
+                <h2 class="section-title">Ingrédients</h2>
+                <h3 style="font-size:1rem;color:#666;margin:1rem 0 0.5rem;">La pâte à brioche</h3>
+                <ul class="ingredients-list">
+                    <li>
+                        <div class="check-circle"></div>
+                        <span class="ingredient-text">350 g de farine</span>
+                    </li>
+                    <li>
+                        <div class="check-circle"></div>
+                        <span class="ingredient-text">1 cc de sel</span>
+                    </li>
+                    <li>
+                        <div class="check-circle"></div>
+                        <span class="ingredient-text">70 g de beurre (moitié St Hubert 38% + beurre normal 82%)</span>
+                    </li>
+                    <li>
+                        <div class="check-circle"></div>
+                        <span class="ingredient-text">1 œuf</span>
+                    </li>
+                    <li>
+                        <div class="check-circle"></div>
+                        <span class="ingredient-text">140 ml de lait</span>
+                    </li>
+                    <li>
+                        <div class="check-circle"></div>
+                        <span class="ingredient-text">60 g de sucre</span>
+                    </li>
+                    <li>
+                        <div class="check-circle"></div>
+                        <span class="ingredient-text">20 g de levure de boulanger fraîche (ou 1,5 cc de levure sèche)</span>
+                    </li>
+                </ul>
+                <h3 style="font-size:1rem;color:#666;margin:1rem 0 0.5rem;">Décoration</h3>
+                <ul class="ingredients-list">
+                    <li>
+                        <div class="check-circle"></div>
+                        <span class="ingredient-text">Gelée de coing</span>
+                    </li>
+                    <li>
+                        <div class="check-circle"></div>
+                        <span class="ingredient-text">Sucre en grains</span>
+                    </li>
+                    <li>
+                        <div class="check-circle"></div>
+                        <span class="ingredient-text">Poires Christourettes confites (ou autres fruits confits)</span>
+                    </li>
+                </ul>
+            </section>
+
+            <!-- Section Préparation -->
+            <section class="preparation-section">
+                <h2 class="section-title">Préparation</h2>
+                <ul class="steps-list">
+                    <li class="step-item">
+                        <div class="step-number">1</div>
+                        <div class="step-text">Faire tiédir le lait (30s au micro-ondes si il sort du frigo) et y délayer la levure</div>
+                    </li>
+                    <li class="step-item">
+                        <div class="step-number">2</div>
+                        <div class="step-text">Mettre tous les ingrédients dans la cuve de la machine à pain, <strong>ajouter le sel en dernier</strong></div>
+                    </li>
+                    <li class="step-item">
+                        <div class="step-number">3</div>
+                        <div class="step-text">Sur MAP Panasonic : sélectionner "basic" et option "dough" - durée 2h20</div>
+                    </li>
+                    <li class="step-item">
+                        <div class="step-number">4</div>
+                        <div class="step-text">Sortir la pâte de la MAP et la <strong>dégazer</strong> sur du papier sulfurisé saupoudré de farine</div>
+                    </li>
+                    <li class="step-item">
+                        <div class="step-number">5</div>
+                        <div class="step-text">Former une couronne et la déposer sur le papier sulfurisé</div>
+                    </li>
+                    <li class="step-item">
+                        <div class="step-number">6</div>
+                        <div class="step-text"><strong>Deuxième levée :</strong> Faire chauffer le four à 50°. Arrêter le four et mettre la galette à l'intérieur pendant 2 heures</div>
+                    </li>
+                    <li class="step-item">
+                        <div class="step-number">7</div>
+                        <div class="step-text">Laisser la galette dans le four et mettre le four sur 180° chaleur tournante/grill pendant <strong>20 minutes</strong></div>
+                    </li>
+                    <li class="step-item">
+                        <div class="step-number">8</div>
+                        <div class="step-text">Sortir la galette du four et la napper avec la gelée de coing (si trop épaisse, la délayer avec un peu d'eau)</div>
+                    </li>
+                    <li class="step-item">
+                        <div class="step-number">9</div>
+                        <div class="step-text">Ajouter le sucre en grains et décorer avec des poires confites ou autres fruits confits</div>
+                    </li>
+                    <li class="step-item">
+                        <div class="step-number">10</div>
+                        <div class="step-text">Laisser refroidir et déguster 👑</div>
+                    </li>
+                </ul>
+            </section>
+
+            <!-- Notes -->
+            <section class="ingredients-section" style="margin-top:1.5rem;">
+                <h2 class="section-title">Notes</h2>
+                <ul class="ingredients-list">
+                    <li>
+                        <div class="check-circle"></div>
+                        <span class="ingredient-text">Tradition niçoise pour l'Épiphanie, alternative à la galette des rois</span>
+                    </li>
+                    <li>
+                        <div class="check-circle"></div>
+                        <span class="ingredient-text">Possibilité de faire sans machine à pain : pétrir 10 min et laisser lever 1h30 en pâton</span>
+                    </li>
+                    <li>
+                        <div class="check-circle"></div>
+                        <span class="ingredient-text">Se conserve 3-4 jours dans un torchon</span>
+                    </li>
+                </ul>
+            </section>
+
+            <!-- Boutons téléchargement -->
+            <div class="download-buttons">
+                <button type="button" class="pdf-button" onclick="printRecipe('Brioche_Rois_Nicoise')">
+                    📄 PDF
+                </button>
+                <button type="button" class="pdf-button img-button" onclick="downloadRecipeAsImage('Brioche_Rois_Nicoise')">
+                    🖼️ IMG
+                </button>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer minimal -->
+    <footer class="site-footer">
+        <div class="container">
+            <p>Fait avec ❤️ par Camille</p>
+        </div>
+    </footer>
+
+    <script src="../js/app.js?v=20"></script>
+</body>
+</html>
