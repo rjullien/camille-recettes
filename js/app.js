@@ -438,19 +438,40 @@ function renderRecipeToCanvas(data, scale, callback) {
         var stepBulletLeft = stepPadLeft;
         var stepTextLeft = stepPadLeft + 16 * S;
         var stepMaxW = W - stepTextLeft - 20 * S;
-        var stepLineH = 14 * 1.6 * S; // font-size 14 * line-height 1.6
-        var stepGap = 10 * S;
+        var stepBaseFontSize = 14;
+        var stepFontSize = stepBaseFontSize;
+
+        // Auto-size: reduce font if steps don't fit
+        function calcStepsHeight(fontSize) {
+            var lineH = fontSize * 1.6 * S;
+            var gap = (fontSize < 13 ? 6 : 10) * S;
+            var y = 0;
+            ctx.font = '400 ' + (fontSize * S) + 'px Montserrat, sans-serif';
+            for (var si = 0; si < data.steps.length; si++) {
+                var lines = wrapText(ctx, data.steps[si], stepMaxW);
+                y += lines.length * lineH + gap;
+            }
+            return y;
+        }
+
+        var availH = colEndY - (colStartY + metaPadTop) - 20 * S;
+        while (stepFontSize > 9 && calcStepsHeight(stepFontSize) > availH) {
+            stepFontSize -= 0.5;
+        }
+
+        var stepLineH = stepFontSize * 1.6 * S;
+        var stepGap = (stepFontSize < 13 ? 6 : 10) * S;
         var stepY = colStartY + metaPadTop;
 
         for (var si = 0; si < data.steps.length; si++) {
             if (stepY > colEndY - 20 * S) break;
             // Bullet
             ctx.fillStyle = '#5C5C5C';
-            ctx.font = 'bold ' + (14 * S) + 'px Montserrat, sans-serif';
+            ctx.font = 'bold ' + (stepFontSize * S) + 'px Montserrat, sans-serif';
             ctx.fillText('\u2022', stepBulletLeft, stepY);
             // Texte
             ctx.fillStyle = '#2A2A2A';
-            ctx.font = '400 ' + (14 * S) + 'px Montserrat, sans-serif';
+            ctx.font = '400 ' + (stepFontSize * S) + 'px Montserrat, sans-serif';
             var stepLines = wrapText(ctx, data.steps[si], stepMaxW);
             for (var sl = 0; sl < stepLines.length; sl++) {
                 ctx.fillText(stepLines[sl], stepTextLeft, stepY);
