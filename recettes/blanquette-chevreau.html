@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blanquette de Chevreau de Pâques - Les Recettes de Camille</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600;700&family=Inter:wght@300;400;500;600&family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+<body>
+    <main class="main-content">
+        <div class="container">
+            <!-- Bouton retour -->
+            <a href="../index.html" class="recipe-back-link">← Recettes</a>
+
+            <!-- Grande photo -->
+            <div class="recipe-hero-image">
+                <img src="../images/blanquette-chevreau.jpg" alt="Blanquette de chevreau de Pâques aux chanterelles" loading="lazy">
+            </div>
+
+            <!-- Titre centré -->
+            <h1 class="recipe-main-title">Blanquette de Chevreau de Pâques</h1>
+
+            <!-- Badge -->
+            <div style="text-align:center;margin-bottom:1rem;">
+                <span style="background:#d4edda;color:#155724;padding:4px 12px;border-radius:12px;font-size:0.85rem;font-weight:600;">✅ Testée & approuvée</span>
+            </div>
+
+            <!-- Ligne d'infos centrée -->
+            <div class="recipe-info-line">
+                <span class="info-chip info-chip--time">⏱️ 15 min</span>
+                <span class="info-chip info-chip--time">🔥 35 min (cocotte-minute)</span>
+                <span class="info-chip info-chip--serves">👥 4 pers.</span>
+                <span class="info-chip info-chip--category">🍽️ Plat</span>
+            </div>
+
+            <!-- Section Ingrédients -->
+            <section class="ingredients-section">
+                <h2 class="section-title">Ingrédients</h2>
+                <h3 style="font-size:1rem;color:#666;margin:1rem 0 0.5rem;">La viande</h3>
+                <ul class="ingredients-list">
+                    <li>
+                        <div class="check-circle"></div>
+                        <span class="ingredient-text">800 g d'épaule ou de collier de chevreau (avec os = plus de goût)</span>
+                    </li>
+                    <li>
+                        <div class="check-circle"></div>
+                        <span class="ingredient-text">1 oignon entier</span>
+                    </li>
+                    <li>
+                        <div class="check-circle"></div>
+                        <span class="ingredient-text">2 carottes</span>
+                    </li>
+                    <li>
+                        <div class="check-circle"></div>
+                        <span class="ingredient-text">1 branche de thym</span>
+                    </li>
+                    <li>
+                        <div class="check-circle"></div>
+                        <span class="ingredient-text">1 feuille de laurier</span>
+                    </li>
+                    <li>
+                        <div class="check-circle"></div>
+                        <span class="ingredient-text">2 cs d'huile d'olive</span>
+                    </li>
+                </ul>
+                <h3 style="font-size:1rem;color:#666;margin:1rem 0 0.5rem;">La sauce</h3>
+                <ul class="ingredients-list">
+                    <li>
+                        <div class="check-circle"></div>
+                        <span class="ingredient-text">2 jaunes d'œufs</span>
+                    </li>
+                    <li>
+                        <div class="check-circle"></div>
+                        <span class="ingredient-text">20 cl de lait sans lactose</span>
+                    </li>
+                    <li>
+                        <div class="check-circle"></div>
+                        <span class="ingredient-text">1 cs de farine</span>
+                    </li>
+                </ul>
+                <h3 style="font-size:1rem;color:#666;margin:1rem 0 0.5rem;">Les légumes & accompagnement</h3>
+                <ul class="ingredients-list">
+                    <li>
+                        <div class="check-circle"></div>
+                        <span class="ingredient-text">200 g de chanterelles</span>
+                    </li>
+                    <li>
+                        <div class="check-circle"></div>
+                        <span class="ingredient-text">8 petites pommes de terre (2 par personne)</span>
+                    </li>
+                    <li>
+                        <div class="check-circle"></div>
+                        <span class="ingredient-text">Sel</span>
+                    </li>
+                </ul>
+            </section>
+
+            <!-- Section Préparation -->
+            <section class="preparation-section">
+                <h2 class="section-title">Préparation</h2>
+                <ul class="steps-list">
+                    <li class="step-item">
+                        <div class="step-number">1</div>
+                        <div class="step-text">Faire revenir les morceaux de chevreau dans 2 cs d'huile d'olive</div>
+                    </li>
+                    <li class="step-item">
+                        <div class="step-number">2</div>
+                        <div class="step-text">Ajouter l'oignon entier, les carottes en rondelles, le thym et le laurier</div>
+                    </li>
+                    <li class="step-item">
+                        <div class="step-number">3</div>
+                        <div class="step-text">Mouiller à hauteur avec de l'eau froide, porter à ébullition</div>
+                    </li>
+                    <li class="step-item">
+                        <div class="step-number">4</div>
+                        <div class="step-text">Fermer la cocotte-minute, cuire <strong>35 minutes</strong> à partir de la rotation de la soupape</div>
+                    </li>
+                    <li class="step-item">
+                        <div class="step-number">5</div>
+                        <div class="step-text">En parallèle : faire revenir les chanterelles à part dans un peu d'huile d'olive. Réserver</div>
+                    </li>
+                    <li class="step-item">
+                        <div class="step-number">6</div>
+                        <div class="step-text">Cuire les pommes de terre à la cocotte vapeur en parallèle</div>
+                    </li>
+                    <li class="step-item">
+                        <div class="step-number">7</div>
+                        <div class="step-text">Retirer la viande, filtrer le bouillon (garder ~50 cl). Faire chauffer le bouillon filtré</div>
+                    </li>
+                    <li class="step-item">
+                        <div class="step-number">8</div>
+                        <div class="step-text">Mélanger dans un bol : jaunes d'œufs + lait sans lactose + farine</div>
+                    </li>
+                    <li class="step-item">
+                        <div class="step-number">9</div>
+                        <div class="step-text"><strong>Hors du feu</strong>, incorporer le mélange au bouillon chaud ⚠️ (jamais bouillir sinon ça tranche)</div>
+                    </li>
+                    <li class="step-item">
+                        <div class="step-number">10</div>
+                        <div class="step-text">Remettre sur feu doux, remuer jusqu'à épaississement</div>
+                    </li>
+                    <li class="step-item">
+                        <div class="step-number">11</div>
+                        <div class="step-text">Remettre la viande et les chanterelles dans la sauce. Chauffer doucement 10 min. Saler</div>
+                    </li>
+                    <li class="step-item">
+                        <div class="step-number">12</div>
+                        <div class="step-text">Servir la blanquette avec les pommes de terre vapeur 🐐</div>
+                    </li>
+                </ul>
+            </section>
+
+            <!-- Notes -->
+            <section class="ingredients-section" style="margin-top:1.5rem;">
+                <h2 class="section-title">Notes</h2>
+                <ul class="ingredients-list">
+                    <li>
+                        <div class="check-circle"></div>
+                        <span class="ingredient-text">Le bouillon peut être récupéré pour une soupe le lendemain</span>
+                    </li>
+                    <li>
+                        <div class="check-circle"></div>
+                        <span class="ingredient-text">Se conserve 2-3 jours au frigo, se congèle bien</span>
+                    </li>
+                    <li>
+                        <div class="check-circle"></div>
+                        <span class="ingredient-text">Recette traditionnelle de Pâques — famille Jullien 🐣</span>
+                    </li>
+                </ul>
+            </section>
+
+            <!-- Boutons téléchargement -->
+            <div class="download-buttons">
+                <button type="button" class="pdf-button" onclick="printRecipe('Blanquette_Chevreau_Paques')">
+                    📄 PDF
+                </button>
+                <button type="button" class="pdf-button img-button" onclick="downloadRecipeAsImage('Blanquette_Chevreau_Paques')">
+                    🖼️ IMG
+                </button>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer minimal -->
+    <footer class="site-footer">
+        <div class="container">
+            <p>Fait avec ❤️ par Camille</p>
+        </div>
+    </footer>
+
+    <script src="../js/app.js?v=19"></script>
+</body>
+</html>
