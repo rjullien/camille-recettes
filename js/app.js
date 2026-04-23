@@ -11,6 +11,7 @@ function initializeApp() {
     setupSearch();
     setupFilters();
     setupPrintedToggle();
+    applyFilters(); // Hide recette-familiale by default on page load
 }
 
 // === RECHERCHE ===
@@ -82,7 +83,11 @@ function applyFilters() {
         const matchCategory = (activeCategory === 'all' || cardCategory === activeCategory);
         const matchTag = (!activeTag || cardTags.includes(activeTag));
 
-        card.style.display = (matchCategory && matchTag) ? 'block' : 'none';
+        // Hide recette-familiale by default unless that tag is actively selected
+        const isFamiliale = cardTags.includes('recette-familiale');
+        const hideFamiliale = isFamiliale && activeTag !== 'recette-familiale';
+
+        card.style.display = (matchCategory && matchTag && !hideFamiliale) ? 'block' : 'none';
     });
 }
 
