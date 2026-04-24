@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Pâte brisée maison au Monsieur Cuisine. Rapide, facile, parfaite pour les quiches et tartes.">
+    <meta property="og:title" content="Pâte Brisée au Monsieur Cuisine - Les Recettes de Camille">
+    <meta property="og:description" content="Pâte brisée maison au Monsieur Cuisine. Rapide, facile, parfaite pour les quiches et tartes.">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://rjullien.github.io/camille-recettes/recettes/pate-brisee-monsieur-cuisine.html">
+    <title>Pâte Brisée au Monsieur Cuisine - Les Recettes de Camille</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600;700&family=Inter:wght@300;400;500;600&family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+<body>
+    <main class="main-content">
+        <div class="container">
+            <!-- Bouton retour -->
+            <a href="../index.html" class="recipe-back-link">← Recettes</a>
+
+            <!-- Titre centré -->
+            <h1 class="recipe-main-title">Pâte Brisée au Monsieur Cuisine</h1>
+
+            <!-- Ligne d'infos centrée -->
+            <div class="recipe-info-line">
+                <span class="info-chip info-chip--time">⏱️ 5 min</span>
+                <span class="info-chip info-chip--time">❄️ 30 min repos</span>
+                <span class="info-chip info-chip--serves">👥 1 fond de tarte</span>
+                <span class="info-chip info-chip--category">🧁 Base</span>
+                <span class="info-chip info-chip--tag">🤖 Monsieur Cuisine</span>
+            </div>
+
+            <!-- Section Ingrédients -->
+            <section class="ingredients-section">
+                <h2 class="section-title">Ingrédients</h2>
+                <ul class="ingredients-list">
+                    <li>
+                        <div class="check-circle"></div>
+                        <span class="ingredient-text">250g de farine</span>
+                    </li>
+                    <li>
+                        <div class="check-circle"></div>
+                        <span class="ingredient-text">125g de beurre froid coupé en dés</span>
+                    </li>
+                    <li>
+                        <div class="check-circle"></div>
+                        <span class="ingredient-text">1 œuf</span>
+                    </li>
+                    <li>
+                        <div class="check-circle"></div>
+                        <span class="ingredient-text">1 pincée de sel</span>
+                    </li>
+                    <li>
+                        <div class="check-circle"></div>
+                        <span class="ingredient-text">2-3 c.à.s d'eau froide</span>
+                    </li>
+                </ul>
+            </section>
+
+            <!-- Section Préparation -->
+            <section class="preparation-section">
+                <h2 class="section-title">Préparation au Monsieur Cuisine</h2>
+                <ul class="steps-list">
+                    <li class="step-item">
+                        <div class="step-number">1</div>
+                        <div class="step-text">Mettre la <strong>farine + sel + beurre froid en dés</strong> dans le bol</div>
+                    </li>
+                    <li class="step-item">
+                        <div class="step-number">2</div>
+                        <div class="step-text"><strong>Vitesse 4 / 15 secondes</strong> → ça doit faire un sable grossier</div>
+                    </li>
+                    <li class="step-item">
+                        <div class="step-number">3</div>
+                        <div class="step-text">Ajouter l'<strong>œuf + 2 c.à.s d'eau froide</strong></div>
+                    </li>
+                    <li class="step-item">
+                        <div class="step-number">4</div>
+                        <div class="step-text"><strong>Vitesse 3 / 15-20 secondes</strong> → juste jusqu'à ce que ça forme une boule</div>
+                    </li>
+                    <li class="step-item">
+                        <div class="step-number">5</div>
+                        <div class="step-text">Sortir, former une boule, <strong>filmer et mettre au frigo 30 min</strong></div>
+                    </li>
+                    <li class="step-item">
+                        <div class="step-number">6</div>
+                        <div class="step-text">Étaler et foncer le moule</div>
+                    </li>
+                </ul>
+            </section>
+
+            <!-- Astuces -->
+            <section class="preparation-section">
+                <h2 class="section-title">💡 Astuce</h2>
+                <ul class="steps-list">
+                    <li class="step-item">
+                        <div class="step-number">💡</div>
+                        <div class="step-text"><strong>Marche arrière pendant 10 secondes</strong> pour aider à former la boule</div>
+                    </li>
+                </ul>
+            </section>
+
+            <!-- Boutons export -->
+            <div class="export-buttons" style="text-align:center;margin:2rem 0;">
+                <button onclick="exportPDF()" class="export-btn" style="padding:12px 24px;border:none;border-radius:12px;background:#2d5016;color:white;font-size:0.95rem;cursor:pointer;margin:0.5rem;">📄 Télécharger PDF</button>
+                <button onclick="exportImage()" class="export-btn" style="padding:12px 24px;border:none;border-radius:12px;background:#8b6914;color:white;font-size:0.95rem;cursor:pointer;margin:0.5rem;">🖼️ Télécharger Image</button>
+            </div>
+        </div>
+    </main>
+
+    <script src="../js/app.js"></script>
+</body>
+</html>
