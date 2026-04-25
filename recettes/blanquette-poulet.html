@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Blanquette de poulet ultra-simple, sauce crémeuse citron. 1h de cuisson, résultat digne d'un resto !">
+    <meta property="og:title" content="Blanquette de Poulet - Les Recettes de Camille">
+    <meta property="og:description" content="Blanquette de poulet ultra-simple, sauce crémeuse citron. 1h de cuisson, résultat digne d'un resto !">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://rjullien.github.io/camille-recettes/recettes/blanquette-poulet.html">
+    <title>Blanquette de Poulet - Les Recettes de Camille</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600;700&family=Inter:wght@300;400;500;600&family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+<body>
+    <main class="main-content">
+        <div class="container">
+            <!-- Bouton retour -->
+            <a href="../index.html" class="recipe-back-link">← Recettes</a>
+
+            <!-- Titre centré -->
+            <h1 class="recipe-main-title">Blanquette de Poulet</h1>
+
+            <!-- Badge -->
+            <div style="text-align:center;margin-bottom:1rem;">
+                <span style="background:#fff3e0;color:#e65100;padding:4px 12px;border-radius:12px;font-size:0.85rem;font-weight:600;">🍗 Plat familial</span>
+            </div>
+
+            <!-- Ligne d'infos centrée -->
+            <div class="recipe-info-line">
+                <span class="info-chip info-chip--time">⏱️ 10 min prépa</span>
+                <span class="info-chip info-chip--time">🔥 45 min cuisson</span>
+                <span class="info-chip info-chip--serves">👥 4 pers.</span>
+                <span class="info-chip info-chip--category">🍽️ Plat</span>
+            </div>
+
+            <!-- Section Ingrédients -->
+            <section class="ingredients-section">
+                <h2 class="section-title">Ingrédients</h2>
+                <h3 style="font-size:1rem;color:#666;margin:1rem 0 0.5rem;">Blanquette</h3>
+                <ul class="ingredients-list">
+                    <li>
+                        <div class="check-circle"></div>
+                        <span class="ingredient-text">700-800 g de filets de poulet coupés en gros morceaux</span>
+                    </li>
+                    <li>
+                        <div class="check-circle"></div>
+                        <span class="ingredient-text">4 carottes en rondelles</span>
+                    </li>
+                    <li>
+                        <div class="check-circle"></div>
+                        <span class="ingredient-text">2 oignons émincés</span>
+                    </li>
+                    <li>
+                        <div class="check-circle"></div>
+                        <span class="ingredient-text">300 g champignons de Paris en lamelles</span>
+                    </li>
+                    <li>
+                        <div class="check-circle"></div>
+                        <span class="ingredient-text">40 g beurre</span>
+                    </li>
+                    <li>
+                        <div class="check-circle"></div>
+                        <span class="ingredient-text">40 g farine</span>
+                    </li>
+                    <li>
+                        <div class="check-circle"></div>
+                        <span class="ingredient-text">40 cl crème fraîche liquide</span>
+                    </li>
+                    <li>
+                        <div class="check-circle"></div>
+                        <span class="ingredient-text">2 jaunes d'œufs</span>
+                    </li>
+                    <li>
+                        <div class="check-circle"></div>
+                        <span class="ingredient-text">Jus de 1 citron</span>
+                    </li>
+                    <li>
+                        <div class="check-circle"></div>
+                        <span class="ingredient-text">2 cubes de bouillon de volaille</span>
+                    </li>
+                    <li>
+                        <div class="check-circle"></div>
+                        <span class="ingredient-text">1 L d'eau (pas plus !)</span>
+                    </li>
+                    <li>
+                        <div class="check-circle"></div>
+                        <span class="ingredient-text">Sel, poivre</span>
+                    </li>
+                </ul>
+                <h3 style="font-size:1rem;color:#666;margin:1rem 0 0.5rem;">Accompagnement</h3>
+                <ul class="ingredients-list">
+                    <li>
+                        <div class="check-circle"></div>
+                        <span class="ingredient-text">300 g de riz</span>
+                    </li>
+                </ul>
+            </section>
+
+            <!-- Section Préparation -->
+            <section class="preparation-section">
+                <h2 class="section-title">Préparation</h2>
+                <ul class="steps-list">
+                    <li class="step-item">
+                        <div class="step-number">1</div>
+                        <div class="step-text"><strong>Prépa (5 min) :</strong> Émincer les oignons, couper les carottes en rondelles et les champignons en lamelles (robot si dispo)</div>
+                    </li>
+                    <li class="step-item">
+                        <div class="step-number">2</div>
+                        <div class="step-text"><strong>Base (5 min) :</strong> Dans une cocotte, faire fondre 20 g de beurre → faire revenir les oignons 3 min jusqu'à ce qu'ils soient blonds</div>
+                    </li>
+                    <li class="step-item">
+                        <div class="step-number">3</div>
+                        <div class="step-text"><strong>Cuisson (25 min) :</strong> Ajouter le poulet + les carottes + 1 L d'eau + les cubes de bouillon. <strong>Couvercle fermé</strong>, feu doux 20 min. À 20 min : ajouter les champignons, couvercle encore 5 min</div>
+                    </li>
+                    <li class="step-item">
+                        <div class="step-number">4</div>
+                        <div class="step-text"><strong>Sauce (8 min) :</strong> Dans un bol, mélanger la farine + 10 cl de crème froide jusqu'à obtenir un mélange lisse. Verser dans la cocotte en fouettant → laisser épaissir 3 min à feu doux</div>
+                    </li>
+                    <li class="step-item">
+                        <div class="step-number">5</div>
+                        <div class="step-text"><strong>Liaison finale (2 min) :</strong> <strong>HORS FEU</strong> : mélanger les jaunes d'œufs + le reste de crème + le jus de citron. Remettre sur feu très doux 1 min — <strong>ne surtout pas faire bouillir !</strong></div>
+                    </li>
+                    <li class="step-item">
+                        <div class="step-number">6</div>
+                        <div class="step-text"><strong>Riz :</strong> Cuire le riz 10 min à l'eau bouillante salée. Servir la blanquette sur le riz</div>
+                    </li>
+                </ul>
+            </section>
+
+            <!-- Notes -->
+            <section class="ingredients-section" style="margin-top:2rem;">
+                <h2 class="section-title">💡 Notes</h2>
+                <ul class="ingredients-list">
+                    <li>
+                        <div class="check-circle"></div>
+                        <span class="ingredient-text">L'épluchage et la découpe des légumes prennent facilement 30-45 min à la main — prévoir large !</span>
+                    </li>
+                    <li>
+                        <div class="check-circle"></div>
+                        <span class="ingredient-text">Testé avec 700 g de poulet → quantité parfaite pour 4</span>
+                    </li>
+                    <li>
+                        <div class="check-circle"></div>
+                        <span class="ingredient-text">Ne pas dépasser 1 L d'eau sinon la sauce sera trop liquide</span>
+                    </li>
+                    <li>
+                        <div class="check-circle"></div>
+                        <span class="ingredient-text">La liaison jaunes d'œufs + citron se fait HORS FEU — si ça bout, les œufs coagulent</span>
+                    </li>
+                </ul>
+            </section>
+
+            <!-- Boutons téléchargement -->
+            <div class="download-buttons">
+                <button type="button" class="pdf-button" onclick="printRecipe('Blanquette_de_Poulet')">
+                    📄 PDF
+                </button>
+                <button type="button" class="pdf-button img-button" onclick="downloadRecipeAsImage('Blanquette_de_Poulet')">
+                    🖼️ IMG
+                </button>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer minimal -->
+    <footer class="site-footer">
+        <div class="container">
+            <p>Fait avec ❤️ par Camille</p>
+        </div>
+    </footer>
+
+    <script src="../js/app.js?v=20"></script>
+</body>
+</html>
