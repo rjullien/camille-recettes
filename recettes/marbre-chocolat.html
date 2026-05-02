@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Gâteau marbré chocolat au Monsieur Cuisine. Recette simple et rapide, moelleux garanti !">
+    <meta property="og:title" content="Marbré Chocolat - Les Recettes de Camille">
+    <meta property="og:description" content="Gâteau marbré chocolat au Monsieur Cuisine. Recette simple et rapide, moelleux garanti !">
+    <meta property="og:type" content="article">
+    <meta property="og:image" content="https://rjullien.github.io/camille-recettes/images/marbre-chocolat-1.jpg">
+    <meta property="og:url" content="https://rjullien.github.io/camille-recettes/recettes/marbre-chocolat.html">
+    <title>Marbré Chocolat - Les Recettes de Camille</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600;700&family=Inter:wght@300;400;500;600&family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+<body>
+    <main class="main-content">
+        <div class="container">
+            <!-- Bouton retour -->
+            <a href="../index.html" class="recipe-back-link">← Recettes</a>
+
+            <!-- Photo principale -->
+            <div class="recipe-hero-image">
+                <img src="../images/marbre-chocolat-1.jpg" alt="Marbré Chocolat" style="width:100%;height:auto;object-fit:contain;border-radius:16px;">
+            </div>
+
+            <!-- Titre centré -->
+            <h1 class="recipe-main-title">Marbré Chocolat</h1>
+
+            <!-- Badges -->
+            <div style="text-align:center;margin-bottom:1rem;">
+                <span style="background:#e8f5e8;color:#2e7d32;padding:4px 12px;border-radius:12px;font-size:0.85rem;font-weight:600;margin-right:8px;">✅ Testée</span>
+                <span style="background:#e8f5e8;color:#2e7d32;padding:4px 12px;border-radius:12px;font-size:0.85rem;font-weight:600;margin-right:8px;">👨‍🍳 Recette familiale</span>
+                <span style="background:#fce4ec;color:#c62828;padding:4px 12px;border-radius:12px;font-size:0.85rem;font-weight:600;">🤖 Monsieur Cuisine</span>
+            </div>
+
+            <!-- Ligne d'infos centrée -->
+            <div class="recipe-info-line">
+                <span class="info-chip info-chip--time">⏱️ 1h</span>
+                <span class="info-chip info-chip--serves">👥 8 pers.</span>
+                <span class="info-chip info-chip--category">🍰 Dessert</span>
+            </div>
+
+            <!-- Section Ingrédients -->
+            <section class="ingredients-section">
+                <h2 class="section-title">Ingrédients</h2>
+                <ul class="ingredients-list">
+                    <li>
+                        <div class="check-circle"></div>
+                        <span class="ingredient-text">250 g de farine (type 45)</span>
+                    </li>
+                    <li>
+                        <div class="check-circle"></div>
+                        <span class="ingredient-text">170 g de sucre fin</span>
+                    </li>
+                    <li>
+                        <div class="check-circle"></div>
+                        <span class="ingredient-text">150 g de beurre (sorti à l'avance)</span>
+                    </li>
+                    <li>
+                        <div class="check-circle"></div>
+                        <span class="ingredient-text">50 g de lait (UHT 1,5% MG)</span>
+                    </li>
+                    <li>
+                        <div class="check-circle"></div>
+                        <span class="ingredient-text">70 g de chocolat noir pâtissier (ou 25 g de cacao en poudre)</span>
+                    </li>
+                    <li>
+                        <div class="check-circle"></div>
+                        <span class="ingredient-text">4 œufs (calibre M)</span>
+                    </li>
+                    <li>
+                        <div class="check-circle"></div>
+                        <span class="ingredient-text">10 g de levure chimique (1 sachet)</span>
+                    </li>
+                    <li>
+                        <div class="check-circle"></div>
+                        <span class="ingredient-text">5 g de sucre vanillé</span>
+                    </li>
+                </ul>
+            </section>
+
+            <!-- Section Préparation -->
+            <section class="preparation-section">
+                <h2 class="section-title">Préparation</h2>
+                <ul class="steps-list">
+                    <li class="step-item">
+                        <div class="step-number">1</div>
+                        <div class="step-text"><strong>Préchauffer</strong> le four à <strong>170°C</strong> (th. 5/6).</div>
+                    </li>
+                    <li class="step-item">
+                        <div class="step-number">2</div>
+                        <div class="step-text">Chemiser un moule à cake ou à savarin avec du <strong>papier sulfurisé</strong> et le beurrer au pinceau avec du beurre fondu.</div>
+                    </li>
+                    <li class="step-item">
+                        <div class="step-number">3</div>
+                        <div class="step-text">Mettre tous les ingrédients <strong>sauf le chocolat</strong> dans la cuve du Monsieur Cuisine. Mélanger <strong>1 min / vitesse 5</strong>.</div>
+                    </li>
+                    <li class="step-item">
+                        <div class="step-number">4</div>
+                        <div class="step-text">Verser <strong>la moitié</strong> de la pâte dans le moule préparé.</div>
+                    </li>
+                    <li class="step-item">
+                        <div class="step-number">5</div>
+                        <div class="step-text"><strong>Faire fondre</strong> le chocolat cassé en morceaux (micro-ondes 30 sec par 30 sec en remuant, ou bain-marie). Laisser tiédir 1-2 min.</div>
+                    </li>
+                    <li class="step-item">
+                        <div class="step-number">6</div>
+                        <div class="step-text">Ajouter le chocolat fondu à la pâte restée dans la cuve. Mélanger <strong>30 sec / vitesse 5</strong>.</div>
+                    </li>
+                    <li class="step-item">
+                        <div class="step-number">7</div>
+                        <div class="step-text">Verser la pâte chocolatée sur la pâte nature dans le moule. Donner un coup de fourchette en <strong>zigzag</strong> pour l'effet marbré 🎨</div>
+                    </li>
+                    <li class="step-item">
+                        <div class="step-number">8</div>
+                        <div class="step-text">Enfourner <strong>45-50 min</strong>. Vérifier la cuisson avec la pointe d'un couteau.</div>
+                    </li>
+                </ul>
+            </section>
+
+            <!-- Notes -->
+            <section class="ingredients-section" style="margin-top:1.5rem;">
+                <h2 class="section-title">Notes</h2>
+                <ul class="ingredients-list">
+                    <li>
+                        <div class="check-circle"></div>
+                        <span class="ingredient-text">Si tu n'as pas de cacao en poudre, utilise 70 g de chocolat noir fondu à la place (règle : ×3 le poids du cacao)</span>
+                    </li>
+                    <li>
+                        <div class="check-circle"></div>
+                        <span class="ingredient-text">Avec du chocolat au lait : 80-90 g et réduire le sucre à 150 g</span>
+                    </li>
+                    <li>
+                        <div class="check-circle"></div>
+                        <span class="ingredient-text">Sortir le beurre à l'avance pour qu'il soit bien mou</span>
+                    </li>
+                    <li>
+                        <div class="check-circle"></div>
+                        <span class="ingredient-text">Fonctionne aussi dans un moule à savarin (résultat testé et approuvé ! 🤩)</span>
+                    </li>
+                    <li>
+                        <div class="check-circle"></div>
+                        <span class="ingredient-text">Recette testée par Camille — mai 2026</span>
+                    </li>
+                </ul>
+            </section>
+
+            <!-- Boutons téléchargement -->
+            <div class="download-buttons">
+                <button type="button" class="pdf-button" onclick="printRecipe('Marbre_Chocolat')">
+                    📄 PDF
+                </button>
+                <button type="button" class="pdf-button img-button" onclick="downloadRecipeAsImage('Marbre_Chocolat')">
+                    🖼️ IMG
+                </button>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer minimal -->
+    <footer class="site-footer">
+        <div class="container">
+            <p>Fait avec ❤️ par Camille</p>
+        </div>
+    </footer>
+
+    <script src="../js/app.js?v=20"></script>
+</body>
+</html>
