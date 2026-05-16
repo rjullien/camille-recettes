@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Saucisses de Toulouse aux lentilles vertes, lardons et crème. Recette traditionnelle réconfortante en 1h.">
+    <meta property="og:title" content="Saucisse Lentilles - Les Recettes de Camille">
+    <meta property="og:description" content="Saucisses de Toulouse aux lentilles vertes, lardons et crème. Recette traditionnelle réconfortante.">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://rjullien.github.io/camille-recettes/recettes/saucisse-lentilles.html">
+    <title>Saucisse Lentilles - Les Recettes de Camille</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600;700&family=Inter:wght@300;400;500;600&family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+<body>
+    <main class="main-content">
+        <div class="container">
+            <a href="../index.html" class="recipe-back-link">← Recettes</a>
+
+            <h1 class="recipe-main-title">Saucisse Lentilles</h1>
+
+            <div style="text-align:center;margin-bottom:1rem;">
+                <span style="background:#efebe9;color:#4e342e;padding:4px 12px;border-radius:12px;font-size:0.85rem;font-weight:600;">🍖 Tradition</span>
+                <span style="background:#e3f2fd;color:#1565c0;padding:4px 12px;border-radius:12px;font-size:0.85rem;font-weight:600;">❄️ Se congèle</span>
+            </div>
+
+            <div class="recipe-info-line">
+                <span class="info-chip info-chip--time">⏱️ 1h</span>
+                <span class="info-chip info-chip--serves">👥 4 pers.</span>
+                <span class="info-chip info-chip--category">🍽️ Plat</span>
+            </div>
+
+            <section class="ingredients-section">
+                <h2 class="section-title">Ingrédients</h2>
+                <ul class="ingredients-list">
+                    <li><div class="check-circle"></div><span class="ingredient-text">4 saucisses de Toulouse</span></li>
+                    <li><div class="check-circle"></div><span class="ingredient-text">2 oignons</span></li>
+                    <li><div class="check-circle"></div><span class="ingredient-text">2 gousses d'ail</span></li>
+                    <li><div class="check-circle"></div><span class="ingredient-text">2 carottes</span></li>
+                    <li><div class="check-circle"></div><span class="ingredient-text">2 paquets de lardons fumés</span></li>
+                    <li><div class="check-circle"></div><span class="ingredient-text">240 g de lentilles vertes</span></li>
+                    <li><div class="check-circle"></div><span class="ingredient-text">1 brique de crème</span></li>
+                    <li><div class="check-circle"></div><span class="ingredient-text">900 ml de bouillon de volaille</span></li>
+                    <li><div class="check-circle"></div><span class="ingredient-text">Thym</span></li>
+                </ul>
+            </section>
+
+            <section class="preparation-section">
+                <h2 class="section-title">Préparation</h2>
+                <ul class="steps-list">
+                    <li class="step-item">
+                        <div class="step-number">1</div>
+                        <div class="step-text">Ciseler l'oignon et l'ail, couper la carotte en fine demi-lunes</div>
+                    </li>
+                    <li class="step-item">
+                        <div class="step-number">2</div>
+                        <div class="step-text">Faire fondre une noix de beurre dans une grande casserole à feu moyen et y faire revenir l'oignon, les lardons et la carotte 3-5 min. Ajouter l'ail et cuire 1 min</div>
+                    </li>
+                    <li class="step-item">
+                        <div class="step-number">3</div>
+                        <div class="step-text">Ajouter les lentilles, le bouillon et le thym. Couvrir et laisser mijoter 35-50 min à feu doux</div>
+                    </li>
+                    <li class="step-item">
+                        <div class="step-number">4</div>
+                        <div class="step-text">Faire chauffer une poêle à feu vif et y faire dorer les saucisses à sec 3-4 min. Réserver</div>
+                    </li>
+                    <li class="step-item">
+                        <div class="step-number">5</div>
+                        <div class="step-text">Piquer les saucisses et les ajouter au bout de 20 min de cuisson des lentilles</div>
+                    </li>
+                    <li class="step-item">
+                        <div class="step-number">6</div>
+                        <div class="step-text">Lorsque les lentilles sont cuites, réserver les saucisses et égoutter les lentilles au besoin</div>
+                    </li>
+                    <li class="step-item">
+                        <div class="step-number">7</div>
+                        <div class="step-text">Couper les saucisses en tranches de 1 cm. Ajouter la crème et les saucisses à la casserole. Ajouter sel et poivre au besoin</div>
+                    </li>
+                </ul>
+            </section>
+
+            <section class="recipe-photo-section" style="text-align:center;margin:2rem 0;">
+                <img src="../images/saucisse-lentilles.jpg" alt="Saucisse lentilles" style="max-width:100%;border-radius:12px;box-shadow:0 4px 12px rgba(0,0,0,0.1);">
+            </section>
+
+            <div class="download-buttons">
+                <button type="button" class="pdf-button" onclick="printRecipe('Saucisse_Lentilles')">📄 PDF</button>
+                <button type="button" class="pdf-button img-button" onclick="downloadRecipeAsImage('Saucisse_Lentilles')">🖼️ IMG</button>
+            </div>
+        </div>
+    </main>
+    <footer class="site-footer"><div class="container"><p>Fait avec ❤️ par Camille</p></div></footer>
+    <script src="../js/app.js?v=20"></script>
+</body>
+</html>

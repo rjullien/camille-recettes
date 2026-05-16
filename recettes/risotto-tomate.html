@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Risotto tomate mozza basilic, crémeaux au parmesan avec vinaigrette miel-balsamique. 40 min pour 2 personnes.">
+    <meta property="og:title" content="Risotto Tomate - Les Recettes de Camille">
+    <meta property="og:description" content="Risotto tomate mozza basilic, crémeux au parmesan avec vinaigrette miel-balsamique.">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://rjullien.github.io/camille-recettes/recettes/risotto-tomate.html">
+    <title>Risotto Tomate - Les Recettes de Camille</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600;700&family=Inter:wght@300;400;500;600&family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+<body>
+    <main class="main-content">
+        <div class="container">
+            <a href="../index.html" class="recipe-back-link">← Recettes</a>
+
+            <h1 class="recipe-main-title">Risotto Tomate</h1>
+
+            <div style="text-align:center;margin-bottom:1rem;">
+                <span style="background:#fce4ec;color:#c62828;padding:4px 12px;border-radius:12px;font-size:0.85rem;font-weight:600;">🇮🇹 Italien</span>
+                <span style="background:#e8f5e9;color:#2e7d32;padding:4px 12px;border-radius:12px;font-size:0.85rem;font-weight:600;">🧀 Végétarien</span>
+            </div>
+
+            <div class="recipe-info-line">
+                <span class="info-chip info-chip--time">⏱️ 40 min</span>
+                <span class="info-chip info-chip--serves">👥 2 pers.</span>
+                <span class="info-chip info-chip--category">🍽️ Plat</span>
+            </div>
+
+            <section class="ingredients-section">
+                <h2 class="section-title">Ingrédients</h2>
+                <ul class="ingredients-list">
+                    <li><div class="check-circle"></div><span class="ingredient-text">1 gousse d'ail</span></li>
+                    <li><div class="check-circle"></div><span class="ingredient-text">1 oignon</span></li>
+                    <li><div class="check-circle"></div><span class="ingredient-text">4 tomates classiques</span></li>
+                    <li><div class="check-circle"></div><span class="ingredient-text">150 g de riz pour risotto</span></li>
+                    <li><div class="check-circle"></div><span class="ingredient-text">1 mozzarella</span></li>
+                    <li><div class="check-circle"></div><span class="ingredient-text">Parmesan</span></li>
+                    <li><div class="check-circle"></div><span class="ingredient-text">1 cube de bouillon de légumes</span></li>
+                    <li><div class="check-circle"></div><span class="ingredient-text">1 cuillère à café de miel</span></li>
+                    <li><div class="check-circle"></div><span class="ingredient-text">1 cuillère à soupe de vinaigre balsamique</span></li>
+                    <li><div class="check-circle"></div><span class="ingredient-text">Épices italiennes (thym, romarin, basilic, origan)</span></li>
+                </ul>
+            </section>
+
+            <section class="preparation-section">
+                <h2 class="section-title">Préparation</h2>
+                <ul class="steps-list">
+                    <li class="step-item">
+                        <div class="step-number">1</div>
+                        <div class="step-text">Porter à ébullition 700 ml d'eau et ajouter le cube de bouillon de légumes</div>
+                    </li>
+                    <li class="step-item">
+                        <div class="step-number">2</div>
+                        <div class="step-text">Ciseler l'ail et l'oignon. Faire chauffer une sauteuse avec un filet d'huile et faire revenir l'ail et l'oignon 2-3 min</div>
+                    </li>
+                    <li class="step-item">
+                        <div class="step-number">3</div>
+                        <div class="step-text">Couper les tomates en cube et les ajouter à la sauteuse pendant 2-3 min</div>
+                    </li>
+                    <li class="step-item">
+                        <div class="step-number">4</div>
+                        <div class="step-text">Ajouter le riz, les épices italiennes et faire revenir 1 min</div>
+                    </li>
+                    <li class="step-item">
+                        <div class="step-number">5</div>
+                        <div class="step-text">Ajouter un ⅓ du bouillon et laisser les grains de riz s'en imbiber lentement. Dès que le bouillon est absorbé, ajouter à nouveau ⅓ du bouillon et ainsi de suite. Faire cuire le risotto 15-20 min à feu doux en remuant régulièrement. Incorporer le parmesan, le basilic et le poivre au risotto</div>
+                    </li>
+                    <li class="step-item">
+                        <div class="step-number">6</div>
+                        <div class="step-text">Couper la mozzarella en morceaux. Dans un bol, mélanger le miel et le vinaigre balsamique. Servir dans des assiettes et ajouter la sauce et la mozzarella</div>
+                    </li>
+                </ul>
+            </section>
+
+            <section class="recipe-photo-section" style="text-align:center;margin:2rem 0;">
+                <img src="../images/risotto-tomate.jpg" alt="Risotto tomate" style="max-width:100%;border-radius:12px;box-shadow:0 4px 12px rgba(0,0,0,0.1);">
+            </section>
+
+            <div class="download-buttons">
+                <button type="button" class="pdf-button" onclick="printRecipe('Risotto_Tomate')">📄 PDF</button>
+                <button type="button" class="pdf-button img-button" onclick="downloadRecipeAsImage('Risotto_Tomate')">🖼️ IMG</button>
+            </div>
+        </div>
+    </main>
+    <footer class="site-footer"><div class="container"><p>Fait avec ❤️ par Camille</p></div></footer>
+    <script src="../js/app.js?v=20"></script>
+</body>
+</html>
