@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Blanquette de saumon crémeuse au riz, avec poireaux et carottes. Prête en 30 minutes !">
+    <meta property="og:title" content="Blanquette Saumon - Les Recettes de Camille">
+    <meta property="og:description" content="Blanquette de saumon crémeuse au riz, avec poireaux et carottes. Prête en 30 minutes !">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://rjullien.github.io/camille-recettes/recettes/blanquette-saumon.html">
+    <title>Blanquette Saumon - Les Recettes de Camille</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600;700&family=Inter:wght@300;400;500;600&family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+<body>
+    <main class="main-content">
+        <div class="container">
+            <!-- Bouton retour -->
+            <a href="../index.html" class="recipe-back-link">← Recettes</a>
+
+            <!-- Titre centré -->
+            <h1 class="recipe-main-title">Blanquette Saumon</h1>
+
+            <!-- Badge -->
+            <div style="text-align:center;margin-bottom:1rem;">
+                <span style="background:#e3f2fd;color:#1565c0;padding:4px 12px;border-radius:12px;font-size:0.85rem;font-weight:600;">🐟 Poisson</span>
+                <span style="background:#fff3e0;color:#e65100;padding:4px 12px;border-radius:12px;font-size:0.85rem;font-weight:600;">⚡ Rapide</span>
+            </div>
+
+            <!-- Ligne d'infos centrée -->
+            <div class="recipe-info-line">
+                <span class="info-chip info-chip--time">⏱️ 30 min</span>
+                <span class="info-chip info-chip--serves">👥 4 pers.</span>
+                <span class="info-chip info-chip--category">🍽️ Plat</span>
+            </div>
+
+            <!-- Section Ingrédients -->
+            <section class="ingredients-section">
+                <h2 class="section-title">Ingrédients</h2>
+                <ul class="ingredients-list">
+                    <li>
+                        <div class="check-circle"></div>
+                        <span class="ingredient-text">4 filets de saumon</span>
+                    </li>
+                    <li>
+                        <div class="check-circle"></div>
+                        <span class="ingredient-text">2 gousses d'ail</span>
+                    </li>
+                    <li>
+                        <div class="check-circle"></div>
+                        <span class="ingredient-text">2 poireaux</span>
+                    </li>
+                    <li>
+                        <div class="check-circle"></div>
+                        <span class="ingredient-text">2 carottes</span>
+                    </li>
+                    <li>
+                        <div class="check-circle"></div>
+                        <span class="ingredient-text">2 échalotes</span>
+                    </li>
+                    <li>
+                        <div class="check-circle"></div>
+                        <span class="ingredient-text">300 g de riz</span>
+                    </li>
+                    <li>
+                        <div class="check-circle"></div>
+                        <span class="ingredient-text">1 brique de crème (20 cl)</span>
+                    </li>
+                    <li>
+                        <div class="check-circle"></div>
+                        <span class="ingredient-text">100 ml de bouillon de légume</span>
+                    </li>
+                    <li>
+                        <div class="check-circle"></div>
+                        <span class="ingredient-text">Jus de citron</span>
+                    </li>
+                    <li>
+                        <div class="check-circle"></div>
+                        <span class="ingredient-text">Persil</span>
+                    </li>
+                </ul>
+            </section>
+
+            <!-- Section Préparation -->
+            <section class="preparation-section">
+                <h2 class="section-title">Préparation</h2>
+                <ul class="steps-list">
+                    <li class="step-item">
+                        <div class="step-number">1</div>
+                        <div class="step-text">Préparer le bouillon</div>
+                    </li>
+                    <li class="step-item">
+                        <div class="step-number">2</div>
+                        <div class="step-text">Ciseler l'ail, couper la carotte et le poireau en fine demi-lune</div>
+                    </li>
+                    <li class="step-item">
+                        <div class="step-number">3</div>
+                        <div class="step-text">Faire chauffer une poêle avec un filet d'huile à feu moyen-vif et y faire revenir l'ail, la carotte et le poireau 3-4 min</div>
+                    </li>
+                    <li class="step-item">
+                        <div class="step-number">4</div>
+                        <div class="step-text">Ajouter le bouillon et baisser le feu. Couvrir et laisser mijoter 10-12 min</div>
+                    </li>
+                    <li class="step-item">
+                        <div class="step-number">5</div>
+                        <div class="step-text">Ciseler l'échalote et couper le saumon en cube (retirer la peau au préalable)</div>
+                    </li>
+                    <li class="step-item">
+                        <div class="step-number">6</div>
+                        <div class="step-text">Faire fondre une noix de beurre par personne dans une casserole à feu moyen et y faire revenir l'échalote 2-3 min</div>
+                    </li>
+                    <li class="step-item">
+                        <div class="step-number">7</div>
+                        <div class="step-text">Ajouter le riz, une fois translucide, ajouter 180 ml d'eau par personne</div>
+                    </li>
+                    <li class="step-item">
+                        <div class="step-number">8</div>
+                        <div class="step-text">Laisser cuire à feu doux 13-15 min</div>
+                    </li>
+                    <li class="step-item">
+                        <div class="step-number">9</div>
+                        <div class="step-text">Placer le saumon sur les légumes. Ajouter sel et poivre et couvrir 5 min à feu doux</div>
+                    </li>
+                    <li class="step-item">
+                        <div class="step-number">10</div>
+                        <div class="step-text">Ajouter la crème, le persil et le jus de citron. Laisser réduire la sauce à feu moyen</div>
+                    </li>
+                </ul>
+            </section>
+
+            <!-- Photo -->
+            <section class="recipe-photo-section" style="text-align:center;margin:2rem 0;">
+                <img src="../images/blanquette-saumon.jpg" alt="Blanquette saumon" style="max-width:100%;border-radius:12px;box-shadow:0 4px 12px rgba(0,0,0,0.1);">
+            </section>
+
+            <!-- Boutons téléchargement -->
+            <div class="download-buttons">
+                <button type="button" class="pdf-button" onclick="printRecipe('Blanquette_Saumon')">
+                    📄 PDF
+                </button>
+                <button type="button" class="pdf-button img-button" onclick="downloadRecipeAsImage('Blanquette_Saumon')">
+                    🖼️ IMG
+                </button>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer minimal -->
+    <footer class="site-footer">
+        <div class="container">
+            <p>Fait avec ❤️ par Camille</p>
+        </div>
+    </footer>
+
+    <script src="../js/app.js?v=20"></script>
+</body>
+</html>
