@@ -1,0 +1,14 @@
+# Camille Recettes
+
+> Livre de recettes de Camille — site web statique avec recherche et impression A4.
+
+## Description
+Recettes de cuisine de Camille, organisées en fiches avec données structurées (ingrédients, étapes). Site statique, recherche intégrée, impression A4 optimisée.
+
+## Pages / Accès
+Le contenu des recettes est dans le dossier `recettes/` (fichiers markdown). L'index principal est `index.html`.
+
+## À savoir pour les agents
+- Site 100% statique (HTML/CSS/JS vanilla), pas de rendu serveur nécessaire
+- Les recettes sont lisibles directement dans les fichiers markdown sous `recettes/`
+- Données structurées dans `data/`
