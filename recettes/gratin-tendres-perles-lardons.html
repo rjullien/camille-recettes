@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Gratin de tendres perles à la sauce tomate et aux lardons, chapelure croustillante et fromage gratiné. Un plat réconfortant et facile.">
+    <meta property="og:title" content="Gratin de Tendres Perles Sauce Tomate & Lardons - Les Recettes de Camille">
+    <meta property="og:description" content="Gratin de tendres perles à la sauce tomate et aux lardons, chapelure croustillante et fromage gratiné. Un plat réconfortant et facile.">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://rjullien.github.io/camille-recettes/recettes/gratin-tendres-perles-lardons.html">
+    <title>Gratin de Tendres Perles Sauce Tomate & Lardons - Les Recettes de Camille</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600;700&family=Inter:wght@300;400;500;600&family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+<body>
+    <main class="main-content">
+        <div class="container">
+            <!-- Bouton retour -->
+            <a href="../index.html" class="recipe-back-link">← Recettes</a>
+
+            <!-- Titre centré -->
+            <h1 class="recipe-main-title">Gratin de Tendres Perles Sauce Tomate & Lardons</h1>
+
+            <!-- Ligne d'infos centrée -->
+            <div class="recipe-info-line">
+                <span class="info-chip info-chip--time">⏱️ 15 min</span>
+                <span class="info-chip info-chip--time">🔥 15 min</span>
+                <span class="info-chip info-chip--serves">👥 4 pers.</span>
+                <span class="info-chip info-chip--category">🍽️ Plat</span>
+                <span class="info-chip info-chip--tag">🍅 Sauce tomate maison</span>
+            </div>
+
+            <!-- Section Ingrédients -->
+            <section class="ingredients-section">
+                <h2 class="section-title">Ingrédients</h2>
+                <ul class="ingredients-list">
+                    <li>
+                        <div class="check-circle"></div>
+                        <span class="ingredient-text">200 g de Tendres Perles Tipiak</span>
+                    </li>
+                    <li>
+                        <div class="check-circle"></div>
+                        <span class="ingredient-text">150 g d'allumettes de lardons</span>
+                    </li>
+                    <li>
+                        <div class="check-circle"></div>
+                        <span class="ingredient-text">300 g de sauce tomate maison</span>
+                    </li>
+                    <li>
+                        <div class="check-circle"></div>
+                        <span class="ingredient-text">15 cl de crème liquide</span>
+                    </li>
+                    <li>
+                        <div class="check-circle"></div>
+                        <span class="ingredient-text">120 g de fromage râpé</span>
+                    </li>
+                    <li>
+                        <div class="check-circle"></div>
+                        <span class="ingredient-text">Chapelure</span>
+                    </li>
+                    <li>
+                        <div class="check-circle"></div>
+                        <span class="ingredient-text">Huile d'olive, sel, poivre</span>
+                    </li>
+                </ul>
+            </section>
+
+            <!-- Section Préparation -->
+            <section class="preparation-section">
+                <h2 class="section-title">Préparation</h2>
+                <ul class="steps-list">
+                    <li class="step-item">
+                        <div class="step-number">1</div>
+                        <div class="step-text">Faire bouillir <strong>1,5 L d'eau salée</strong>, y plonger les <strong>200 g de Tendres Perles</strong> et cuire <strong>6-7 min</strong></div>
+                    </li>
+                    <li class="step-item">
+                        <div class="step-number">2</div>
+                        <div class="step-text">Égoutter les perles et les verser dans un <strong>plat à gratin</strong></div>
+                    </li>
+                    <li class="step-item">
+                        <div class="step-number">3</div>
+                        <div class="step-text">Faire dorer les <strong>lardons</strong> à la poêle <strong>3-4 min</strong>, puis verser sur les perles (avec la graisse de cuisson)</div>
+                    </li>
+                    <li class="step-item">
+                        <div class="step-number">4</div>
+                        <div class="step-text">Mélanger <strong>300 g de sauce tomate + 15 cl de crème</strong>, saler, poivrer : verser et remuer doucement pour enrober</div>
+                    </li>
+                    <li class="step-item">
+                        <div class="step-number">5</div>
+                        <div class="step-text">Parsemer de <strong>fromage râpé</strong> puis de <strong>chapelure</strong></div>
+                    </li>
+                    <li class="step-item">
+                        <div class="step-number">6</div>
+                        <div class="step-text">Enfourner à <strong>180°C pendant 15 min</strong> (10-12 min en chaleur tournante) jusqu'à ce que le dessus soit doré 🧀</div>
+                    </li>
+                </ul>
+            </section>
+
+            <!-- Boutons export -->
+            <div class="export-buttons" style="text-align:center;margin:2rem 0;">
+                <button onclick="exportPDF()" class="export-btn" style="padding:12px 24px;border:none;border-radius:12px;background:#2d5016;color:white;font-size:0.95rem;cursor:pointer;margin:0.5rem;">📄 Télécharger PDF</button>
+                <button onclick="exportImage()" class="export-btn" style="padding:12px 24px;border:none;border-radius:12px;background:#8b6914;color:white;font-size:0.95rem;cursor:pointer;margin:0.5rem;">🖼️ Télécharger Image</button>
+            </div>
+        </div>
+    </main>
+
+    <script src="../js/app.js"></script>
+</body>
+</html>
