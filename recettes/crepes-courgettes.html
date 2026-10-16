@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Crêpes de courgettes légères et moelleuses, pâte mixée au robot. Parfaites en accompagnement d'un rôti ou d'une viande en sauce.">
+    <meta property="og:title" content="Crêpes de Courgettes - Les Recettes de Camille">
+    <meta property="og:description" content="Crêpes de courgettes légères et moelleuses, pâte mixée au robot. Parfaites en accompagnement d'un rôti ou d'une viande en sauce.">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://rjullien.github.io/camille-recettes/recettes/crepes-courgettes.html">
+    <title>Crêpes de Courgettes - Les Recettes de Camille</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600;700&family=Inter:wght@300;400;500;600&family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+<body>
+    <main class="main-content">
+        <div class="container">
+            <!-- Bouton retour -->
+            <a href="../index.html" class="recipe-back-link">← Recettes</a>
+
+            <!-- Titre centré -->
+            <h1 class="recipe-main-title">Crêpes de Courgettes</h1>
+
+            <!-- Ligne d'infos centrée -->
+            <div class="recipe-info-line">
+                <span class="info-chip info-chip--time">⏱️ 10 min</span>
+                <span class="info-chip info-chip--time">🔥 1 min 30 / face</span>
+                <span class="info-chip info-chip--serves">👥 2 pers.</span>
+                <span class="info-chip info-chip--category">🍽️ Plat</span>
+                <span class="info-chip info-chip--tag">🥒 Accompagnement</span>
+            </div>
+
+            <!-- Section Ingrédients -->
+            <section class="ingredients-section">
+                <h2 class="section-title">Ingrédients</h2>
+                <ul class="ingredients-list">
+                    <li>
+                        <div class="check-circle"></div>
+                        <span class="ingredient-text">1 petite courgette</span>
+                    </li>
+                    <li>
+                        <div class="check-circle"></div>
+                        <span class="ingredient-text">1 œuf</span>
+                    </li>
+                    <li>
+                        <div class="check-circle"></div>
+                        <span class="ingredient-text">200 g de farine</span>
+                    </li>
+                    <li>
+                        <div class="check-circle"></div>
+                        <span class="ingredient-text">400 ml de lait</span>
+                    </li>
+                    <li>
+                        <div class="check-circle"></div>
+                        <span class="ingredient-text">1 pincée de noix de muscade</span>
+                    </li>
+                    <li>
+                        <div class="check-circle"></div>
+                        <span class="ingredient-text">Sel, poivre</span>
+                    </li>
+                </ul>
+            </section>
+
+            <!-- Section Préparation -->
+            <section class="preparation-section">
+                <h2 class="section-title">Préparation</h2>
+                <ul class="steps-list">
+                    <li class="step-item">
+                        <div class="step-number">1</div>
+                        <div class="step-text">Râper la courgette puis la <strong>presser</strong> pour retirer l'eau</div>
+                    </li>
+                    <li class="step-item">
+                        <div class="step-number">2</div>
+                        <div class="step-text">Dans le bol du robot, verser <strong>le lait en premier</strong>, puis l'œuf, la farine, la muscade, le sel et le poivre</div>
+                    </li>
+                    <li class="step-item">
+                        <div class="step-number">3</div>
+                        <div class="step-text">Gobelet doseur en place, <strong>mixer 45 sec à vitesse 5</strong> (sans chauffer)</div>
+                    </li>
+                    <li class="step-item">
+                        <div class="step-number">4</div>
+                        <div class="step-text">Ajouter la courgette râpée et incorporer <strong>en sens inverse, vitesse 2-3, 10-15 sec</strong></div>
+                    </li>
+                    <li class="step-item">
+                        <div class="step-number">5</div>
+                        <div class="step-text">Laisser <strong>reposer la pâte 20-30 min</strong></div>
+                    </li>
+                    <li class="step-item">
+                        <div class="step-number">6</div>
+                        <div class="step-text">Cuire à la poêle huilée bien chaude, <strong>1 min 30 par face</strong>. Réserver au chaud entre deux assiettes</div>
+                    </li>
+                </ul>
+            </section>
+
+            <!-- Conseil -->
+            <section class="preparation-section">
+                <h2 class="section-title">Le truc en plus</h2>
+                <p style="line-height:1.6;">Parfaites en accompagnement d'un rôti (veau ou porc) servi avec son jus. Astuce : <strong>presser la courgette</strong> et mettre <strong>le lait en premier</strong> dans le bol évitent une pâte liquide ou grumeleuse.</p>
+            </section>
+
+            <!-- Boutons export -->
+            <div class="export-buttons" style="text-align:center;margin:2rem 0;">
+                <button onclick="exportPDF()" class="export-btn" style="padding:12px 24px;border:none;border-radius:12px;background:#2d5016;color:white;font-size:0.95rem;cursor:pointer;margin:0.5rem;">📄 Télécharger PDF</button>
+                <button onclick="exportImage()" class="export-btn" style="padding:12px 24px;border:none;border-radius:12px;background:#8b6914;color:white;font-size:0.95rem;cursor:pointer;margin:0.5rem;">🖼️ Télécharger Image</button>
+            </div>
+        </div>
+    </main>
+
+    <script src="../js/app.js"></script>
+</body>
+</html>
