@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Petits gâteaux moelleux sans œuf, préparés au robot et cuits au four. Une recette simple et rapide pour un goûter maison.">
+    <meta property="og:title" content="Petits Gâteaux Sans Œuf - Les Recettes de Camille">
+    <meta property="og:description" content="Petits gâteaux moelleux sans œuf, préparés au robot et cuits au four. Une recette simple et rapide pour un goûter maison.">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://rjullien.github.io/camille-recettes/recettes/petits-gateaux-sans-oeuf.html">
+    <title>Petits Gâteaux Sans Œuf - Les Recettes de Camille</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600;700&family=Inter:wght@300;400;500;600&family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+<body>
+    <main class="main-content">
+        <div class="container">
+            <!-- Bouton retour -->
+            <a href="../index.html" class="recipe-back-link">← Recettes</a>
+
+            <!-- Titre centré -->
+            <h1 class="recipe-main-title">Petits Gâteaux Sans Œuf</h1>
+
+            <!-- Ligne d'infos centrée -->
+            <div class="recipe-info-line">
+                <span class="info-chip info-chip--time">⏱️ 10 min</span>
+                <span class="info-chip info-chip--time">🔥 15 min</span>
+                <span class="info-chip info-chip--serves">🍪 ~20 pièces</span>
+                <span class="info-chip info-chip--category">🍰 Dessert</span>
+                <span class="info-chip info-chip--tag">🤖 Au robot</span>
+            </div>
+
+            <!-- Section Ingrédients -->
+            <section class="ingredients-section">
+                <h2 class="section-title">Ingrédients</h2>
+                <ul class="ingredients-list">
+                    <li>
+                        <div class="check-circle"></div>
+                        <span class="ingredient-text">250 g de farine</span>
+                    </li>
+                    <li>
+                        <div class="check-circle"></div>
+                        <span class="ingredient-text">70 g de sucre roux</span>
+                    </li>
+                    <li>
+                        <div class="check-circle"></div>
+                        <span class="ingredient-text">2 sachets de sucre vanillé</span>
+                    </li>
+                    <li>
+                        <div class="check-circle"></div>
+                        <span class="ingredient-text">1 sachet de levure chimique</span>
+                    </li>
+                    <li>
+                        <div class="check-circle"></div>
+                        <span class="ingredient-text">65 g de beurre</span>
+                    </li>
+                    <li>
+                        <div class="check-circle"></div>
+                        <span class="ingredient-text">65 ml de lait (50 ml + 1 c. à s.)</span>
+                    </li>
+                    <li>
+                        <div class="check-circle"></div>
+                        <span class="ingredient-text">1 cuillère à soupe d'huile d'olive</span>
+                    </li>
+                </ul>
+            </section>
+
+            <!-- Section Préparation -->
+            <section class="preparation-section">
+                <h2 class="section-title">Préparation</h2>
+                <ul class="steps-list">
+                    <li class="step-item">
+                        <div class="step-number">1</div>
+                        <div class="step-text">Verser la <strong>farine, le sucre roux, le sucre vanillé et la levure</strong> dans le bol. Mélanger <strong>20 sec à vitesse 3</strong>, sans chauffer</div>
+                    </li>
+                    <li class="step-item">
+                        <div class="step-number">2</div>
+                        <div class="step-text">Ajouter le <strong>beurre en morceaux</strong>. Mélanger <strong>20 sec à vitesse 3</strong>, sans chauffer. Racler les parois à la spatule</div>
+                    </li>
+                    <li class="step-item">
+                        <div class="step-number">3</div>
+                        <div class="step-text">Ajouter les <strong>50 ml de lait et l'huile d'olive</strong>. Mélanger <strong>15 sec à vitesse 3</strong></div>
+                    </li>
+                    <li class="step-item">
+                        <div class="step-number">4</div>
+                        <div class="step-text">Ajouter la <strong>cuillère à soupe de lait</strong> supplémentaire. Mélanger <strong>10 sec à vitesse 3</strong>, jusqu'à obtenir une pâte qui se tient quand on la presse</div>
+                    </li>
+                    <li class="step-item">
+                        <div class="step-number">5</div>
+                        <div class="step-text">Former des <strong>petites boules</strong>, les aplatir légèrement et les disposer sur une plaque recouverte de <strong>papier cuisson</strong></div>
+                    </li>
+                    <li class="step-item">
+                        <div class="step-number">6</div>
+                        <div class="step-text">Enfourner dans un four préchauffé à <strong>180 °C pendant 15 min</strong>, puis laisser refroidir sur la plaque</div>
+                    </li>
+                </ul>
+            </section>
+
+            <!-- Boutons export -->
+            <div class="export-buttons" style="text-align:center;margin:2rem 0;">
+                <button onclick="exportPDF()" class="export-btn" style="padding:12px 24px;border:none;border-radius:12px;background:#2d5016;color:white;font-size:0.95rem;cursor:pointer;margin:0.5rem;">📄 Télécharger PDF</button>
+                <button onclick="exportImage()" class="export-btn" style="padding:12px 24px;border:none;border-radius:12px;background:#8b6914;color:white;font-size:0.95rem;cursor:pointer;margin:0.5rem;">🖼️ Télécharger Image</button>
+            </div>
+        </div>
+    </main>
+
+    <script src="../js/app.js"></script>
+</body>
+</html>
