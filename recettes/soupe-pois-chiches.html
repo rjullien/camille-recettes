@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Soupe de pois chiches traditionnelle, la recette de mamie : palette de porc demi-sel et pois chiches mijotés 2 à 3 h. Recette familiale pour 8 personnes.">
+    <meta property="og:title" content="Soupe de Pois Chiches (recette de mamie) - Les Recettes de Camille">
+    <meta property="og:description" content="Soupe de pois chiches traditionnelle, la recette de mamie : palette de porc demi-sel et pois chiches mijotés 2 à 3 h. Recette familiale pour 8 personnes.">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://rjullien.github.io/camille-recettes/recettes/soupe-pois-chiches.html">
+    <title>Soupe de Pois Chiches (recette de mamie) - Les Recettes de Camille</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600;700&family=Inter:wght@300;400;500;600&family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+<body>
+    <main class="main-content">
+        <div class="container">
+            <!-- Bouton retour -->
+            <a href="../index.html" class="recipe-back-link">← Recettes</a>
+
+            <!-- Titre centré -->
+            <h1 class="recipe-main-title">Soupe de Pois Chiches (recette de mamie)</h1>
+
+            <!-- Ligne d'infos centrée -->
+            <div class="recipe-info-line">
+                <span class="info-chip info-chip--time">⏱️ 3 h 30</span>
+                <span class="info-chip info-chip--time">🔥 2 h 30</span>
+                <span class="info-chip info-chip--serves">👥 8 pers.</span>
+                <span class="info-chip info-chip--category">🥣 Soupe</span>
+                <span class="info-chip info-chip--tag">👵 Recette de mamie</span>
+            </div>
+
+            <!-- Section Ingrédients -->
+            <section class="ingredients-section">
+                <h2 class="section-title">Ingrédients</h2>
+                <ul class="ingredients-list">
+                    <li>
+                        <div class="check-circle"></div>
+                        <span class="ingredient-text">1 palette de porc demi-sel (~1 kg)</span>
+                    </li>
+                    <li>
+                        <div class="check-circle"></div>
+                        <span class="ingredient-text">500 g de pois chiches</span>
+                    </li>
+                    <li>
+                        <div class="check-circle"></div>
+                        <span class="ingredient-text">6 carottes</span>
+                    </li>
+                    <li>
+                        <div class="check-circle"></div>
+                        <span class="ingredient-text">2 poireaux</span>
+                    </li>
+                    <li>
+                        <div class="check-circle"></div>
+                        <span class="ingredient-text">1 oignon</span>
+                    </li>
+                    <li>
+                        <div class="check-circle"></div>
+                        <span class="ingredient-text">1 branche de céleri branche</span>
+                    </li>
+                    <li>
+                        <div class="check-circle"></div>
+                        <span class="ingredient-text">3 clous de girofle</span>
+                    </li>
+                    <li>
+                        <div class="check-circle"></div>
+                        <span class="ingredient-text">1 cuillère à soupe de bicarbonate alimentaire</span>
+                    </li>
+                </ul>
+            </section>
+
+            <!-- Section Préparation -->
+            <section class="preparation-section">
+                <h2 class="section-title">Préparation</h2>
+                <ul class="steps-list">
+                    <li class="step-item">
+                        <div class="step-number">1</div>
+                        <div class="step-text">La veille : faire tremper les pois chiches dans une grande casserole d'eau, 10 cm au-dessus des pois chiches</div>
+                    </li>
+                    <li class="step-item">
+                        <div class="step-number">2</div>
+                        <div class="step-text">Le jour : égoutter et rincer les pois chiches, puis les mettre dans un faitout (très grande casserole)</div>
+                    </li>
+                    <li class="step-item">
+                        <div class="step-number">3</div>
+                        <div class="step-text">Rincer la viande pour bien enlever le sel, la dégraisser, la désosser et la couper en très gros morceaux. L'ajouter au faitout</div>
+                    </li>
+                    <li class="step-item">
+                        <div class="step-number">4</div>
+                        <div class="step-text">Éplucher les légumes et les couper en gros morceaux</div>
+                    </li>
+                    <li class="step-item">
+                        <div class="step-number">5</div>
+                        <div class="step-text">Garder l'oignon entier, le piquer de 3 clous de girofle, et tout ajouter au faitout</div>
+                    </li>
+                    <li class="step-item">
+                        <div class="step-number">6</div>
+                        <div class="step-text">Verser de l'eau à 5 cm au-dessus des ingrédients, couvrir, et laisser mijoter 2 à 3 h à feu moyen</div>
+                    </li>
+                    <li class="step-item">
+                        <div class="step-number">7</div>
+                        <div class="step-text">Au bout de 2 h, goûter : si les pois chiches sont encore trop fermes, poursuivre la cuisson</div>
+                    </li>
+                    <li class="step-item">
+                        <div class="step-number">8</div>
+                        <div class="step-text">En fin de cuisson, ajouter 1 cuillère à soupe de bicarbonate (la soupe mousse un instant, c'est normal), puis laisser mijoter encore 5 minutes</div>
+                    </li>
+                </ul>
+            </section>
+
+            <!-- Boutons téléchargement -->
+            <div class="download-buttons">
+                <button type="button" class="pdf-button" onclick="printRecipe('Soupe_Pois_Chiches')">
+                    📄 PDF
+                </button>
+                <button type="button" class="pdf-button img-button" onclick="downloadRecipeAsImage('Soupe_Pois_Chiches')">
+                    🖼️ IMG
+                </button>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer minimal -->
+    <footer class="site-footer">
+        <div class="container">
+            <p>Fait avec ❤️ par Camille</p>
+        </div>
+    </footer>
+
+    <script src="../js/app.js?v=20"></script>
+</body>
+</html>
